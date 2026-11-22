@@ -283,7 +283,7 @@ Path: `labs/NN-module-slug/NN-topic-name/` (mirrors the lesson path). Each lab h
 # one-time setup (website tooling)
 uv venv .venv && uv pip install -r requirements-docs.txt
 
-# preview the site at http://127.0.0.1:8000/backend_mastery/
+# preview the site at http://127.0.0.1:8000/
 .venv/bin/mkdocs serve
 
 # strict build (must pass before any lesson is done)
