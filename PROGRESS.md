@@ -10,9 +10,11 @@ Legend: ✅ done + verified · 🟡 in progress / partial · ⬜ not started · 
 ## Next up
 
 **✅ Two-layer conversion done (owner approved, 2026-11-21):** all 12 lessons now have an "In 1 minute" box, advanced sections in "Going deeper" boxes (via `scripts/two_layer.py` + hand-simplified dense sections: OS/process table, socket steps, resources, exit codes, scripts, names→objects, file descriptors, file system intro, HTTP, roadmap levels, refcount). Visible core ≈ 1,500–2,700 words per lesson (was 3,500–5,000). Quizzes: core questions first, ≤3 marked "(Going deeper)". Lab READMEs: deeper tasks marked "optional, Going deeper".
-**✅ Module 2 complete (2026-11-21).** **✅ Module 3 complete (2026-11-22).** **✅ Module 4 complete (2026-11-22)** — Bazaar v0 (plan ka lab) bana: `labs/04-python-fundamentals/08-modules-and-bazaar-v0/bazaar_v0/`. Module 5 Lessons 1–7 ✅. **Next:** Module 5, Lesson 8 — asyncio, and 100 supplier APIs (plan diagram: event loop; plan lab: a local fake supplier server, 100 calls sync vs threads vs async, timed). Then Module 5 complete.
+**✅ Module 2 complete (2026-11-21).** **✅ Module 3 complete (2026-11-22).** **✅ Module 4 complete (2026-11-22)** — Bazaar v0 (plan ka lab) bana: `labs/04-python-fundamentals/08-modules-and-bazaar-v0/bazaar_v0/`. **✅ Module 5 complete (2026-11-23)** — plan's lab done (100 supplier APIs: 10.6 s / 0.3 s / 0.2 s). **Next:** Module 6 — Data structures and algorithms for backend (plan: Big-O, arrays, hash maps, linked lists, stacks and queues, trees and B-trees, heaps, graphs; diagrams: hash map buckets and collisions, B-tree insert and search; lab: in-memory shopping cart store with expiry). Pehle Module 6 ka lesson split decide karke yahan likhna.
 
-Module 5 split (8 lessons): 1. Classes and objects ✅ · 2. Inheritance and special methods ✅ · 3. Dataclasses and type hints ✅ · 4. Decorators ✅ · 5. Generators and context managers ✅ · 6. Virtual environments and packaging ✅ · 7. Threads and processes ✅ · 8. asyncio, and 100 supplier APIs (plan diagram: event loop; plan lab: sync vs threads vs async timing).
+**Deploy (2026-11-23):** repo `abdullafajal/backend_mastery` (public), pushed. Owner must enable GitHub Pages once: Settings → Pages → Source: **GitHub Actions**. Until then the "Deploy site" job fails at `deploy-pages` (build passes). Site URL: https://abdullafajal.github.io/backend_mastery/.
+
+Module 5 split (8 lessons): 1. Classes and objects ✅ · 2. Inheritance and special methods ✅ · 3. Dataclasses and type hints ✅ · 4. Decorators ✅ · 5. Generators and context managers ✅ · 6. Virtual environments and packaging ✅ · 7. Threads and processes ✅ · 8. asyncio, and 100 supplier APIs ✅.
 
 Module 4 split (8 lessons): 1. Variables and types ✅ · 2. Control flow ✅ · 3. Functions ✅ · 4. Lists, dicts and sets ✅ · 5. Comprehensions ✅ · 6. Errors and exceptions ✅ · 7. Files and JSON ✅ · 8. Modules, and Bazaar v0 ✅.
 
@@ -83,7 +85,7 @@ Module 3 split (5 lessons): 1. Commits and history ✅ · 2. Branches · 3. Merg
 | 2 | Linux and the command line | 7 / 7 | shell-steps ✅, file-tree ✅, permission-check ✅, pipe-flow ✅, env-inherit ✅, ssh-keys ✅, systemd-lifecycle ✅ | 02-01 … 02-07 ✅ | ✅ |
 | 3 | Git and GitHub | 5 / 5 | git-three-places ✅, commit-graph ✅ (story + merge + rebase + own), github-flow ✅ | 03-01 … 03-05 ✅ | ✅ |
 | 4 | Python fundamentals | 8 / 8 | name-tags ✅ (+ list), control-flow ✅, function-call ✅, comprehension ✅, try-except ✅, file-json ✅, imports ✅ | 04-01 … 04-08 ✅ | ✅ |
-| 5 | Advanced Python | 7 / 8 | class-objects ✅, method-lookup ✅, dataclass-hints ✅, decorator-wrap ✅, generator-flow ✅, venv-packaging ✅, concurrency-timeline ✅ | 05-01 … 05-07 ✅ | 🟡 |
+| 5 | Advanced Python | 8 / 8 | class-objects ✅, method-lookup ✅, dataclass-hints ✅, decorator-wrap ✅, generator-flow ✅, venv-packaging ✅, concurrency-timeline ✅, event-loop ✅ | 05-01 … 05-08 ✅ | ✅ |
 | 6 | Data structures and algorithms | 0 | ⬜ | ⬜ | ⬜ |
 | 7 | Networking and how the web works | 0 | ⬜ | ⬜ | ⬜ |
 | 8 | Django fundamentals | 0 | ⬜ | ⬜ | ⬜ |
@@ -175,6 +177,7 @@ Module 3 split (5 lessons): 1. Commits and history ✅ · 2. Branches · 3. Merg
 
 | # | Lesson | File | Diagram | Lab | Quiz | DoD |
 | --- | --- | --- | --- | --- | --- | --- |
+| 08 | asyncio, and 100 supplier APIs | `docs/05-advanced-python/08-asyncio-and-100-supplier-apis.md` | `event-loop` ✅ (plan: event loop juggling tasks; await / block) | `labs/05-advanced-python/08-asyncio-and-100-supplier-apis/` ✅ (6/6 checks, 5 tasks; **plan's lab**: `suppliers` server (stdlib, 0.1 s per request) + client image with httpx; compare.py one by one / threads / asyncio) | `m05-08` ✅ (6 core + 2 deeper) | ✅ Two-layer v1 |
 | 07 | Threads and processes | `docs/05-advanced-python/07-threads-and-processes.md` | `concurrency-timeline` ✅ (waiting / computing) | `labs/05-advanced-python/07-threads-and-processes/` ✅ (6/6 checks, 5 tasks; timing checks use ranges; exercise = threads not joined) | `m05-07` ✅ (6 core + 2 deeper) | ✅ Two-layer v1 |
 | 06 | Virtual environments and packaging | `docs/05-advanced-python/06-venv-and-packaging.md` | `venv-packaging` ✅ (two venvs / installing Bazaar) | `labs/05-advanced-python/06-venv-and-packaging/` ✅ (12/12 checks, 7 tasks; own image with uv 0.13.6; needs internet; `bazaar_pkg/` with pyproject + `bazaar` entry point; exercise = entry point names a missing function) | `m05-06` ✅ (6 core + 2 deeper) | ✅ Two-layer v1 |
 | 05 | Generators and context managers | `docs/05-advanced-python/05-generators-and-context-managers.md` | `generator-flow` ✅ (list vs generator, memory box) | `labs/05-advanced-python/05-generators-and-context-managers/` ✅ (9/9 checks, 8 tasks; 200,000-line seeded log in `data/`; pipeline + average checked against independent awk) | `m05-05` ✅ (6 core + 2 deeper) | ✅ Two-layer v1 |
@@ -204,6 +207,7 @@ Module 3 split (5 lessons): 1. Commits and history ✅ · 2. Branches · 3. Merg
 | file-tree | `docs/assets/diagrams/file-tree.js` | m02-02 | Select: cd around / tour; click any folder | ✅ |
 | ssh-keys | `docs/assets/diagrams/ssh-keys.js` | m02-06 | Select: key login / first connection (known_hosts) | ✅ |
 | systemd-lifecycle | `docs/assets/diagrams/systemd-lifecycle.js` | m02-07 | Select: start + crash/restart / enable + reboot / stop | ✅ |
+| event-loop | `docs/assets/diagrams/event-loop.js` | m05-08 | Select await / block; loop + 3 tasks with clock | ✅ |
 | concurrency-timeline | `docs/assets/diagrams/concurrency-timeline.js` | m05-07 | Select wait / cpu; time-bar boxes | ✅ |
 | venv-packaging | `docs/assets/diagrams/venv-packaging.js` | m05-06 | Select venv / package | ✅ |
 | generator-flow | `docs/assets/diagrams/generator-flow.js` | m05-05 | Select list / gen; orders are the first 5 PAID lines of the lab's real log | ✅ |
@@ -265,6 +269,7 @@ Module 3 split (5 lessons): 1. Commits and history ✅ · 2. Branches · 3. Merg
 | m05-05 | `docs/assets/quizzes/m05-05.json` | 8 | ✅ |
 | m05-06 | `docs/assets/quizzes/m05-06.json` | 8 | ✅ |
 | m05-07 | `docs/assets/quizzes/m05-07.json` | 8 | ✅ |
+| m05-08 | `docs/assets/quizzes/m05-08.json` | 8 | ✅ |
 
 ### Labs + host port map
 
@@ -281,6 +286,7 @@ Module 3 split (5 lessons): 1. Commits and history ✅ · 2. Branches · 3. Merg
 | `labs/01-how-computers-work/05-what-a-server-is` | `bz-m01-05` | `${BAZAAR_PORT:-8000}` | `test_lab.sh` 5/5 (tools service `ulimits: nofile: 50`) | ✅ |
 | `labs/02-linux-command-line/01-the-shell` | `bz-m02-01` | none (`run --rm shell`, fresh `/srv/bazaar` each session) | `test_lab.sh` 8/8 | ✅ |
 | `labs/02-linux-command-line/02-working-with-files` | `bz-m02-02` | none (builds `bazaar-lab-files:m02-02`: less, nano, vim-tiny, tree, procps) | `test_lab.sh` 10/10 | ✅ |
+| `labs/05-advanced-python/08-asyncio-and-100-supplier-apis` | `bz-m05-08` | none (services `suppliers` (official Python image) + `python` (builds `bazaar-lab-python-httpx:m05-08`); internal port 8080 only) | `test_lab.sh` 6/6 | ✅ |
 | `labs/05-advanced-python/07-threads-and-processes` | `bz-m05-07` | none (official Python image, `./:/lab`) | `test_lab.sh` 6/6 | ✅ |
 | `labs/05-advanced-python/06-venv-and-packaging` | `bz-m05-06` | none (builds `bazaar-lab-python-uv:m05-06`; **needs internet** for PyPI; test venvs in /tmp) | `test_lab.sh` 12/12 | ✅ |
 | `labs/05-advanced-python/05-generators-and-context-managers` | `bz-m05-05` | none (official Python image, `./:/lab`; writes `data/orders.log`) | `test_lab.sh` 9/9 | ✅ |
@@ -331,6 +337,7 @@ Port rule: har lab ka host port env var se aata hai (`"${BAZAAR_PORT:-8000}:8000
 | PostgreSQL | 17 (exact tag pin when first used) | — | — |
 | Redis | 7 (exact tag pin when first used) | — | — |
 | Playwright (dev only) | 1.65.2 | `requirements-dev.txt` | 2026-11-21 |
+| httpx + deps (lab 05-08 image) | httpx 0.28.1, anyio 4.16.0, httpcore 1.0.9, h11 0.16.0, certifi 2026.10.23, idna 3.20, typing_extensions 4.16.0 | `labs/05-advanced-python/08-asyncio-and-100-supplier-apis/requirements.txt` | 2026-11-23 |
 | uv (lab 05-06 image) | 0.13.6 (released 2026-10-27) | `labs/05-advanced-python/06-venv-and-packaging/Dockerfile` | 2026-11-22 |
 | requests + deps (lab 05-06) | requests 2.34.2 / 2.33.1, certifi 2026.10.23, charset-normalizer 3.5.2, idna 3.20, urllib3 2.8.0 | `project-a/`, `project-b/requirements.txt` | 2026-11-22 |
 | setuptools (build backend, lab 05-06) | 84.2.1 (released 2026-10-20) | `bazaar_pkg/pyproject.toml` | 2026-11-22 |
@@ -411,6 +418,14 @@ Port rule: har lab ka host port env var se aata hai (`"${BAZAAR_PORT:-8000}:8000
 ---
 
 ## Session log
+
+### 2026-11-23 — Session 39: Module 5, Lesson 8 "asyncio, and 100 supplier APIs" (Module 5 complete) + GitHub deploy
+
+**Kiya:** lesson (core: async def/await/event loop/gather with `asyncio_basics` (asks first, replies by speed, 0.3 s), threads vs asyncio table, the plan's lab: same 100 calls with httpx three ways (10.6 s / 0.3 s / 0.2 s, ₹25,050 each), one-waiter analogy; code example = time.sleep inside async → 1.0 s → `await asyncio.sleep` 0.1 s; under the hood: no await (RuntimeWarning + coroutine object), await outside function; deeper: tasks/timeouts/Semaphore/return_exceptions/limits, epoll + generators, async DB drivers/ASGI/to_thread). Plan diagram `event-loop.js`. Lab: `suppliers` stdlib server (keep-alive, Nagle off, queue 256) + client image with httpx pins; readiness via a retry loop (no blind sleep); timing checks parse numbers and use ranges. Quiz m05-08. Glossary +5 (Asyncio, Await, Blocking call, Coroutine, Event loop).
+**Verify kiya:** all outputs real; httpx default `Limits(max_connections=100, …)` checked (a guessed claim in the draft was replaced); cheat-sheet code run against the server (100 prices, 2,505,000 paise); "Stuck?" ConnectError reproduced. Mutation: `gather` → sequential awaits → compare FAIL.
+**Deploy:** owner asked to push to `github.com/abdullafajal/backend_mastery` and deploy on Pages. Owner had already made the first commit (11a9ffd) and set `origin`; `.gitignore` already covered venvs, `site/`, `site-screens/`, caches. Pushed commits 61b3a97, 7ee4af1 (+ this one). Public API showed `has_pages: false` → Deploy job fails at `actions/deploy-pages` (build OK) until the owner selects Source = GitHub Actions. Test labs job failed on the first commit; logs need login → `test_all_labs.sh` now prints `::error title=Lab test failed::<lab>` annotations (public).
+**Checks:** build strict, check_site (8 Module 5 pages) PASS, lab 6/6, screenshots dekhe (desktop-light await, mobile-dark block).
+
 
 ### 2026-11-23 — Session 38: Module 5, Lesson 7 "Threads and processes" (+ module-reference audit)
 

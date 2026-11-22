@@ -220,7 +220,7 @@ When you finish, run `bash test_lab.sh` (from your computer). You should see `AL
 
 ## 9. What's next
 
-Next: `asyncio`, a third way to wait for many things at once, with one thread and an event loop, and the plan's lab: 100 supplier APIs, three ways, timed: asyncio, and 100 supplier APIs *(coming soon)*.
+Next: `asyncio`, a third way to wait for many things at once, with one thread and an event loop, and the plan's lab: 100 supplier APIs, three ways, timed: [asyncio, and 100 supplier APIs](08-asyncio-and-100-supplier-apis.md).
 
 **In one line:** threads overlap **waiting** (I/O), but the GIL stops them from speeding up **computing**; processes compute on several cores at once;
 threads share memory, so protect shared changes with a lock, and always wait for threads to finish.

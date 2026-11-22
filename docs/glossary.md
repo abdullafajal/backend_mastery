@@ -21,11 +21,15 @@ Words are in alphabetical order. The module in brackets is where you first meet 
 
 **Argument** — A word given to a command, saying what to work on, like `logs` in `ls logs`. *(Module 2)*
 
+**Asyncio** — Python's library for waiting on many things at once with one thread and an event loop: `async def`, `await`, `asyncio.gather`. *(Module 5)*
+
 **Atomic** — Done in one indivisible step: other programs see it either not done at all, or completely done. *(Module 1)*
 
 **Attribute** — Data stored on an object, read with a dot: `masala.stock`. *(Module 5)*
 
 **authorized_keys** — The file on a server (`~/.ssh/authorized_keys`) listing the public keys allowed to log in as that user. *(Module 2)*
+
+**Await** — Inside `async def`: pause here until this is done, and let the event loop run other tasks meanwhile. *(Module 5)*
 
 **Backend** — The hidden part of an app that answers requests, enforces rules and stores data. *(Module 0)*
 
@@ -40,6 +44,8 @@ Words are in alphabetical order. The module in brackets is where you first meet 
 **Bit** — The smallest piece of data: a single 0 or 1. 8 bits make 1 byte. *(Module 1)*
 
 **Block** — The fixed-size piece (usually 4 KB) in which a disk stores data. Even a tiny file uses a whole block. *(Module 1)*
+
+**Blocking call** — A normal call that waits without letting anything else run, like `time.sleep` or `requests.get`. Inside `async def` it freezes the whole event loop. *(Module 5)*
 
 **Body** — The actual data inside a request or response, after the headers. *(Module 0)*
 
@@ -112,6 +118,8 @@ Words are in alphabetical order. The module in brackets is where you first meet 
 **Control flow** — The order in which lines run. `if`, `for` and `while` change it: skip lines, or repeat them. *(Module 4)*
 
 **Core** — One worker inside a CPU. Each core runs one thing at a time; a laptop often has 8. *(Module 1)*
+
+**Coroutine** — A function defined with `async def`: it can pause at `await` and continue later. Calling it without `await` doesn't run it. *(Module 5)*
 
 **CPU** — Central Processing Unit: the part of a computer that follows instructions and does the work. *(Module 1)*
 
@@ -188,6 +196,8 @@ Words are in alphabetical order. The module in brackets is where you first meet 
 **Entry point** — A command a package installs, like `bazaar = "bazaar.main:run"`: typing `bazaar` calls that function. *(Module 5)*
 
 **Environment variable** — A named setting that every program on your computer can read, like `PATH`. *(Module 0)*
+
+**Event loop** — asyncio's scheduler: it runs one coroutine until it awaits, then switches to another that's ready. *(Module 5)*
 
 **Exception** — An error object Python raises while a program runs, like `ValueError`. Unless handled, it stops the program. *(Module 4)*
 

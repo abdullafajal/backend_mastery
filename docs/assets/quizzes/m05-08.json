@@ -1,0 +1,83 @@
+{
+  "title": "asyncio, and 100 supplier APIs",
+  "questions": [
+    {
+      "q": "How many threads does asyncio use to wait for 100 supplier calls?",
+      "options": ["100", "One: a single event loop juggles all the waiting tasks", "One per CPU core", "Zero"],
+      "answer": 1,
+      "explain": "The event loop runs one coroutine until it awaits, then switches to another. One thread, many waits."
+    },
+    {
+      "q": "What does await mean inside async def?",
+      "options": [
+        "Stop the program",
+        "Pause this coroutine here until the thing is done, and let the event loop run other tasks meanwhile",
+        "Run the next line twice",
+        "Start a new thread"
+      ],
+      "answer": 1,
+      "explain": "await is a pause point. That's why all three 'ask' lines print before any 'reply'."
+    },
+    {
+      "q": "asyncio.gather(a, b, c) with waits of 0.3 s, 0.1 s and 0.2 s. About how long in total?",
+      "options": ["0.6 s (the sum)", "0.3 s (the longest)", "0.1 s (the shortest)", "1 s"],
+      "answer": 1,
+      "explain": "All three wait together, so the total is the longest wait. The results come back in the order you passed them: [300, 100, 200]."
+    },
+    {
+      "q": "In the lab, 100 supplier calls of 0.1 s each took about how long one by one, and with asyncio?",
+      "options": [
+        "Both about 10 s",
+        "About 10.6 s one by one, about 0.2 s with asyncio",
+        "About 0.1 s both",
+        "asyncio was slower"
+      ],
+      "answer": 1,
+      "explain": "One by one, the waits add up. With asyncio (or threads), they overlap."
+    },
+    {
+      "q": "An async function calls time.sleep(0.1). Ten of them, gathered, take 1.0 s. Why?",
+      "options": [
+        "gather is slow",
+        "time.sleep blocks: it never gives control back to the event loop, so the tasks run one after another",
+        "The suppliers are slow",
+        "asyncio needs more threads"
+      ],
+      "answer": 1,
+      "explain": "Use await asyncio.sleep(0.1) (and async libraries) inside async code. The fix brought it to 0.1 s."
+    },
+    {
+      "q": "price = fetch_price(\"Patel Spices\") inside async def, without await. What is price?",
+      "options": [
+        "The price",
+        "A coroutine object, and Python warns: coroutine 'fetch_price' was never awaited",
+        "None",
+        "An error at once"
+      ],
+      "answer": 1,
+      "explain": "Calling a coroutine only creates it. await it (or gather it) to run it."
+    },
+    {
+      "q": "(Going deeper) Why use asyncio.Semaphore or a connection limit when calling 1,000 supplier APIs?",
+      "options": [
+        "To make it slower on purpose",
+        "So you don't open 1,000 requests at once and overload the suppliers (or yourself)",
+        "Because asyncio can only do 10 at a time",
+        "It's required by Python"
+      ],
+      "answer": 1,
+      "explain": "A Semaphore lets only N run at once; add timeouts too, so one dead supplier can't hang everything."
+    },
+    {
+      "q": "(Going deeper) You must call an old blocking library from async code. What's the safe way?",
+      "options": [
+        "Call it directly",
+        "await asyncio.to_thread(old_function, ...): it runs in a thread, and the loop keeps going",
+        "Use time.sleep instead",
+        "Wrap it in async def"
+      ],
+      "answer": 1,
+      "explain": "Wrapping a blocking call in async def doesn't make it non-blocking. to_thread moves it off the loop."
+    }
+  ]
+}

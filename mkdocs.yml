@@ -142,5 +142,6 @@ nav:
           - "Generators and context managers": 05-advanced-python/05-generators-and-context-managers.md
           - "Virtual environments and packaging": 05-advanced-python/06-venv-and-packaging.md
           - "Threads and processes": 05-advanced-python/07-threads-and-processes.md
+          - "asyncio, and 100 supplier APIs": 05-advanced-python/08-asyncio-and-100-supplier-apis.md
   - Glossary: glossary.md
   - About: about.md

@@ -1,0 +1,18 @@
+services:
+  suppliers:                                    # 100 pretend supplier APIs (one small server)
+    image: python:3.13.18-slim-trixie
+    command: python3 -u /server/server.py
+    volumes:
+      - ./supplier_server:/server:ro
+  python:                                       # where you run the lab's programs (has httpx)
+    build: .
+    image: bazaar-lab-python-httpx:m05-08
+    working_dir: /lab
+    environment:
+      SUPPLIERS_URL: http://suppliers:8080
+    volumes:
+      - ./:/lab
+    depends_on: [suppliers]
+    stdin_open: true
+    tty: true
+    command: bash
