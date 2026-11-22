@@ -14,5 +14,5 @@ Every lab runs Python 3.13 in a container, with the lab folder shared so you edi
 4. [Decorators](04-decorators.md)
 5. [Generators and context managers](05-generators-and-context-managers.md)
 6. [Virtual environments and packaging](06-venv-and-packaging.md)
-7. Threads and processes *(coming soon)*
+7. [Threads and processes](07-threads-and-processes.md)
 8. asyncio, and 100 supplier APIs *(coming soon)*

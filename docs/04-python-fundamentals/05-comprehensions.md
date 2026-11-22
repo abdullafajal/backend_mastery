@@ -199,7 +199,7 @@ The `p` in a comprehension exists only inside it. (A normal `for p in catalog:` 
 
     You'll see these shapes all the time later in the course:
 
-    - Turning database rows into JSON for an API: `[{"name": p.name, "price": p.price_paise} for p in products]` (Module 9).
+    - Turning database rows into JSON for an API: `[{"name": p.name, "price": p.price_paise} for p in products]` (Module 11).
     - Building a lookup to avoid slow repeated searches: `stock_by_id = {p.id: p.stock for p in products}`.
     - Checking a whole order: `all(item.quantity <= item.product.stock for item in order.items)`.
 

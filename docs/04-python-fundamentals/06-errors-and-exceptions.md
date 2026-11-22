@@ -237,7 +237,7 @@ That's why `reserve()` can raise, and the loop outside can catch.
         print("Sorry:", error)              # Sorry: only 8 Wireless Earbuds left
     ```
 
-    `class OutOfStock(Exception)` makes a new kind of exception (classes are Module 5). Django has many, like `Product.DoesNotExist` (Module 8).
+    `class OutOfStock(Exception)` makes a new kind of exception (classes are Module 5). Django has many, like `Product.DoesNotExist` (Module 9).
     Exceptions form a family tree: `except Exception` catches almost everything, so it has the same problem as a bare `except`. Use it only at the very
     top of a program, to log the error before stopping.
 

@@ -42,7 +42,7 @@
           { caption: "<b>Threads:</b> start all 4 requests, then wait. While one thread waits for its supplier, the others are waiting too, <b>at the same time</b>. Total ≈ one wait. (Lab: <code>10 threads: 0.2 s</code>.)",
             run: function (t) { t.unmark(A); seq.forEach(function (b) { t.unmark(b); t.mark(b, "dim"); }); par.forEach(function (b) { t.show(b); t.mark(b, "ok"); }); t.mark(B, "ok"); } },
           { caption: "Waiting doesn't use the CPU, so threads are perfect for it: network calls, database queries, reading files. That's most of what a backend does.",
-            run: function (t) { t.sub(B, "all waiting together"); } }
+            run: function (t) { t.sub(B, n ? "together" : "all waiting together"); } }
         ];
       }
       return [

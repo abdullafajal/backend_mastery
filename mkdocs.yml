@@ -141,5 +141,6 @@ nav:
           - "Decorators": 05-advanced-python/04-decorators.md
           - "Generators and context managers": 05-advanced-python/05-generators-and-context-managers.md
           - "Virtual environments and packaging": 05-advanced-python/06-venv-and-packaging.md
+          - "Threads and processes": 05-advanced-python/07-threads-and-processes.md
   - Glossary: glossary.md
   - About: about.md

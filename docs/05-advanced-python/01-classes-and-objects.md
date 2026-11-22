@@ -24,7 +24,7 @@ The mistake only shows up later, somewhere else, when the checkout tries to mult
 And the code that works **on** a product (`sell()`, `price_text()`) lives far away from the product's data, in other files.
 
 A **class** keeps a thing's data and the code that works on it **together**, and checks the data the moment the thing is made.
-Django's models (Module 8), which hold Bazaar's whole database, are classes. So is almost everything in a big Python project.
+Django's models (Module 9), which hold Bazaar's whole database, are classes. So is almost everything in a big Python project.
 
 ## 2. The concept
 

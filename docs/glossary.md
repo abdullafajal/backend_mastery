@@ -95,6 +95,8 @@ Words are in alphabetical order. The module in brackets is where you first meet 
 
 **Comprehension** — A one-line way to build a list, dict or set from another collection: `[p["name"] for p in catalog if p["price_paise"] < 50000]`. *(Module 4)*
 
+**Concurrency** — Doing several things in overlapping time, like waiting for 10 suppliers at once. Threads, processes and asyncio are three ways. *(Module 5)*
+
 **Condition** — An expression that is `True` or `False`, like `cart_total >= 99900`. `if` and `while` use one. *(Module 4)*
 
 **Conflict markers** — The lines `<<<<<<<`, `=======` and `>>>>>>>` Git writes into a file during a merge conflict, around your version and theirs. *(Module 3)*
@@ -423,6 +425,8 @@ Words are in alphabetical order. The module in brackets is where you first meet 
 
 **Path** — The address of a file, like `/data/orders/order_1042.json`. *(Module 1)*
 
+**Pickling** — Turning a Python object into bytes (Python's own format) so it can be saved or sent to another process. *(Module 5)*
+
 **PID** — Process ID: the number the operating system gives every running process. *(Module 1)*
 
 **pip** — Python's package installer: it downloads libraries other people wrote, like Django. *(Module 0)*
@@ -442,6 +446,8 @@ Words are in alphabetical order. The module in brackets is where you first meet 
 **Private key** — The secret half of a key pair. It stays on your laptop and is never sent anywhere. *(Module 2)*
 
 **Process** — A program that is running right now, with its own PID and its own memory. *(Module 1)*
+
+**Process pool** — A ready set of worker processes for CPU-heavy tasks: `ProcessPoolExecutor()`. *(Module 5)*
 
 **Prompt** — The text the shell shows when it is ready for a command, like `root@bazaar-server:/srv/bazaar#`. *(Module 2)*
 
@@ -590,6 +596,8 @@ Words are in alphabetical order. The module in brackets is where you first meet 
 **Terminal** — A window where you type commands for your computer. *(Module 0)*
 
 **Thread** — A worker inside a process. All threads of one process share the same memory. *(Module 0)*
+
+**Thread pool** — A ready set of threads that runs tasks for you: `ThreadPoolExecutor(max_workers=10)`. *(Module 5)*
 
 **Throughput** — How many requests a system finishes per second. *(Module 0)*
 

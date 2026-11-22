@@ -158,7 +158,7 @@ Your computer's Python is the **shared office kitchen**: if every team keeps its
 **Should `.venv` go into Git?** Never. It's big and machine-specific. Commit `requirements.txt` (or `pyproject.toml` + a lock file); anyone can rebuild the venv from it.
 The lab's `.gitignore` already lists `.venv/`.
 
-**Do I need a venv inside Docker?** Less so: a container is already its own isolated machine (Module 6). Many teams still use one there, for the same habits everywhere.
+**Do I need a venv inside Docker?** Less so: a container is already its own isolated machine (Module 19). Many teams still use one there, for the same habits everywhere.
 
 **How do I find a good version to pin?** Use a recent release that has been out for a while. This course picks versions at least two weeks old.
 
@@ -271,7 +271,7 @@ When you finish, run `bash test_lab.sh` (from your computer). You should see `AL
 
 ## 9. What's next
 
-Next: making Bazaar do several things at once with threads and processes, and why Python's GIL matters: Threads and processes *(coming soon)*.
+Next: making Bazaar do several things at once with threads and processes, and why Python's GIL matters: [Threads and processes](07-threads-and-processes.md).
 
 **In one line:** a venv gives each project its own packages; `requirements.txt` pins every version exactly; uv does the same jobs faster;
 and `pyproject.toml` turns your code into an installable package with its own command.

@@ -111,7 +111,7 @@ error: card declined
 - `@contextlib.contextmanager` turns a generator with **one** `yield` into a context manager: code before `yield` is the setup, code after is the clean-up.
 - `try`/`finally` around the `yield` makes the clean-up run **even when the block raises**: Rohan's card was declined, and the till still closed.
 
-That's exactly why `with open(...)` closes the file even if your code crashes halfway. Module 11 uses the same idea for database transactions.
+That's exactly why `with open(...)` closes the file even if your code crashes halfway. Module 16 uses the same idea for database transactions.
 
 ### An analogy
 

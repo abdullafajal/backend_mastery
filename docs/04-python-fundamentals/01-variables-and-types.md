@@ -271,7 +271,7 @@ Python cares about capital letters, and it even suggests the name you probably m
     ```
 
     Always build a `Decimal` from **text** (`Decimal("0.18")`), never from a float (`Decimal(0.18)` carries the float's error inside).
-    Django's money fields use `Decimal` (Module 8). Bazaar's rule: `int` paise for amounts, `Decimal` where a rate must be rounded.
+    Django's money fields use `Decimal` (Module 9). Bazaar's rule: `int` paise for amounts, `Decimal` where a rate must be rounded.
 
     `round(2.675, 2)` gives `2.67`, not `2.68`: the float `2.675` is really a bit less than 2.675. Another reason to avoid floats for money.
 

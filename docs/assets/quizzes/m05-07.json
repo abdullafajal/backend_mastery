@@ -1,0 +1,88 @@
+{
+  "title": "Threads and processes",
+  "questions": [
+    {
+      "q": "10 supplier calls of 0.2 s each, mostly waiting for the network. One by one they take 2.0 s. With 10 threads?",
+      "options": ["Still 2.0 s", "About 0.2 s: the waits overlap", "20 s", "0 s"],
+      "answer": 1,
+      "explain": "Waiting doesn't need the CPU. While one thread waits, the others wait too, at the same time. The lab measured 0.2 s."
+    },
+    {
+      "q": "Why didn't 4 threads speed up counting primes?",
+      "options": [
+        "Threads are broken in Python",
+        "The GIL lets only one thread run Python code at a time, so computing threads just take turns",
+        "Primes can't be counted in parallel",
+        "The CPU had only one core"
+      ],
+      "answer": 1,
+      "explain": "Threads help with waiting work, not computing work, in normal Python. The lab: one by one 1.3 s, 4 threads 1.3 s."
+    },
+    {
+      "q": "What speeds up CPU-heavy work like counting primes?",
+      "options": [
+        "More threads",
+        "Processes: separate Pythons, each with its own GIL, on its own CPU core",
+        "time.sleep",
+        "A Lock"
+      ],
+      "answer": 1,
+      "explain": "The lab: 4 processes took 0.5 s instead of 1.3 s on an 8-core machine."
+    },
+    {
+      "q": "5 threads try to buy the last pair of earbuds at once, without a lock. What can happen?",
+      "options": [
+        "Exactly one sale",
+        "All 5 check 'stock > 0?' before any of them takes one, so 5 are sold and stock becomes -4",
+        "Python raises an error",
+        "No sale at all"
+      ],
+      "answer": 1,
+      "explain": "A race condition. with lock: around the check-and-take lets only one thread in at a time."
+    },
+    {
+      "q": "The program starts 5 threads with t.start() and immediately prints len(prices): 0. What's missing?",
+      "options": [
+        "A Lock",
+        "t.join() for each thread, so the program waits until they finish",
+        "A process pool",
+        "time.sleep(10)"
+      ],
+      "answer": 1,
+      "explain": "start() doesn't wait. join() does. A ThreadPoolExecutor in a with block joins for you."
+    },
+    {
+      "q": "Which job should use threads rather than processes?",
+      "options": [
+        "Resizing 1,000 product photos",
+        "Calling 100 supplier APIs",
+        "Computing a big sales report in pure Python",
+        "Counting primes"
+      ],
+      "answer": 1,
+      "explain": "API calls are mostly waiting (I/O-bound): threads (or asyncio). The others are CPU-bound: processes."
+    },
+    {
+      "q": "(Going deeper) pool.map(lambda p: p // 100, prices) in a ProcessPoolExecutor fails with PicklingError. Why?",
+      "options": [
+        "Lambdas are slow",
+        "Work is sent to another process by pickling it, and a lambda has no name to be found by",
+        "Processes can't do maths",
+        "The list is too long"
+      ],
+      "answer": 1,
+      "explain": "Use a named function defined at the top level of the file. Threads don't need pickling: they share memory."
+    },
+    {
+      "q": "(Going deeper) What is Python 3.13's free-threaded build?",
+      "options": [
+        "A faster pip",
+        "An experimental Python without the GIL, where threads can compute on several cores at once",
+        "A cloud service",
+        "The same as multiprocessing"
+      ],
+      "answer": 1,
+      "explain": "Usually run as python3.13t. Still experimental; the lab's normal Python reports sys._is_gil_enabled() == True."
+    }
+  ]
+}

@@ -10,9 +10,9 @@ Legend: ✅ done + verified · 🟡 in progress / partial · ⬜ not started · 
 ## Next up
 
 **✅ Two-layer conversion done (owner approved, 2026-11-21):** all 12 lessons now have an "In 1 minute" box, advanced sections in "Going deeper" boxes (via `scripts/two_layer.py` + hand-simplified dense sections: OS/process table, socket steps, resources, exit codes, scripts, names→objects, file descriptors, file system intro, HTTP, roadmap levels, refcount). Visible core ≈ 1,500–2,700 words per lesson (was 3,500–5,000). Quizzes: core questions first, ≤3 marked "(Going deeper)". Lab READMEs: deeper tasks marked "optional, Going deeper".
-**✅ Module 2 complete (2026-11-21).** **✅ Module 3 complete (2026-11-22).** **✅ Module 4 complete (2026-11-22)** — Bazaar v0 (plan ka lab) bana: `labs/04-python-fundamentals/08-modules-and-bazaar-v0/bazaar_v0/`. Module 5 Lessons 1–6 ✅. **Next:** Module 5, Lesson 7 — Threads and processes (CPU-bound vs I/O-bound, threading for waiting, multiprocessing for CPU, the GIL; Bazaar: supplier price calls in threads vs one by one).
+**✅ Module 2 complete (2026-11-21).** **✅ Module 3 complete (2026-11-22).** **✅ Module 4 complete (2026-11-22)** — Bazaar v0 (plan ka lab) bana: `labs/04-python-fundamentals/08-modules-and-bazaar-v0/bazaar_v0/`. Module 5 Lessons 1–7 ✅. **Next:** Module 5, Lesson 8 — asyncio, and 100 supplier APIs (plan diagram: event loop; plan lab: a local fake supplier server, 100 calls sync vs threads vs async, timed). Then Module 5 complete.
 
-Module 5 split (8 lessons): 1. Classes and objects ✅ · 2. Inheritance and special methods ✅ · 3. Dataclasses and type hints ✅ · 4. Decorators ✅ · 5. Generators and context managers ✅ · 6. Virtual environments and packaging ✅ · 7. Threads and processes (the GIL) · 8. asyncio, and 100 supplier APIs (plan diagram: event loop; plan lab: sync vs threads vs async timing).
+Module 5 split (8 lessons): 1. Classes and objects ✅ · 2. Inheritance and special methods ✅ · 3. Dataclasses and type hints ✅ · 4. Decorators ✅ · 5. Generators and context managers ✅ · 6. Virtual environments and packaging ✅ · 7. Threads and processes ✅ · 8. asyncio, and 100 supplier APIs (plan diagram: event loop; plan lab: sync vs threads vs async timing).
 
 Module 4 split (8 lessons): 1. Variables and types ✅ · 2. Control flow ✅ · 3. Functions ✅ · 4. Lists, dicts and sets ✅ · 5. Comprehensions ✅ · 6. Errors and exceptions ✅ · 7. Files and JSON ✅ · 8. Modules, and Bazaar v0 ✅.
 
@@ -83,7 +83,7 @@ Module 3 split (5 lessons): 1. Commits and history ✅ · 2. Branches · 3. Merg
 | 2 | Linux and the command line | 7 / 7 | shell-steps ✅, file-tree ✅, permission-check ✅, pipe-flow ✅, env-inherit ✅, ssh-keys ✅, systemd-lifecycle ✅ | 02-01 … 02-07 ✅ | ✅ |
 | 3 | Git and GitHub | 5 / 5 | git-three-places ✅, commit-graph ✅ (story + merge + rebase + own), github-flow ✅ | 03-01 … 03-05 ✅ | ✅ |
 | 4 | Python fundamentals | 8 / 8 | name-tags ✅ (+ list), control-flow ✅, function-call ✅, comprehension ✅, try-except ✅, file-json ✅, imports ✅ | 04-01 … 04-08 ✅ | ✅ |
-| 5 | Advanced Python | 6 / 8 | class-objects ✅, method-lookup ✅, dataclass-hints ✅, decorator-wrap ✅, generator-flow ✅, venv-packaging ✅ | 05-01 … 05-06 ✅ | 🟡 |
+| 5 | Advanced Python | 7 / 8 | class-objects ✅, method-lookup ✅, dataclass-hints ✅, decorator-wrap ✅, generator-flow ✅, venv-packaging ✅, concurrency-timeline ✅ | 05-01 … 05-07 ✅ | 🟡 |
 | 6 | Data structures and algorithms | 0 | ⬜ | ⬜ | ⬜ |
 | 7 | Networking and how the web works | 0 | ⬜ | ⬜ | ⬜ |
 | 8 | Django fundamentals | 0 | ⬜ | ⬜ | ⬜ |
@@ -175,6 +175,7 @@ Module 3 split (5 lessons): 1. Commits and history ✅ · 2. Branches · 3. Merg
 
 | # | Lesson | File | Diagram | Lab | Quiz | DoD |
 | --- | --- | --- | --- | --- | --- | --- |
+| 07 | Threads and processes | `docs/05-advanced-python/07-threads-and-processes.md` | `concurrency-timeline` ✅ (waiting / computing) | `labs/05-advanced-python/07-threads-and-processes/` ✅ (6/6 checks, 5 tasks; timing checks use ranges; exercise = threads not joined) | `m05-07` ✅ (6 core + 2 deeper) | ✅ Two-layer v1 |
 | 06 | Virtual environments and packaging | `docs/05-advanced-python/06-venv-and-packaging.md` | `venv-packaging` ✅ (two venvs / installing Bazaar) | `labs/05-advanced-python/06-venv-and-packaging/` ✅ (12/12 checks, 7 tasks; own image with uv 0.13.6; needs internet; `bazaar_pkg/` with pyproject + `bazaar` entry point; exercise = entry point names a missing function) | `m05-06` ✅ (6 core + 2 deeper) | ✅ Two-layer v1 |
 | 05 | Generators and context managers | `docs/05-advanced-python/05-generators-and-context-managers.md` | `generator-flow` ✅ (list vs generator, memory box) | `labs/05-advanced-python/05-generators-and-context-managers/` ✅ (9/9 checks, 8 tasks; 200,000-line seeded log in `data/`; pipeline + average checked against independent awk) | `m05-05` ✅ (6 core + 2 deeper) | ✅ Two-layer v1 |
 | 04 | Decorators | `docs/05-advanced-python/04-decorators.md` | `decorator-wrap` ✅ (plan: decorator wrapping; @timed / @retry) | `labs/05-advanced-python/04-decorators/` ✅ (9/9 checks, 7 tasks; exercise = wrapper without return → None) | `m05-04` ✅ (6 core + 2 deeper) | ✅ Two-layer v1 |
@@ -203,6 +204,7 @@ Module 3 split (5 lessons): 1. Commits and history ✅ · 2. Branches · 3. Merg
 | file-tree | `docs/assets/diagrams/file-tree.js` | m02-02 | Select: cd around / tour; click any folder | ✅ |
 | ssh-keys | `docs/assets/diagrams/ssh-keys.js` | m02-06 | Select: key login / first connection (known_hosts) | ✅ |
 | systemd-lifecycle | `docs/assets/diagrams/systemd-lifecycle.js` | m02-07 | Select: start + crash/restart / enable + reboot / stop | ✅ |
+| concurrency-timeline | `docs/assets/diagrams/concurrency-timeline.js` | m05-07 | Select wait / cpu; time-bar boxes | ✅ |
 | venv-packaging | `docs/assets/diagrams/venv-packaging.js` | m05-06 | Select venv / package | ✅ |
 | generator-flow | `docs/assets/diagrams/generator-flow.js` | m05-05 | Select list / gen; orders are the first 5 PAID lines of the lab's real log | ✅ |
 | decorator-wrap | `docs/assets/diagrams/decorator-wrap.js` | m05-04 | Select @timed / @retry(times=3); caller → wrapper (before) → original → wrapper (after) → caller | ✅ |
@@ -262,6 +264,7 @@ Module 3 split (5 lessons): 1. Commits and history ✅ · 2. Branches · 3. Merg
 | m05-04 | `docs/assets/quizzes/m05-04.json` | 8 | ✅ |
 | m05-05 | `docs/assets/quizzes/m05-05.json` | 8 | ✅ |
 | m05-06 | `docs/assets/quizzes/m05-06.json` | 8 | ✅ |
+| m05-07 | `docs/assets/quizzes/m05-07.json` | 8 | ✅ |
 
 ### Labs + host port map
 
@@ -278,6 +281,7 @@ Module 3 split (5 lessons): 1. Commits and history ✅ · 2. Branches · 3. Merg
 | `labs/01-how-computers-work/05-what-a-server-is` | `bz-m01-05` | `${BAZAAR_PORT:-8000}` | `test_lab.sh` 5/5 (tools service `ulimits: nofile: 50`) | ✅ |
 | `labs/02-linux-command-line/01-the-shell` | `bz-m02-01` | none (`run --rm shell`, fresh `/srv/bazaar` each session) | `test_lab.sh` 8/8 | ✅ |
 | `labs/02-linux-command-line/02-working-with-files` | `bz-m02-02` | none (builds `bazaar-lab-files:m02-02`: less, nano, vim-tiny, tree, procps) | `test_lab.sh` 10/10 | ✅ |
+| `labs/05-advanced-python/07-threads-and-processes` | `bz-m05-07` | none (official Python image, `./:/lab`) | `test_lab.sh` 6/6 | ✅ |
 | `labs/05-advanced-python/06-venv-and-packaging` | `bz-m05-06` | none (builds `bazaar-lab-python-uv:m05-06`; **needs internet** for PyPI; test venvs in /tmp) | `test_lab.sh` 12/12 | ✅ |
 | `labs/05-advanced-python/05-generators-and-context-managers` | `bz-m05-05` | none (official Python image, `./:/lab`; writes `data/orders.log`) | `test_lab.sh` 9/9 | ✅ |
 | `labs/05-advanced-python/04-decorators` | `bz-m05-04` | none (official Python image, `./:/lab`) | `test_lab.sh` 9/9 | ✅ |
@@ -407,6 +411,14 @@ Port rule: har lab ka host port env var se aata hai (`"${BAZAAR_PORT:-8000}:8000
 ---
 
 ## Session log
+
+### 2026-11-23 — Session 38: Module 5, Lesson 7 "Threads and processes" (+ module-reference audit)
+
+**Kiya:** lesson (core: waiting work with ThreadPoolExecutor (2.0 s → 0.2 s), computing work (threads 1.3 s = one by one; processes 0.5 s on 8 cores), the GIL, processes + cost, I/O vs CPU table, oversell race (5 sold from stock 1) + Lock, packing-desk analogy; code example = threads not joined → 0 prices; under the hood: lambda PicklingError, timing ranges; deeper: free-threaded 3.13t, more tools, DB locking in Module 16, why the sleep makes the race reliable). Diagram `concurrency-timeline.js`. Lab: 3 examples, 1 mistake, 6 checks (number parsing + ranges; processes must beat one-by-one only when cores ≥ 2). Quiz m05-07. Glossary +4 (Concurrency, Pickling, Process pool, Thread pool; GIL/Lock/I/O-bound/CPU-bound existed).
+**Module-reference audit (against PLAN.md):** fixed 7 wrong "Module N" pointers in Modules 4–5 (Decimal/DoesNotExist/models → 9, API JSON → 11, transactions → 16, web-server processes → 20, Docker → 19). Modules 0–3 references checked: OK.
+**Verify kiya:** README claims run (max_workers=2 → 1.0 s; named function → [299, 649]). Mutation: max_workers=1 → waiting FAIL.
+**Checks:** build strict, check_site PASS, lab 6/6, screenshots dekhe (desktop-light cpu, mobile-dark wait; phone label shortened).
+
 
 ### 2026-11-23 — Session 38: First commit + GitHub Pages deploy
 
