@@ -20,6 +20,8 @@ for t in "${tests[@]}"; do
   else
     failed=$((failed + 1))
     failed_list+=("$t")
+    # On GitHub Actions, also print an annotation: it shows on the run's page even to people who can't open the logs.
+    [[ "${GITHUB_ACTIONS:-}" == "true" ]] && echo "::error title=Lab test failed::$t"
   fi
 done
 
