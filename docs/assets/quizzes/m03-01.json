@@ -1,0 +1,93 @@
+{
+  "title": "Commits and history",
+  "questions": [
+    {
+      "q": "You changed products.py. What is the right order to save that change as a commit?",
+      "options": [
+        "git commit, then git add",
+        "git add products.py, then git commit -m \"Add Steel Water Bottle to the catalog\"",
+        "git init, then git log",
+        "git restore, then git commit"
+      ],
+      "answer": 1,
+      "explain": "git add puts the change on the stage (you choose it); git commit saves everything on the stage as a new commit."
+    },
+    {
+      "q": "Why does Bazaar's .gitignore contain .env?",
+      "options": [
+        "To make Git faster",
+        "Because .env holds secrets like the database password, and anything committed stays in the history forever",
+        "Because Python can't read .env files",
+        "So that git log is shorter"
+      ],
+      "answer": 1,
+      "explain": "Files listed in .gitignore are never saved by Git. A committed secret is in every copy of the history, so it must be changed at once."
+    },
+    {
+      "q": "In git diff, what does a line starting with + mean?",
+      "options": [
+        "The line was added",
+        "The line was removed",
+        "The line has an error",
+        "The line is staged"
+      ],
+      "answer": 0,
+      "explain": "+ lines were added, - lines were removed. Lines with a space in front didn't change; they show where you are."
+    },
+    {
+      "q": "git commit prints: no changes added to commit (use \"git add\" and/or \"git commit -a\"). What happened?",
+      "options": [
+        "Git is broken",
+        "The file was deleted",
+        "You changed a file but didn't git add it, so the stage was empty and nothing was saved",
+        "The commit message was too short"
+      ],
+      "answer": 2,
+      "explain": "Git commits only what's on the stage. Run git add products.py, then commit again."
+    },
+    {
+      "q": "Which commit message is best?",
+      "options": [
+        "fix",
+        "changes",
+        "Fix checkout crash when the cart is empty",
+        "I fixed some stuff in checkout today and also other things"
+      ],
+      "answer": 2,
+      "explain": "Short, written like an order (\"Fix ...\"), and it says what and when. One commit = one logical change."
+    },
+    {
+      "q": "You broke products.py by mistake and haven't committed. How do you get back the version from the last commit?",
+      "options": [
+        "git log products.py",
+        "git restore products.py",
+        "git init",
+        "git add products.py"
+      ],
+      "answer": 1,
+      "explain": "git restore copies the file back from the last commit. Careful: your uncommitted changes to that file are lost for good."
+    },
+    {
+      "q": "(Going deeper) Neha committed .env yesterday, and the team already has that commit. What should she do first?",
+      "options": [
+        "Delete .env and commit; the password is safe now",
+        "Change the database password, because it is in the history now",
+        "Run git restore .env",
+        "Nothing, Git encrypts .env"
+      ],
+      "answer": 1,
+      "explain": "A new commit doesn't remove the old one: the password stays in the history. Change the secret first; then stop tracking the file (git rm --cached .env) and add it to .gitignore."
+    },
+    {
+      "q": "(Going deeper) Where does Git keep the staging area?",
+      "options": [
+        "In the file .git/index",
+        "In .gitignore",
+        "On GitHub",
+        "In the commit message"
+      ],
+      "answer": 0,
+      "explain": "The stage is a single file, .git/index. Commits and file versions live in .git/objects, named by their hashes."
+    }
+  ]
+}

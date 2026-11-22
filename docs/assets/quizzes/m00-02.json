@@ -1,0 +1,93 @@
+{
+  "title": "The full roadmap",
+  "questions": [
+    {
+      "q": "Why does this course follow one app, Bazaar, from start to end?",
+      "options": [
+        "Because one app is less work to write",
+        "So every tool comes from a real problem, and you always know why you learn it",
+        "Because Bazaar is a famous real company",
+        "So you never need to write any code"
+      ],
+      "answer": 1,
+      "explain": "As Bazaar grows, real problems appear. Each problem brings the next tool, so you learn the why and the trade-offs, not just the how."
+    },
+    {
+      "q": "In the lab, 100 customers arrive at once. Why does the slowest one wait over 2 seconds?",
+      "options": [
+        "The internet is slow",
+        "Python is a slow language",
+        "The backend has one worker, so requests wait in a queue one after another",
+        "The products file is too big"
+      ],
+      "answer": 2,
+      "explain": "One worker handles one request at a time. 100 requests × about 23 ms each ≈ 2.3 seconds for the last one in the line."
+    },
+    {
+      "q": "What is a bottleneck?",
+      "options": [
+        "A bug that crashes the server",
+        "The narrowest point in a system, which slows everything down",
+        "A kind of database",
+        "A type of Python error"
+      ],
+      "answer": 1,
+      "explain": "Like the neck of a bottle, it limits how fast everything can flow. Always find it before choosing a fix."
+    },
+    {
+      "q": "In which level does Bazaar face the Diwali sale and add load balancing and sharding?",
+      "options": [
+        "Level 1: Foundations",
+        "Level 3: Data",
+        "Level 5: Scaling",
+        "Level 2: Core backend"
+      ],
+      "answer": 2,
+      "explain": "Level 5 is about scaling. One server and one database are not enough, so Bazaar spreads the work across many machines."
+    },
+    {
+      "q": "A lab shows an error. What should you do first?",
+      "options": [
+        "Delete the lab and start again",
+        "Read the error message from the bottom, then the lab's Stuck? section and the logs",
+        "Copy the reference solution right away",
+        "Restart your computer"
+      ],
+      "answer": 1,
+      "explain": "The last line of an error usually says exactly what went wrong. Most problems are solved before you ever need the solution."
+    },
+    {
+      "q": "(Going deeper) One worker needs about 23 ms per request. What is its throughput, at most?",
+      "options": [
+        "About 23 requests per second",
+        "About 43 requests per second",
+        "About 1,000 requests per second",
+        "It has no limit"
+      ],
+      "answer": 1,
+      "explain": "1000 ms ÷ 23 ms ≈ 43. In the lab, 300 requests took about 7.2 seconds: about 42 per second."
+    },
+    {
+      "q": "(Going deeper) What is the difference between latency and throughput?",
+      "options": [
+        "They are the same",
+        "Latency is how long one request takes; throughput is how many requests finish per second",
+        "Latency is for databases; throughput is for networks",
+        "Throughput is how long one request takes"
+      ],
+      "answer": 1,
+      "explain": "When more requests arrive than the throughput allows, a queue builds up and the latency grows."
+    },
+    {
+      "q": "(Going deeper) Threads cut the wait from 2,300 ms to 60 ms when the work was a 20 ms sleep. When the work was 20 ms of CPU work, threads helped much less. Why?",
+      "options": [
+        "Sleep is faster than CPU work",
+        "Waiting threads don't block each other, but Python threads take turns for CPU work",
+        "The CPU was broken",
+        "Threads only work on Mac"
+      ],
+      "answer": 1,
+      "explain": "While one thread waits, others can run. But only one thread at a time runs Python code (the GIL), so CPU work doesn't spread over threads."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+# Lab 01-02: one Bazaar server, several processes, several threads.
+services:
+  bazaar:
+    build: .                            # Python 3.13.18 + ps and top (see Dockerfile)
+    image: bazaar-lab-procs:m01-02
+    command: ["python3", "-u", "bazaar_shop.py"]
+    init: true                          # a tiny PID 1 that cleans up finished processes
+    volumes:
+      - ./app:/app:ro
+      - ./examples:/examples:ro
+    ports:
+      - "${BAZAAR_PORT:-8000}:8000"
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/')"]
+      interval: 2s
+      timeout: 2s
+      retries: 15

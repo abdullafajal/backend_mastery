@@ -1,0 +1,93 @@
+{
+  "title": "What a backend developer does",
+  "questions": [
+    {
+      "q": "Asha taps the search box in the Bazaar app. Which part is she touching?",
+      "options": [
+        "The backend",
+        "The frontend",
+        "The database",
+        "The server"
+      ],
+      "answer": 1,
+      "explain": "The frontend is the part you can see and touch, like buttons and the search box. The backend works behind it."
+    },
+    {
+      "q": "The app sends price ₹1 for Red Running Shoes. What should Bazaar's backend do?",
+      "options": [
+        "Accept it, because the app sent it",
+        "Use its own price from its own data, ₹999",
+        "Ask the phone to send the price again",
+        "Delete the product"
+      ],
+      "answer": 1,
+      "explain": "Never trust the frontend. Anyone can change what an app sends, so the backend always uses its own data for prices and rules."
+    },
+    {
+      "q": "Why doesn't the Bazaar app talk to the database directly?",
+      "options": [
+        "Phones are too slow",
+        "The database password would be inside the app for anyone to find, and the rules would run where customers can change them",
+        "Databases don't support phones",
+        "It would use too much battery"
+      ],
+      "answer": 1,
+      "explain": "Secrets and rules must stay on the server. The backend is the one trusted place all frontends ask."
+    },
+    {
+      "q": "What is a server?",
+      "options": [
+        "A special magic machine only big companies have",
+        "A normal computer whose job is to answer requests from other computers",
+        "The screen of your phone",
+        "Another name for a database"
+      ],
+      "answer": 1,
+      "explain": "A server is just a computer running programs that answer requests. In the lab, your own laptop acted as a server."
+    },
+    {
+      "q": "Which of these is valid JSON?",
+      "options": [
+        "{'name': 'Masala Box'}",
+        "{\"name\": \"Masala Box\",}",
+        "{\"name\": \"Masala Box\", \"price\": 299}",
+        "{name: \"Masala Box\"}"
+      ],
+      "answer": 2,
+      "explain": "JSON needs double quotes around keys and strings, and no comma after the last item."
+    },
+    {
+      "q": "curl says \"(52) Empty reply from server\". What happened?",
+      "options": [
+        "Nothing is listening on that port",
+        "The backend accepted the connection but crashed before sending an answer",
+        "The internet is down",
+        "The request was too big"
+      ],
+      "answer": 1,
+      "explain": "Connection refused (error 7) means nobody is listening. Empty reply (52) means the backend was there but broke. Read its logs."
+    },
+    {
+      "q": "In the restaurant analogy, what is the database?",
+      "options": [
+        "The menu",
+        "The waiter",
+        "The kitchen",
+        "The store room with the ingredients"
+      ],
+      "answer": 3,
+      "explain": "The database is where data is stored safely, like a store room. The kitchen (backend) takes what it needs from there."
+    },
+    {
+      "q": "(Going deeper) Bazaar answers with status code 503. What do you know immediately?",
+      "options": [
+        "The customer typed something wrong",
+        "Everything worked",
+        "It is a 5xx code, so the problem is on the server's side",
+        "The product was not found"
+      ],
+      "answer": 2,
+      "explain": "2xx = success, 4xx = the client made a mistake, 5xx = the server made a mistake. Learn the families first."
+    }
+  ]
+}

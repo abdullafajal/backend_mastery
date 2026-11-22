@@ -1,0 +1,88 @@
+{
+  "title": "Classes and objects",
+  "questions": [
+    {
+      "q": "What is the difference between a class and an object?",
+      "options": [
+        "They are the same thing",
+        "A class is the blueprint (Product); an object is one thing made from it (masala), with its own data",
+        "An object is a blueprint for classes",
+        "A class is a kind of dict"
+      ],
+      "answer": 1,
+      "explain": "One class, many objects. masala and earbuds are both Products, each with its own stock."
+    },
+    {
+      "q": "When does __init__ run?",
+      "options": [
+        "When the class is defined",
+        "Every time a method is called",
+        "Automatically, each time you make a new object, like Product(\"Masala Box\", 29900, ...)",
+        "Only if you call obj.__init__() yourself"
+      ],
+      "answer": 2,
+      "explain": "The arguments you pass to Product(...) go to __init__, which stores them on the new object."
+    },
+    {
+      "q": "In masala.sell(2), what is self inside sell?",
+      "options": ["2", "The class Product", "masala, the object before the dot", "Nothing"],
+      "answer": 2,
+      "explain": "masala.sell(2) is short for Product.sell(masala, 2). Python passes the object as self."
+    },
+    {
+      "q": "Why is a Product class safer than a product dict?",
+      "options": [
+        "Classes use less memory",
+        "__init__ can refuse bad data (like a price of \"cheap\"), so a broken product can never exist",
+        "Dicts can't hold numbers",
+        "Classes are faster to type"
+      ],
+      "answer": 1,
+      "explain": "A dict accepts anything. A class checks its data the moment the object is made, and keeps the rules next to the data."
+    },
+    {
+      "q": "class Cart: lines = [] (outside __init__). Asha's and Ravi's carts both show both customers' items. Why?",
+      "options": [
+        "append is broken",
+        "lines is a class attribute: ONE list shared by every Cart",
+        "The customers have the same name",
+        "Python copies lists between objects"
+      ],
+      "answer": 1,
+      "explain": "Neither cart has its own lines, so self.lines finds the class's list. Fix: self.lines = [] inside __init__."
+    },
+    {
+      "q": "def label(): return \"Product\" inside the class, then masala.label(). What happens?",
+      "options": [
+        "It prints Product",
+        "TypeError: Product.label() takes 0 positional arguments but 1 was given",
+        "NameError",
+        "It returns None"
+      ],
+      "answer": 1,
+      "explain": "Python always passes the object as the first argument. Every method needs self as its first parameter."
+    },
+    {
+      "q": "(Going deeper) Where does an object keep its attributes?",
+      "options": [
+        "In a dict, obj.__dict__ (vars(obj) shows it)",
+        "In a JSON file",
+        "In the class only",
+        "Nowhere; they are recalculated"
+      ],
+      "answer": 0,
+      "explain": "Reading masala.x looks in the object's own dict first, then in the class. That's why self.lines found the class's shared list."
+    },
+    {
+      "q": "(Going deeper) Is a class attribute ever a good idea?",
+      "options": [
+        "Never",
+        "Yes, for values every object shares and nobody changes through an object, like CURRENCY = \"INR\"",
+        "Only for lists",
+        "Only in __init__"
+      ],
+      "answer": 1,
+      "explain": "Shared constants are fine. Changeable values (lists, dicts) on the class are the trap."
+    }
+  ]
+}

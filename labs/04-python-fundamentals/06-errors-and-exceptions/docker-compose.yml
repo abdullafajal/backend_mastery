@@ -1,0 +1,9 @@
+services:
+  python:
+    image: python:3.13.18-slim-trixie
+    working_dir: /lab
+    volumes:
+      - ./:/lab                 # edit files on your computer (VS Code), run them here
+    stdin_open: true
+    tty: true
+    command: bash

@@ -1,0 +1,93 @@
+{
+  "title": "Generators and context managers",
+  "questions": [
+    {
+      "q": "What does a generator do differently from a list?",
+      "options": [
+        "It stores values faster",
+        "It makes values one at a time, when asked, instead of storing them all at once",
+        "It sorts the values",
+        "It can only hold numbers"
+      ],
+      "answer": 1,
+      "explain": "In the lab, a million values took 8,448,728 bytes as a list and 200 bytes as a generator."
+    },
+    {
+      "q": "What happens at a yield?",
+      "options": [
+        "The function ends for good",
+        "The function hands out a value and pauses; the next request carries on from there",
+        "Python prints the value",
+        "The value is saved to a file"
+      ],
+      "answer": 1,
+      "explain": "A generator remembers where it paused and all its local names, then resumes on the next next()."
+    },
+    {
+      "q": "You call order_numbers(), a function with yield in it. What runs?",
+      "options": [
+        "The whole function",
+        "Nothing yet: you get a generator object; the code runs when values are asked for",
+        "Only the first line",
+        "It raises StopIteration"
+      ],
+      "answer": 1,
+      "explain": "The yield_demo prints 'generator' first, and '(generator starts)' only after the first next()."
+    },
+    {
+      "q": "total = sum(amounts), then count = sum(1 for _ in amounts), where amounts is a generator. What is count?",
+      "options": [
+        "The number of amounts",
+        "0: the first sum used the generator up, so the second loop finds nothing",
+        "Same as total",
+        "An error on the second line"
+      ],
+      "answer": 1,
+      "explain": "A generator can be used once. Do both jobs in one loop (the lab's fix)."
+    },
+    {
+      "q": "In paid_only(parse(read_lines(path))), when is the first line of the file read?",
+      "options": [
+        "When that line runs",
+        "When the loop asks for the first paid order: then one line flows through all three steps",
+        "When the program starts",
+        "After all lines are parsed"
+      ],
+      "answer": 1,
+      "explain": "Building the pipeline reads nothing. Each request pulls one line through read → parse → filter."
+    },
+    {
+      "q": "A @contextlib.contextmanager has try: yield / finally: close. An error happens inside the with block. Does the clean-up run?",
+      "options": [
+        "No, errors skip it",
+        "Yes: finally runs even after an error, so the till always closes",
+        "Only if you catch the error",
+        "Only on Fridays"
+      ],
+      "answer": 1,
+      "explain": "That's the point of context managers: with open(...) closes the file even if your code crashes halfway."
+    },
+    {
+      "q": "(Going deeper) itertools.islice(read_lines(path), 3) on a 200,000-line file. How much of the file is read?",
+      "options": [
+        "All of it",
+        "Only about the first 3 lines: the generator is never asked for more",
+        "None",
+        "Half"
+      ],
+      "answer": 1,
+      "explain": "Generators are lazy: nothing beyond what's asked for is ever produced."
+    },
+    {
+      "q": "(Going deeper) In a context manager class, what does __exit__ returning True do?",
+      "options": [
+        "Closes the file",
+        "Swallows the error, so it never reaches the caller: almost never what you want",
+        "Re-raises the error",
+        "Nothing"
+      ],
+      "answer": 1,
+      "explain": "Return False (or nothing) so errors still reach the caller after the clean-up."
+    }
+  ]
+}

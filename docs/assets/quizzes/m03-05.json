@@ -1,0 +1,93 @@
+{
+  "title": "GitHub and pull requests",
+  "questions": [
+    {
+      "q": "Neha committed on her branch but didn't push. Can Rohan see the commit?",
+      "options": [
+        "Yes, Git shares commits automatically",
+        "No: the commit is only on her laptop until she runs git push",
+        "Only if Rohan runs git status",
+        "Only on Fridays"
+      ],
+      "answer": 1,
+      "explain": "Commits are local. git push uploads them to GitHub; only then can others fetch them."
+    },
+    {
+      "q": "What is origin?",
+      "options": [
+        "The first commit of the repository",
+        "The default name of the remote you cloned from, usually the repository on GitHub",
+        "A branch that can't be deleted",
+        "Your laptop's main branch"
+      ],
+      "answer": 1,
+      "explain": "git clone sets up a remote called origin. origin/main is your laptop's memory of GitHub's main."
+    },
+    {
+      "q": "What is a pull request?",
+      "options": [
+        "A Git command that downloads commits",
+        "A request on GitHub to merge a branch into main, where teammates see the diff, comment and approve",
+        "A way to delete a branch",
+        "An error message"
+      ],
+      "answer": 1,
+      "explain": "It's a GitHub feature, not a Git command. You're asking the project to pull your branch in, after review."
+    },
+    {
+      "q": "Right after the PR is merged on GitHub, Neha's laptop says 'Your branch is up to date with origin/main'. Why?",
+      "options": [
+        "The merge failed",
+        "Her laptop only knows what it last saw of GitHub; she must git fetch (or git pull) to see the news",
+        "GitHub deleted her branch",
+        "She is on the wrong computer"
+      ],
+      "answer": 1,
+      "explain": "Laptops never update by themselves. After git fetch, status says 'behind origin/main by 2 commits'."
+    },
+    {
+      "q": "git fetch vs git pull: what's the difference?",
+      "options": [
+        "They are the same",
+        "fetch downloads news without changing your branch; pull = fetch + merge (or rebase) into your branch",
+        "fetch uploads, pull downloads",
+        "pull only works on main"
+      ],
+      "answer": 1,
+      "explain": "fetch is always safe: it only updates origin/... branches. pull also changes your current branch."
+    },
+    {
+      "q": "git push says: ! [rejected] main -> main (fetch first). What should you do?",
+      "options": [
+        "git push --force",
+        "Delete the repository and clone again",
+        "git pull --rebase, then git push",
+        "Wait an hour and try again"
+      ],
+      "answer": 2,
+      "explain": "Someone pushed commits you don't have. Bring them in (rebase keeps a straight line), then push. --force would delete their work."
+    },
+    {
+      "q": "(Going deeper) GitHub's 'Squash and merge' button does what?",
+      "options": [
+        "Deletes the pull request",
+        "Turns all the branch's commits into one commit on main",
+        "Rebases main onto the branch",
+        "Merges without review"
+      ],
+      "answer": 1,
+      "explain": "Squash and merge = one clean commit per pull request. 'Create a merge commit' keeps them plus a merge commit; 'Rebase and merge' replays them."
+    },
+    {
+      "q": "(Going deeper) What does branch protection on main do?",
+      "options": [
+        "Makes main read-only for everyone forever",
+        "Forbids direct pushes to main, so changes must come through reviewed pull requests (and passing checks)",
+        "Encrypts the branch",
+        "Backs up main every night"
+      ],
+      "answer": 1,
+      "explain": "It turns the GitHub flow into a rule: no change reaches main without a pull request and the required approvals."
+    }
+  ]
+}

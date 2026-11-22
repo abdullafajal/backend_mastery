@@ -1,0 +1,39 @@
+{#- Shared macros for main.html and home.html. -#}
+{%- macro lesson_id(p) -%}
+  {#- docs/01-how-computers-work/02-processes-and-threads.md  ->  m01-02 -#}
+  {%- set parts = p.file.src_path.split('/') -%}
+  {%- if parts|length == 2 and parts[0][:2].isdigit() and parts[1][:2].isdigit() -%}
+    m{{ parts[0][:2] }}-{{ parts[1][:2] }}
+  {%- endif -%}
+{%- endmacro -%}
+
+{%- macro nav_tree(items, depth) -%}
+  <ul class="nav-list nav-depth-{{ depth }}">
+  {%- for item in items %}
+    {%- if item.children %}
+      {%- if depth == 0 %}
+      <li class="nav-level">
+        <div class="nav-level__title">{{ item.title }}</div>
+        {{ nav_tree(item.children, depth + 1) }}
+      </li>
+      {%- else %}
+      <li class="nav-module">
+        <details {% if item.active %}open{% endif %}>
+          <summary class="nav-module__title">{{ item.title }}</summary>
+          {{ nav_tree(item.children, depth + 1) }}
+        </details>
+      </li>
+      {%- endif %}
+    {%- elif depth > 0 %}
+      {%- set lid = lesson_id(item) %}
+      <li>
+        <a class="nav-link{% if item.active %} is-active{% endif %}" href="{{ item.url|url }}"{% if lid %} data-lesson="{{ lid }}"{% endif %}>
+          <span class="nav-link__mark" aria-hidden="true"></span>
+          <span class="nav-link__text">{% if item.file.src_path.endswith('index.md') %}Overview{% else %}{{ item.title }}{% endif %}</span>
+        </a>
+      </li>
+    {%- endif %}
+  {%- endfor %}
+  </ul>
+{%- endmacro -%}
+

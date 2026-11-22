@@ -1,0 +1,12 @@
+# Lab 02-02: working with files on a pretend Bazaar server.
+services:
+  server:
+    build: .
+    image: bazaar-lab-files:m02-02
+    hostname: bazaar-server
+    init: true
+    working_dir: /srv/bazaar
+    entrypoint: ["/start.sh"]
+    volumes:
+      - ./start.sh:/start.sh:ro
+      - ./tools:/srv/tools:ro           # helper scripts, like backup_config.sh

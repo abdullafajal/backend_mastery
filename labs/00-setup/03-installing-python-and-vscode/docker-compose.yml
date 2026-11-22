@@ -1,0 +1,15 @@
+# Lab 00-03: Python, PATH and "command not found", safely inside containers.
+# Nothing here starts a server. You run one command at a time with:
+#   docker compose run --rm <service> <command>
+services:
+  python:                              # the Python this course uses
+    image: python:3.13.18-slim-trixie
+    working_dir: /examples
+    volumes:
+      - ./examples:/examples:ro
+
+  old-python:                          # an older Python, to see what "not ready" looks like
+    image: python:3.12.16-slim-trixie
+    working_dir: /examples
+    volumes:
+      - ./examples:/examples:ro

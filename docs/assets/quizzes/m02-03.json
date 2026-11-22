@@ -1,0 +1,93 @@
+{
+  "title": "Users and permissions",
+  "questions": [
+    {
+      "q": "-rw-r----- 1 root bazaar .env. Who can read it?",
+      "options": [
+        "Everyone",
+        "root (the owner) and members of the bazaar group",
+        "Only root",
+        "Nobody"
+      ],
+      "answer": 1,
+      "explain": "Owner rw-, group r--, others ---. That's mode 640: the right setting for Bazaar's .env."
+    },
+    {
+      "q": ".env is 600 (rw-------), owned by root, group bazaar. Asha is in bazaar. Can she read it?",
+      "options": [
+        "Yes, she's in the group",
+        "No: the kernel uses only the group bits for her, and they are ---",
+        "Yes, because others can read",
+        "Only with chmod"
+      ],
+      "answer": 1,
+      "explain": "The kernel picks exactly one set (owner, group or others) and never falls through to another."
+    },
+    {
+      "q": "What does chmod 755 deploy.sh give?",
+      "options": [
+        "rwxr-xr-x",
+        "rw-r--r--",
+        "rwxrwxrwx",
+        "r-xr-xr-x"
+      ],
+      "answer": 0,
+      "explain": "7 = rwx (4+2+1), 5 = r-x (4+1). Owner can do everything; group and others can read and run."
+    },
+    {
+      "q": "Ravi can't write root_report.txt (it's read-only), but he deleted it. How?",
+      "options": [
+        "A bug in Linux",
+        "Deleting removes a name from the folder, so it needs w on the folder, and the folder was 777",
+        "rm ignores permissions",
+        "He used sudo"
+      ],
+      "answer": 1,
+      "explain": "A file's name lives in its folder. The sticky bit (like on /tmp) stops deleting other people's files."
+    },
+    {
+      "q": "A folder is rwx--x--x (711). What can others do?",
+      "options": [
+        "List it and open everything",
+        "Not list it, but open a file inside if they know its exact name",
+        "Nothing at all",
+        "Delete files inside"
+      ],
+      "answer": 1,
+      "explain": "On a folder, r = list names, x = enter and reach things by name, w = create/delete names."
+    },
+    {
+      "q": "Nginx shows 403 Forbidden for product photos. What's the right fix?",
+      "options": [
+        "chmod -R 777 /srv/bazaar",
+        "Check which user Nginx runs as, then give it read on the photos and x on every folder on the way",
+        "Run Nginx as root",
+        "Delete the photos and upload them again"
+      ],
+      "answer": 1,
+      "explain": "777 lets anyone change anything. Grant exactly the missing permission; namei -l shows every folder on the path."
+    },
+    {
+      "q": "Why is sudo better than logging in as root?",
+      "options": [
+        "It's faster",
+        "It runs only the one command as root, asks for your own password, and records who ran what",
+        "It doesn't need a password",
+        "Root can't run some commands"
+      ],
+      "answer": 1,
+      "explain": "Least privilege: work as a normal user, and use sudo only for commands that need root."
+    },
+    {
+      "q": "(Going deeper) With the usual umask 022, what permissions does a new file get?",
+      "options": [
+        "777",
+        "666",
+        "644",
+        "600"
+      ],
+      "answer": 2,
+      "explain": "Files start from 666 and lose the umask bits: 666 − 022 = 644. Folders: 777 − 022 = 755."
+    }
+  ]
+}

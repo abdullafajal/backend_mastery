@@ -1,0 +1,88 @@
+{
+  "title": "Inheritance and special methods",
+  "questions": [
+    {
+      "q": "What does class GiftCard(Product): mean?",
+      "options": [
+        "GiftCard is a copy of Product's file",
+        "GiftCard is a kind of Product: it inherits all of Product's methods and can change some",
+        "Product becomes a GiftCard",
+        "GiftCard can only be made after Product is deleted"
+      ],
+      "answer": 1,
+      "explain": "Product is the parent, GiftCard the child. The child only writes what's different."
+    },
+    {
+      "q": "GiftCard defines needs_delivery(), and so does Product. card.needs_delivery() runs which one?",
+      "options": [
+        "Product's, because it came first",
+        "GiftCard's: Python looks in the object's own class first, so the child's version overrides the parent's",
+        "Both",
+        "Neither; it's an error"
+      ],
+      "answer": 1,
+      "explain": "Lookup goes: the object's class, then its parent. GiftCard's version is found first."
+    },
+    {
+      "q": "GiftCard doesn't define price_text(). What does card.price_text() do?",
+      "options": [
+        "AttributeError",
+        "Returns None",
+        "Uses Product's price_text(), inherited from the parent",
+        "Uses GiftCard's __init__"
+      ],
+      "answer": 2,
+      "explain": "Not found in GiftCard, so Python goes up to Product and finds it there."
+    },
+    {
+      "q": "GiftCard has its own __init__ that never calls super().__init__(...). What happens when describe() reads self.name?",
+      "options": [
+        "It works; Product's __init__ runs anyway",
+        "AttributeError: 'GiftCard' object has no attribute 'name', because the parent's setup never ran",
+        "self.name is None",
+        "It returns 'Bazaar Gift Card'"
+      ],
+      "answer": 1,
+      "explain": "A child __init__ replaces the parent's. Call super().__init__(...) to run the parent's setup too."
+    },
+    {
+      "q": "Which special method decides what print(masala) shows to a customer?",
+      "options": ["__init__", "__str__", "__len__", "__lt__"],
+      "answer": 1,
+      "explain": "__str__ is for people (print, f-strings); __repr__ is for developers (lists, the REPL)."
+    },
+    {
+      "q": "Two separate Product objects, both 'Masala Box'. Without __eq__, what does a == b give?",
+      "options": [
+        "True, same data",
+        "False: the default == asks whether it's the very same object",
+        "An error",
+        "None"
+      ],
+      "answer": 1,
+      "explain": "Define __eq__ to say what 'the same product' means for Bazaar (same name and seller)."
+    },
+    {
+      "q": "(Going deeper) After defining __eq__ on Product, {masala} raises TypeError: unhashable type. Why?",
+      "options": [
+        "Sets can't hold objects",
+        "Defining __eq__ removes the default __hash__; define __hash__ too if products must go in sets or be dict keys",
+        "masala is a GiftCard",
+        "__eq__ returned False"
+      ],
+      "answer": 1,
+      "explain": "Equal objects must have equal hashes, so Python drops the old one. hash((self.name, self.seller)) is a good __hash__."
+    },
+    {
+      "q": "(Going deeper) A cart holds products. Should Cart inherit from Product?",
+      "options": [
+        "Yes, always use inheritance",
+        "No: a cart HAS products (composition), it isn't a product; keep them in an attribute",
+        "Yes, so it can use price_text()",
+        "Only with super()"
+      ],
+      "answer": 1,
+      "explain": "Inheritance is for 'is a' (a gift card is a product). For 'has a', store the objects as attributes."
+    }
+  ]
+}

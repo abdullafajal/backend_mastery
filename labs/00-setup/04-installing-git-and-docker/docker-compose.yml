@@ -1,0 +1,8 @@
+# Lab 00-04: your first Compose service. It prints a welcome and exits.
+services:
+  welcome:
+    image: python:3.13.18-slim-trixie
+    working_dir: /app
+    command: ["python3", "welcome.py"]
+    volumes:
+      - ./app:/app:ro

@@ -1,0 +1,93 @@
+{
+  "title": "Installing Git and Docker",
+  "questions": [
+    {
+      "q": "What does a Git commit record?",
+      "options": [
+        "Only the files that changed, with no message",
+        "A snapshot of the tracked files, a message, the author and time, and its parent commit",
+        "A backup copy of your whole computer",
+        "A Docker image"
+      ],
+      "answer": 1,
+      "explain": "Each commit is a save point with a snapshot, a 'why' message, who made it, and a link to the commit before it."
+    },
+    {
+      "q": "You changed 5 files, but only 3 belong in the next commit. What lets you choose?",
+      "options": [
+        "The .git folder",
+        "The staging area: git add only those 3",
+        "GitHub",
+        "git log"
+      ],
+      "answer": 1,
+      "explain": "Changes move from the working folder to the staging area with git add, and only staged changes go into the commit."
+    },
+    {
+      "q": "What is the difference between a Docker image and a container?",
+      "options": [
+        "They are the same thing",
+        "An image is a ready-made package that never changes; a container is a running copy of it",
+        "A container is stored on Docker Hub; an image runs on your laptop",
+        "An image is a photo of your screen"
+      ],
+      "answer": 1,
+      "explain": "Like a sealed tiffin and the meal you eat from it. One image can start many separate containers."
+    },
+    {
+      "q": "The first docker run took 3.5 seconds, the second only 0.2 seconds. Why?",
+      "options": [
+        "Your computer warmed up",
+        "The first run pulled the image's layers from Docker Hub; the second used the copy already stored",
+        "The second run skipped running Python",
+        "Docker Hub was faster the second time"
+      ],
+      "answer": 1,
+      "explain": "Images stay on your computer after the first pull. Starting a container from a local image is very fast."
+    },
+    {
+      "q": "You ran a container without --rm. docker ps shows nothing, but docker ps -a shows it as \"Exited (0)\". What does that mean?",
+      "options": [
+        "It is still running in secret",
+        "It finished successfully and stopped, but was not removed",
+        "It crashed",
+        "It was never created"
+      ],
+      "answer": 1,
+      "explain": "docker ps shows only running containers. Exited (0) means the program ended with exit code 0. docker rm removes it; --rm does that automatically."
+    },
+    {
+      "q": "Every docker command says \"failed to connect to the docker API ... is the daemon running\". What should you do first?",
+      "options": [
+        "Reinstall your operating system",
+        "Delete all images",
+        "Start Docker Desktop and wait until the Engine is running",
+        "Install Python again"
+      ],
+      "answer": 2,
+      "explain": "The docker command is only a client. It needs the Docker Engine (a background daemon) to be running."
+    },
+    {
+      "q": "Why does this course use python:3.13.18-slim-trixie instead of python:latest?",
+      "options": [
+        "latest is not allowed on Mac",
+        "An exact tag gives the same image every time, so every student gets the same result",
+        "latest is slower to download",
+        "Exact tags are free and latest costs money"
+      ],
+      "answer": 1,
+      "explain": "latest moves to new images over time without warning. Exact tags (or digests) keep labs reproducible."
+    },
+    {
+      "q": "(Going deeper) On a Mac, uname says Darwin, but inside a container it says Linux. Why?",
+      "options": [
+        "Docker translates Mac programs to Linux",
+        "Containers share a Linux kernel, so Docker Desktop runs a small Linux VM and the containers live inside it",
+        "The container is broken",
+        "uname always lies"
+      ],
+      "answer": 1,
+      "explain": "Containers are processes that share the kernel of the machine they run on. On Mac and Windows, that machine is Docker Desktop's Linux VM."
+    }
+  ]
+}

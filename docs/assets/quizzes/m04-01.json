@@ -1,0 +1,83 @@
+{
+  "title": "Variables and types",
+  "questions": [
+    {
+      "q": "What does price_paise = 29900 do?",
+      "options": [
+        "Checks whether price_paise equals 29900",
+        "Sticks the name price_paise on the value 29900, so the name can be used later",
+        "Prints 29900",
+        "Makes price_paise a piece of text"
+      ],
+      "answer": 1,
+      "explain": "= means 'stick this name on this value'. It's not the 'equals' of maths; checking equality is ==."
+    },
+    {
+      "q": "What is the type of \"29900\" (with quotes)?",
+      "options": ["int", "float", "str", "bool"],
+      "answer": 2,
+      "explain": "Anything in quotes is text, a str. Without quotes, 29900 is an int."
+    },
+    {
+      "q": "A customer types 3 in the quantity box. Your code gets quantity_text = \"3\". What does quantity_text * 3 give?",
+      "options": ["9", "\"333\"", "An error", "3.0"],
+      "answer": 1,
+      "explain": "Input is text, and str * int repeats the text. Convert first: int(quantity_text) * 3 gives 9."
+    },
+    {
+      "q": "Why does Bazaar never store money as float?",
+      "options": [
+        "floats are slower to type",
+        "floats can't be printed",
+        "floats are stored in binary and can be slightly off: 649 * 1.18 gives 765.8199999999999",
+        "Python has no floats"
+      ],
+      "answer": 2,
+      "explain": "Most decimal fractions can't be stored exactly in binary. Totals go wrong and == checks fail. Bazaar keeps whole paise in an int."
+    },
+    {
+      "q": "price_paise = 153164. Which code prints ₹1,531.64?",
+      "options": [
+        "print(price_paise / 100)",
+        "print(f\"₹{price_paise // 100:,}.{price_paise % 100:02d}\")",
+        "print(\"₹\" + price_paise)",
+        "print(float(price_paise))"
+      ],
+      "answer": 1,
+      "explain": "// gives the rupees (1531), % gives the paise (64), :, adds the comma, :02d pads paise to two digits. \"₹\" + price_paise is a TypeError."
+    },
+    {
+      "q": "int(\"three\") gives which result?",
+      "options": [
+        "3",
+        "0",
+        "ValueError: invalid literal for int() with base 10: 'three'",
+        "None"
+      ],
+      "answer": 2,
+      "explain": "int() only understands digits. Python stops with a ValueError instead of guessing. Read the last line of the error first."
+    },
+    {
+      "q": "(Going deeper) Why build Decimal(\"0.18\") from text, not Decimal(0.18)?",
+      "options": [
+        "Text is faster",
+        "Decimal(0.18) copies the float's tiny error: 0.17999999999999999333...",
+        "Decimal only accepts text",
+        "There is no difference"
+      ],
+      "answer": 1,
+      "explain": "The float 0.18 is already slightly off, and Decimal keeps that exact wrong value. From text, Decimal(\"0.18\") is exactly 0.18."
+    },
+    {
+      "q": "(Going deeper) old_price = price; then price = 899. What happens to old_price?",
+      "options": [
+        "It also becomes 899",
+        "It is deleted",
+        "It still points to the old object (999): = moves only the name price",
+        "It becomes None"
+      ],
+      "answer": 2,
+      "explain": "Assigning moves a name to a new object. ints never change, so the old object stays as it was, and old_price still points to it."
+    }
+  ]
+}

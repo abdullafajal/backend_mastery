@@ -1,0 +1,22 @@
+# Lab 02-05: environment variables, packages and background jobs.
+services:
+  shell:                                   # a server shell, for tasks 1-5 and 7-8
+    image: python:3.13.18-slim-trixie
+    hostname: bazaar-server
+    init: true
+    working_dir: /srv/bazaar
+    volumes:
+      - ./app:/srv/bazaar:ro
+    entrypoint: ["bash"]
+
+  app:                                     # Bazaar's settings, the way production passes them
+    image: python:3.13.18-slim-trixie
+    init: true
+    working_dir: /srv/bazaar
+    volumes:
+      - ./app:/srv/bazaar:ro
+    environment:
+      DB_HOST: db.bazaar.internal          # a plain setting, written here
+    env_file:
+      - app/bazaar.env                     # secrets and settings from a file (never commit real secrets!)
+    command: ["python3", "settings.py"]

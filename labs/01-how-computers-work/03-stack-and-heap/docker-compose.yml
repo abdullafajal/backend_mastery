@@ -1,0 +1,17 @@
+# Lab 01-03: names, objects, the call stack, garbage collection, and a memory leak.
+services:
+  python:                               # run one script at a time: docker compose run --rm python python3 <file>
+    image: python:3.13.18-slim-trixie
+    working_dir: /app
+    volumes:
+      - ./app:/app:ro
+
+  leaky-backend:                        # the leak, running forever, inside a 64 MB box
+    image: python:3.13.18-slim-trixie
+    working_dir: /app
+    command: ["python3", "leak.py", "forever"]
+    volumes:
+      - ./app:/app:ro
+    mem_limit: 64m                      # at most 64 MB of RAM for this container
+    memswap_limit: 64m                  # and no extra swap on top of that
+    profiles: ["leak"]                  # only starts when you ask for it

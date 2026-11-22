@@ -1,0 +1,145 @@
+site_name: Backend Mastery
+site_description: Learn backend engineering from zero to senior level by building Bazaar, one real e-commerce backend.
+site_url: https://abdullafajal.github.io/backend_mastery/
+docs_dir: docs
+strict: true
+
+theme:
+  name: null                 # our own design, no ready-made theme
+  custom_dir: theme          # templates, CSS and JS for the whole website
+  search_index_only: true    # the search plugin only builds the index; our own JS shows results
+  static_templates:
+    - 404.html
+
+plugins:
+  - search                   # builds search/search_index.json for the search box
+
+extra:
+  levels:
+    - n: 1
+      title: Foundations
+      users: 1 user
+      problem: Bazaar is just an idea on your laptop.
+      modules: ["Welcome and setup", "How computers work", "Linux and the command line", "Git and GitHub", "Python fundamentals", "Advanced Python", "Data structures and algorithms", "Networking and how the web works"]
+      first: 0
+    - n: 2
+      title: Core backend with Django
+      users: 100 users
+      problem: Sellers need a website. The mobile app needs an API.
+      modules: ["Django fundamentals", "Models, ORM and schema", "Django in depth", "API design and DRF", "Authentication and authorization", "Testing"]
+      first: 8
+    - n: 3
+      title: Data
+      users: 10,000 users
+      problem: Thousands of orders. The database gets slow.
+      modules: ["SQL with PostgreSQL", "Data modeling", "How databases work inside", "Database performance", "Beyond SQL"]
+      first: 14
+    - n: 4
+      title: Production
+      users: 1 lakh users
+      problem: Bazaar is live. It must be safe, fast and always on.
+      modules: ["Docker in depth", "Running Django in production", "Background jobs and real-time", "Caching", "Security", "CI/CD and deployment", "Observability", "Cloud and Kubernetes basics"]
+      first: 19
+    - n: 5
+      title: Scaling
+      users: 10 lakh+ users
+      problem: The Diwali sale. One server is not enough.
+      modules: ["Scaling and load balancing", "How services talk", "Messaging and event streaming", "Replication", "Partitioning and sharding", "Distributed systems theory", "Performance at scale"]
+      first: 27
+    - n: 6
+      title: Architecture
+      users: 1 crore users
+      problem: Big design decisions and leading a team.
+      modules: ["Software architecture", "System design", "Senior engineer skills", "Capstone project"]
+      first: 34
+
+extra_css:
+  - assets/css/course.css
+
+extra_javascript:
+  - assets/js/progress.js
+  - assets/diagrams/diagram-kit.js
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - def_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.snippets:
+      base_path: ["."]
+      check_paths: true      # build fails if an included file is missing
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+validation:
+  nav:
+    omitted_files: warn
+    not_found: warn
+    absolute_links: warn
+  links:
+    not_found: warn
+    anchors: warn
+    unrecognized_links: warn
+
+nav:
+  - Home: index.md
+  - "Level 1: Foundations":
+      - "0. Welcome and setup":
+          - 00-setup/index.md
+          - "What a backend developer does": 00-setup/01-what-a-backend-developer-does.md
+          - "The full roadmap": 00-setup/02-the-full-roadmap.md
+          - "Installing Python and VS Code": 00-setup/03-installing-python-and-vscode.md
+          - "Installing Git and Docker": 00-setup/04-installing-git-and-docker.md
+      - "1. How computers work":
+          - 01-how-computers-work/index.md
+          - "CPU, RAM and disk": 01-how-computers-work/01-cpu-ram-and-disk.md
+          - "Processes and threads": 01-how-computers-work/02-processes-and-threads.md
+          - "Memory: stack and heap": 01-how-computers-work/03-stack-and-heap.md
+          - "File systems": 01-how-computers-work/04-file-systems.md
+          - "What a server really is": 01-how-computers-work/05-what-a-server-is.md
+      - "2. Linux and the command line":
+          - 02-linux-command-line/index.md
+          - "The shell": 02-linux-command-line/01-the-shell.md
+          - "Working with files": 02-linux-command-line/02-working-with-files.md
+          - "Users and permissions": 02-linux-command-line/03-users-and-permissions.md
+          - "Pipes and redirection": 02-linux-command-line/04-pipes-and-redirection.md
+          - "Env vars, packages, jobs": 02-linux-command-line/05-env-packages-jobs.md
+          - "SSH": 02-linux-command-line/06-ssh.md
+          - "systemd and logs": 02-linux-command-line/07-systemd-and-logs.md
+      - "3. Git and GitHub":
+          - 03-git-and-github/index.md
+          - "Commits and history": 03-git-and-github/01-commits-and-history.md
+          - "Branches": 03-git-and-github/02-branches.md
+          - "Merging and conflicts": 03-git-and-github/03-merging-and-conflicts.md
+          - "Rebase": 03-git-and-github/04-rebase.md
+          - "GitHub and pull requests": 03-git-and-github/05-github-and-pull-requests.md
+      - "4. Python fundamentals":
+          - 04-python-fundamentals/index.md
+          - "Variables and types": 04-python-fundamentals/01-variables-and-types.md
+          - "Control flow": 04-python-fundamentals/02-control-flow.md
+          - "Functions": 04-python-fundamentals/03-functions.md
+          - "Lists, dicts and sets": 04-python-fundamentals/04-lists-dicts-sets.md
+          - "Comprehensions": 04-python-fundamentals/05-comprehensions.md
+          - "Errors and exceptions": 04-python-fundamentals/06-errors-and-exceptions.md
+          - "Files and JSON": 04-python-fundamentals/07-files-and-json.md
+          - "Modules, and Bazaar v0": 04-python-fundamentals/08-modules-and-bazaar-v0.md
+      - "5. Advanced Python":
+          - 05-advanced-python/index.md
+          - "Classes and objects": 05-advanced-python/01-classes-and-objects.md
+          - "Inheritance and special methods": 05-advanced-python/02-inheritance-and-special-methods.md
+          - "Dataclasses and type hints": 05-advanced-python/03-dataclasses-and-type-hints.md
+          - "Decorators": 05-advanced-python/04-decorators.md
+          - "Generators and context managers": 05-advanced-python/05-generators-and-context-managers.md
+          - "Virtual environments and packaging": 05-advanced-python/06-venv-and-packaging.md
+  - Glossary: glossary.md
+  - About: about.md

@@ -1,0 +1,83 @@
+{
+  "title": "Pipes and redirection",
+  "questions": [
+    {
+      "q": "What does echo second > note.txt do if note.txt already contains \"first\"?",
+      "options": [
+        "Adds \"second\" at the end",
+        "Replaces the content: the file now contains only \"second\"",
+        "Fails because the file exists",
+        "Prints \"second\" on the screen"
+      ],
+      "answer": 1,
+      "explain": "> replaces the file without asking. >> adds to the end."
+    },
+    {
+      "q": "What does the | in grep 'checkout 500' logs/access.log | wc -l do?",
+      "options": [
+        "Runs the two commands one after the other, separately",
+        "Sends grep's output straight into wc -l, which counts the lines",
+        "Saves grep's output to a file called wc",
+        "Compares the two commands"
+      ],
+      "answer": 1,
+      "explain": "A pipe connects one command's output to the next command's input. You only see the final answer."
+    },
+    {
+      "q": "ls logs /nope > out.txt still shows an error on the screen. Why?",
+      "options": [
+        "The redirect failed",
+        "> only redirects stdout (the normal output); the error goes to stderr, which still goes to the screen",
+        "ls always prints errors twice",
+        "out.txt is read-only"
+      ],
+      "answer": 1,
+      "explain": "Use 2> to send errors to a file, or > file 2>&1 to send both to the same file."
+    },
+    {
+      "q": "Which pipeline counts how many requests each customer (column 6) made?",
+      "options": [
+        "awk '{print $6}' logs/access.log | uniq -c",
+        "awk '{print $6}' logs/access.log | sort | uniq -c",
+        "sort logs/access.log | wc -l",
+        "grep customer logs/access.log | head"
+      ],
+      "answer": 1,
+      "explain": "uniq -c only merges equal lines that are next to each other, so sort first."
+    },
+    {
+      "q": "You have counts like \"7 asha\", \"31 ravi\", \"5 sara\". How do you put the biggest first?",
+      "options": ["sort", "sort -r", "sort -rn", "uniq -c"],
+      "answer": 2,
+      "explain": "-n sorts as numbers, -r reverses (biggest first). Plain sort compares text, so 9 would come before 10."
+    },
+    {
+      "q": "Your long pipeline prints nothing. What's the best way to find the problem?",
+      "options": [
+        "Delete the log file and start again",
+        "Remove steps from the end until output appears; the last step you removed is where it goes wrong",
+        "Add sudo in front",
+        "Run it ten times"
+      ],
+      "answer": 1,
+      "explain": "Build and debug pipelines one step at a time, looking at the output after each |."
+    },
+    {
+      "q": "(Going deeper) What's the difference between cmd > all.txt 2>&1 and cmd 2>&1 > all.txt?",
+      "options": [
+        "None",
+        "The first puts both outputs in the file; the second leaves the errors on the screen",
+        "The second is faster",
+        "The first deletes all.txt"
+      ],
+      "answer": 1,
+      "explain": "2>&1 copies stdout's destination at that moment. Redirect stdout to the file first, then send stderr after it."
+    },
+    {
+      "q": "(Going deeper) false | wc -l has exit code 0. What makes the pipeline report the failure?",
+      "options": ["set -o pipefail", "set -x", "2>&1", "Adding && at the end"],
+      "answer": 0,
+      "explain": "Normally a pipeline's exit code is the last command's. With pipefail, any failing command makes the pipeline fail."
+    }
+  ]
+}

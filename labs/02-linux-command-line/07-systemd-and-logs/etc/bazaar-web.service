@@ -1,0 +1,15 @@
+# /etc/systemd/system/bazaar-web.service: how systemd runs Bazaar's web backend.
+[Unit]
+Description=Bazaar web backend
+After=network.target
+
+[Service]
+User=www-data
+WorkingDirectory=/srv/bazaar
+EnvironmentFile=/etc/bazaar/bazaar.env
+ExecStart=/usr/local/bin/python3 /srv/bazaar/server.py
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

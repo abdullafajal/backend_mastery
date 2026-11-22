@@ -1,0 +1,20 @@
+name: Test labs
+
+on:
+  push:
+    branches: [main]
+    paths: ["labs/**", "scripts/**", ".github/workflows/test-labs.yml"]
+  pull_request:
+    paths: ["labs/**", "scripts/**", ".github/workflows/test-labs.yml"]
+  workflow_dispatch:
+
+jobs:
+  labs:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5      # lab 00-04's verify_setup.sh needs Python 3.13 on the host
+        with:
+          python-version: "3.13"
+      - name: Run every lab's test_lab.sh
+        run: bash scripts/test_all_labs.sh

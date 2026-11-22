@@ -1,0 +1,11 @@
+# Lab 02-03: users and permissions on a pretend Bazaar server.
+services:
+  server:
+    build: .
+    image: bazaar-lab-perms:m02-03
+    hostname: bazaar-server
+    init: true
+    working_dir: /srv/bazaar
+    entrypoint: ["/start.sh"]
+    volumes:
+      - ./start.sh:/start.sh:ro

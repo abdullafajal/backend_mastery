@@ -1,0 +1,14 @@
+# Lab 01-04: files, folders, inodes and safe saving.
+services:
+  python:
+    image: python:3.13.18-slim-trixie
+    init: true                         # so Python is NOT PID 1 (PID 1 ignores signals it has no handler for)
+    working_dir: /app
+    volumes:
+      - ./app:/app:ro
+      - bazaar-data:/data               # a real Docker volume for Bazaar's files
+    tmpfs:
+      - /thumbs:size=10m,nr_inodes=1000  # a tiny in-memory disk: 10 MB, but only 1000 inodes
+
+volumes:
+  bazaar-data:

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# show_args: print exactly which arguments this program received, one per line, in [brackets].
+echo "$# argument(s):"
+for arg in "$@"; do echo "  [$arg]"; done

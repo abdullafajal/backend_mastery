@@ -1,0 +1,93 @@
+{
+  "title": "Merging and conflicts",
+  "questions": [
+    {
+      "q": "You want the Diwali sale (on diwali-sale) to be part of main. What do you run?",
+      "options": [
+        "git switch diwali-sale, then git merge main",
+        "git switch main, then git merge diwali-sale",
+        "git branch -d diwali-sale",
+        "git commit -m \"merge\""
+      ],
+      "answer": 1,
+      "explain": "You always merge INTO the branch you're on. Stand on main, then merge the feature branch in."
+    },
+    {
+      "q": "git merge prints 'Fast-forward'. What happened?",
+      "options": [
+        "Git made a merge commit with two parents",
+        "There was a conflict",
+        "main was simply behind, so Git moved the main label forward. No new commit",
+        "Git deleted the branch"
+      ],
+      "answer": 2,
+      "explain": "If main hasn't moved since the branch split, there is nothing to combine: main just catches up."
+    },
+    {
+      "q": "What is special about a merge commit?",
+      "options": [
+        "It has two parents: the last commit of each branch",
+        "It has no parent",
+        "It can't be seen in git log",
+        "It deletes the merged branch"
+      ],
+      "answer": 0,
+      "explain": "A merge commit joins the two lines of history; git show prints both parents on its 'Merge:' line."
+    },
+    {
+      "q": "When does Git stop with a merge conflict?",
+      "options": [
+        "Whenever two branches changed the same file",
+        "When both branches changed the same lines differently",
+        "When a branch has more than 3 commits",
+        "When you forget --no-edit"
+      ],
+      "answer": 1,
+      "explain": "Different lines (even in the same file) merge automatically. Only the same lines changed differently need a human."
+    },
+    {
+      "q": "In the conflict, which version is between <<<<<<< HEAD and =======?",
+      "options": [
+        "The version from the branch you are merging in (rohan-discount)",
+        "The version from the branch you are on (main)",
+        "The original version before both changes",
+        "A random version"
+      ],
+      "answer": 1,
+      "explain": "HEAD = where you are now (main, Neha's ₹150). The part after ======= up to >>>>>>> rohan-discount is Rohan's ₹200."
+    },
+    {
+      "q": "You edited sale.py to the agreed ₹150 and removed all markers. What's next?",
+      "options": [
+        "git merge --abort",
+        "git add sale.py, then git commit",
+        "Delete the .git folder",
+        "git branch -D rohan-discount"
+      ],
+      "answer": 1,
+      "explain": "git add marks the file as fixed; git commit finishes the merge with a two-parent commit. Then run python3 sale.py to test."
+    },
+    {
+      "q": "(Going deeper) What is the merge base?",
+      "options": [
+        "The newest commit both branches share: where they split",
+        "The first commit of the repository",
+        "The branch called main",
+        "The file with conflicts"
+      ],
+      "answer": 0,
+      "explain": "Git compares base → ours and base → theirs. A line changed on only one side is taken; changed differently on both sides is a conflict."
+    },
+    {
+      "q": "(Going deeper) Git merged with no conflict, but now the program crashes because Rohan renamed a function Neha still calls. What is this?",
+      "options": [
+        "A fast-forward",
+        "A semantic conflict: Git can't see it, only running the code or tests can",
+        "A detached HEAD",
+        "A bug in Git"
+      ],
+      "answer": 1,
+      "explain": "Git only compares lines of text. A clean merge can still be wrong code, so always run the program (and later, automatic tests) after merging."
+    }
+  ]
+}

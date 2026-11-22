@@ -1,0 +1,17 @@
+# Lab 00-01: run Bazaar's first tiny backend inside a container.
+services:
+  bazaar:
+    image: python:3.13.18-slim-trixie   # exact tag, never :latest
+    working_dir: /app
+    command: ["python", "server.py"]
+    volumes:
+      - ./app:/app:ro                   # your code folder, shared into the container (read-only)
+    ports:
+      - "${BAZAAR_PORT:-8000}:8000"     # your laptop's port 8000 -> container's port 8000
+    environment:
+      PYTHONDONTWRITEBYTECODE: "1"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 2s
+      timeout: 2s
+      retries: 15

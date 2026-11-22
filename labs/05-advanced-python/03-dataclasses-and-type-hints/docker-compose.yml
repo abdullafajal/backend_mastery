@@ -1,0 +1,10 @@
+services:
+  python:
+    build: .
+    image: bazaar-lab-python-mypy:m05-03
+    working_dir: /lab
+    volumes:
+      - ./:/lab                 # edit files on your computer (VS Code), run them here
+    stdin_open: true
+    tty: true
+    command: bash

@@ -1,0 +1,11 @@
+{% extends "main.html" %}
+{% block main %}
+<main class="home" id="content">
+  <section class="notfound">
+    <span class="eyebrow">404 Not Found</span>
+    <h1>This page is not in Bazaar's catalog.</h1>
+    <p>Maybe the lesson moved, or it is still being written.</p>
+    <a class="btn btn--primary" href="{{ nav.homepage.url|url }}">Back to the course</a>
+  </section>
+</main>
+{% endblock %}

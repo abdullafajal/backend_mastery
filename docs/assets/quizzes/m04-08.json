@@ -1,0 +1,88 @@
+{
+  "title": "Modules, and Bazaar v0",
+  "questions": [
+    {
+      "q": "What is a module in Python?",
+      "options": [
+        "A special kind of loop",
+        "A .py file whose functions other files can use with import",
+        "A paid add-on for Python",
+        "A folder of JSON files"
+      ],
+      "answer": 1,
+      "explain": "money.py is the module money. import money (or from money import rupees) lets other files use its code without copying it."
+    },
+    {
+      "q": "After import money, how do you call its rupees function?",
+      "options": ["rupees(29900)", "money.rupees(29900)", "import.rupees(29900)", "money->rupees(29900)"],
+      "answer": 1,
+      "explain": "With import money, names are used through the module: money.rupees. With from money import rupees, you can call rupees() directly."
+    },
+    {
+      "q": "Where do json, datetime and random come from?",
+      "options": [
+        "You must write them yourself",
+        "Python's standard library: they come with Python, ready to import",
+        "They are downloaded from GitHub on every run",
+        "From Bazaar v0"
+      ],
+      "answer": 1,
+      "explain": "The standard library ships with Python. Third-party packages like Django are installed separately (Module 5)."
+    },
+    {
+      "q": "money.py ends with if __name__ == \"__main__\": print(...). When does that print run?",
+      "options": [
+        "Every time money is imported",
+        "Only when you run python3 money.py directly",
+        "Never",
+        "Only on Fridays"
+      ],
+      "answer": 1,
+      "explain": "The file you run is named \"__main__\". An imported module gets its own name (\"money\"), so the block is skipped on import."
+    },
+    {
+      "q": "For python3 main.py search box, what is sys.argv[1:]?",
+      "options": [
+        "[\"main.py\", \"search\", \"box\"]",
+        "[\"search\", \"box\"]",
+        "\"search box\"",
+        "[\"box\"]"
+      ],
+      "answer": 1,
+      "explain": "sys.argv is every word after python3, starting with the script's name. [1:] skips the script name."
+    },
+    {
+      "q": "In Bazaar v0, why does catalog.py raise errors instead of printing them?",
+      "options": [
+        "print doesn't work in modules",
+        "So the rules work anywhere: main.py (or later a website) decides how to show the problem",
+        "raise is faster",
+        "To stop the program"
+      ],
+      "answer": 1,
+      "explain": "Rules live in catalog.py and return or raise; main.py is the only part that talks to the person. The same catalog.py could sit behind a website."
+    },
+    {
+      "q": "(Going deeper) You name your own file json.py. What happens to import json in that folder?",
+      "options": [
+        "Python always picks the standard library",
+        "Python imports YOUR json.py, which has no dumps, so you get an AttributeError",
+        "Both are merged",
+        "Python refuses to start"
+      ],
+      "answer": 1,
+      "explain": "The script's own folder comes first in sys.path. Python 3.13 even suggests renaming the file. Never reuse standard module names."
+    },
+    {
+      "q": "(Going deeper) What is a package?",
+      "options": [
+        "A zip file",
+        "A folder of modules (with __init__.py), imported like from bazaar import money",
+        "A single function",
+        "A JSON file"
+      ],
+      "answer": 1,
+      "explain": "Packages group related modules. Django apps are packages; python3 -m runs a module by its import name."
+    }
+  ]
+}

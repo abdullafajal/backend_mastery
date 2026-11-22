@@ -1,0 +1,10 @@
+# Lab 02-01: the shell, on a pretend Bazaar server.
+services:
+  shell:
+    image: python:3.13.18-slim-trixie
+    hostname: bazaar-server            # shows up in the prompt: root@bazaar-server
+    init: true
+    entrypoint: ["/start.sh"]
+    volumes:
+      - ./seed:/seed:ro                # the original files; every session gets a fresh copy
+      - ./start.sh:/start.sh:ro

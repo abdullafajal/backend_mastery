@@ -1,0 +1,83 @@
+{
+  "title": "SSH",
+  "questions": [
+    {
+      "q": "What does ssh asha@bazaar-server do?",
+      "options": [
+        "Copies the server to your laptop",
+        "Opens an encrypted terminal on bazaar-server, logged in as the user asha",
+        "Installs SSH on the server",
+        "Restarts the server"
+      ],
+      "answer": 1,
+      "explain": "asha is the user on the server; bazaar-server is the machine. Everything you type travels encrypted."
+    },
+    {
+      "q": "The first connection asks \"Are you sure you want to continue connecting?\". What is SSH protecting you from?",
+      "options": [
+        "A slow network",
+        "Talking to an impostor pretending to be your server",
+        "Typing the wrong password",
+        "Viruses on your laptop"
+      ],
+      "answer": 1,
+      "explain": "After yes, the server's ID is saved in known_hosts. If it ever changes, SSH warns loudly."
+    },
+    {
+      "q": "Which file may you copy to every server you want to log in to?",
+      "options": ["~/.ssh/id_ed25519", "~/.ssh/id_ed25519.pub", "~/.ssh/known_hosts", "/etc/shadow"],
+      "answer": 1,
+      "explain": "The .pub file is the public key. The private key (without .pub) must never leave your laptop."
+    },
+    {
+      "q": "Which two commands set up key login?",
+      "options": [
+        "ssh-keygen, then ssh-copy-id user@server",
+        "chmod 777, then ssh",
+        "scp, then sudo",
+        "apt-get install ssh, then reboot"
+      ],
+      "answer": 0,
+      "explain": "ssh-keygen makes the key pair; ssh-copy-id adds the public key to the server's authorized_keys."
+    },
+    {
+      "q": "SSH says \"WARNING: UNPROTECTED PRIVATE KEY FILE! Permissions 0644 ... are too open\". What's the fix?",
+      "options": ["chmod 777 ~/.ssh/id_ed25519", "chmod 600 ~/.ssh/id_ed25519", "Delete known_hosts", "Make a new user"],
+      "answer": 1,
+      "explain": "A private key must be readable only by you. SSH ignores it otherwise."
+    },
+    {
+      "q": "How do you copy order_20261121.log from the server to the current folder on your laptop?",
+      "options": [
+        "cp asha@bazaar-server:/srv/bazaar/logs/order_20261121.log .",
+        "scp asha@bazaar-server:/srv/bazaar/logs/order_20261121.log .",
+        "ssh order_20261121.log",
+        "mv bazaar-server/order_20261121.log ."
+      ],
+      "answer": 1,
+      "explain": "scp works like cp, with one side written as user@server:path. The . means here."
+    },
+    {
+      "q": "(Going deeper) During a key login, what does the laptop send to the server?",
+      "options": [
+        "The private key",
+        "A signature of the server's random challenge, made with the private key",
+        "The password",
+        "The known_hosts file"
+      ],
+      "answer": 1,
+      "explain": "The server checks the signature with the public key. The private key never leaves the laptop."
+    },
+    {
+      "q": "(Going deeper) Why set PasswordAuthentication no on a real server, and what must you check first?",
+      "options": [
+        "It makes SSH faster; nothing to check",
+        "Password guessing becomes useless; first make sure your key login works, with a second session open",
+        "It's required by Linux",
+        "It turns off encryption"
+      ],
+      "answer": 1,
+      "explain": "Otherwise you can lock yourself out of your own server."
+    }
+  ]
+}

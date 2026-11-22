@@ -1,0 +1,93 @@
+{
+  "title": "systemd and logs",
+  "questions": [
+    {
+      "q": "What is systemd's job on a Linux server?",
+      "options": [
+        "It edits your Python code",
+        "It is the first program that starts (PID 1); it starts, watches and restarts the other programs",
+        "It is a database for logs only",
+        "It is a web server like Bazaar's backend"
+      ],
+      "answer": 1,
+      "explain": "systemd is the manager of all programs. Linux starts it first, as PID 1, and it starts everything else, including your services."
+    },
+    {
+      "q": "Where do you tell systemd which command runs Bazaar's backend?",
+      "options": [
+        "In the ExecStart= line of the unit file bazaar-web.service",
+        "In ~/.bashrc",
+        "In the journal",
+        "In /var/log/dpkg.log"
+      ],
+      "answer": 0,
+      "explain": "The unit file in /etc/systemd/system/ describes the service. ExecStart= is the command to run; User=, EnvironmentFile= and Restart= say how."
+    },
+    {
+      "q": "You ran systemctl start bazaar-web. The server reboots. Is Bazaar running after the reboot?",
+      "options": [
+        "Yes, start always means 'forever'",
+        "Only if Restart=on-failure is set",
+        "No, not unless you also ran systemctl enable bazaar-web",
+        "Yes, but only for 2 seconds"
+      ],
+      "answer": 2,
+      "explain": "start runs it now. enable adds it to the list of things systemd starts at boot. On a real server you want both (enable --now does both)."
+    },
+    {
+      "q": "Bazaar's backend is killed with kill -9. The unit file has Restart=on-failure and RestartSec=2. What happens?",
+      "options": [
+        "It stays dead until someone logs in",
+        "The whole server reboots",
+        "systemd notices, waits 2 seconds, and starts it again with a new PID",
+        "systemd deletes the unit file"
+      ],
+      "answer": 2,
+      "explain": "The journal shows it: 'Main process exited, code=killed, status=9/KILL', then 'Scheduled restart job, restart counter is at 1', then 'Started bazaar-web.service'."
+    },
+    {
+      "q": "Which command shows the last 20 log lines of Bazaar's service?",
+      "options": [
+        "systemctl enable bazaar-web",
+        "journalctl -u bazaar-web -n 20",
+        "cat /var/log/journal",
+        "tail bazaar-web"
+      ],
+      "answer": 1,
+      "explain": "journalctl reads the journal. -u picks the unit (service), -n 20 keeps the last 20 lines. The journal files are binary, so cat doesn't work on them."
+    },
+    {
+      "q": "You run systemctl stop bazaar-web. The unit file has Restart=on-failure. What happens?",
+      "options": [
+        "It stops and stays stopped, because a stop on purpose isn't a failure",
+        "systemd restarts it after 2 seconds",
+        "It can't be stopped while Restart= is set",
+        "The journal is deleted"
+      ],
+      "answer": 0,
+      "explain": "The journal says 'Deactivated successfully.' and 'Stopped bazaar-web.service'. Restart=on-failure only reacts to crashes and errors."
+    },
+    {
+      "q": "(Going deeper) You fixed a typo in bazaar-web.service, ran systemctl restart, and nothing changed. What did you forget?",
+      "options": [
+        "systemctl enable",
+        "journalctl -f",
+        "Rebooting the server",
+        "systemctl daemon-reload, so systemd re-reads unit files from disk"
+      ],
+      "answer": 3,
+      "explain": "systemd keeps unit files in memory. After editing one, run systemctl daemon-reload, then restart the service. (systemctl edit does the reload for you.)"
+    },
+    {
+      "q": "(Going deeper) What does systemctl stop really send to the program first?",
+      "options": [
+        "SIGKILL, at once",
+        "SIGTERM (a polite 'please exit'), then SIGKILL only if it is still alive after a timeout (90 s by default)",
+        "Nothing; it deletes the program's files",
+        "An HTTP request to /stop"
+      ],
+      "answer": 1,
+      "explain": "SIGTERM first lets a good backend finish the orders it is serving. If it doesn't exit within TimeoutStopSec=, systemd sends SIGKILL."
+    }
+  ]
+}

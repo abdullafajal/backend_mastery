@@ -1,0 +1,93 @@
+{
+  "title": "Branches",
+  "questions": [
+    {
+      "q": "What is a Git branch, really?",
+      "options": [
+        "A full copy of all your files in a new folder",
+        "A name that points to one commit, and moves forward when you commit on it",
+        "A backup on GitHub",
+        "A list of deleted files"
+      ],
+      "answer": 1,
+      "explain": "A branch is just a label on a commit (a 41-byte file in .git). No files are copied, so branches are free."
+    },
+    {
+      "q": "You are on main and run git switch -c diwali-sale. What happens?",
+      "options": [
+        "A new branch diwali-sale is made on the current commit, and you move to it",
+        "main is renamed to diwali-sale",
+        "All files are deleted",
+        "Git makes a commit called diwali-sale"
+      ],
+      "answer": 0,
+      "explain": "-c means create. Both main and diwali-sale point to the same commit; you are now on diwali-sale (the * in git branch)."
+    },
+    {
+      "q": "On diwali-sale, Neha commits sale.py. Where does main point now?",
+      "options": [
+        "To the new commit, like diwali-sale",
+        "Nowhere; main is deleted",
+        "Still to the old commit: only the branch you are on moves",
+        "To the first commit, 7bb892c"
+      ],
+      "answer": 2,
+      "explain": "A commit moves only your current branch forward. That's how main stays safe while the sale is half-done."
+    },
+    {
+      "q": "Neha switches from diwali-sale to main, and sale.py is gone from the folder. Why?",
+      "options": [
+        "Git deleted it forever",
+        "Git changed the folder to match main, which doesn't have sale.py. It is safe in the commit on diwali-sale",
+        "The file was never saved",
+        "The .gitignore hid it"
+      ],
+      "answer": 1,
+      "explain": "git switch updates your files to match the branch. Switch back to diwali-sale and sale.py returns."
+    },
+    {
+      "q": "git switch main fails with: Your local changes to the following files would be overwritten by checkout. What should you do?",
+      "options": [
+        "Delete the .git folder",
+        "Use git branch -D",
+        "Commit the change (or stash or restore it), then switch",
+        "Restart the computer"
+      ],
+      "answer": 2,
+      "explain": "Git refuses so your uncommitted change isn't lost. Commit it on this branch, put it aside with git stash, or throw it away with git restore."
+    },
+    {
+      "q": "Which command draws every branch and where they split?",
+      "options": [
+        "git status",
+        "git log --oneline --graph --all",
+        "git diff",
+        "git branch -d"
+      ],
+      "answer": 1,
+      "explain": "--graph draws the lines, --all includes every branch (not only the one you're on), --oneline keeps one line per commit."
+    },
+    {
+      "q": "(Going deeper) What does the file .git/refs/heads/main contain?",
+      "options": [
+        "All the files of the main branch",
+        "The full hash of main's newest commit",
+        "The list of commit messages",
+        "The word main"
+      ],
+      "answer": 1,
+      "explain": "A branch is a tiny file holding one 40-character commit hash. A commit on main overwrites it with the new hash."
+    },
+    {
+      "q": "(Going deeper) git branch -d diwali-sale says: the branch 'diwali-sale' is not fully merged. What does it mean?",
+      "options": [
+        "The branch has commits that are not in your current branch; deleting it could lose that work",
+        "The branch is broken",
+        "You must be on diwali-sale to delete it",
+        "Git is out of disk space"
+      ],
+      "answer": 0,
+      "explain": "-d only deletes branches whose commits are safe elsewhere. Merge it first (Lesson 3). -D would delete anyway, losing the work."
+    }
+  ]
+}

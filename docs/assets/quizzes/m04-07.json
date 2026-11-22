@@ -1,0 +1,93 @@
+{
+  "title": "Files and JSON",
+  "questions": [
+    {
+      "q": "Bazaar's program builds the catalog in a variable, then ends. What happens to the catalog?",
+      "options": [
+        "It's saved automatically",
+        "It's gone: memory is wiped when the program ends, unless you saved it to a file",
+        "It moves to the disk",
+        "It stays until the computer restarts"
+      ],
+      "answer": 1,
+      "explain": "Variables live in memory (RAM), which is handed back when the program stops. Files on the disk stay."
+    },
+    {
+      "q": "Why use with open(...) as f: instead of plain open()?",
+      "options": [
+        "It's faster",
+        "with closes the file automatically when the block ends, even if an error happens",
+        "It's the only way to read files",
+        "It makes the file JSON"
+      ],
+      "answer": 1,
+      "explain": "Forgetting to close files can lose data or run out of file handles. with does it for you."
+    },
+    {
+      "q": "You open data/orders.log with mode \"w\" just to read it. What happens?",
+      "options": [
+        "You can read it normally",
+        "An error is raised",
+        "The file is emptied immediately; the old orders are lost, with no error",
+        "Python asks first"
+      ],
+      "answer": 2,
+      "explain": "\"w\" empties the file before writing. To read, use no mode (or \"r\"); to add, use \"a\"."
+    },
+    {
+      "q": "Python's True and None become what in JSON?",
+      "options": [
+        "True and None",
+        "\"True\" and \"None\"",
+        "true and null",
+        "1 and 0"
+      ],
+      "answer": 2,
+      "explain": "JSON uses lowercase true/false and null, and only double quotes for text. json.dump does the conversion for you."
+    },
+    {
+      "q": "A cart was saved with f.write(str(cart)). Why does json.load fail on it?",
+      "options": [
+        "The file is too big",
+        "str(cart) writes Python's own text, with single quotes; JSON needs double quotes",
+        "json.load can't read carts",
+        "The encoding is wrong"
+      ],
+      "answer": 1,
+      "explain": "JSONDecodeError: Expecting property name enclosed in double quotes. Save with json.dump(cart, f) instead."
+    },
+    {
+      "q": "A new customer has no saved cart file yet. What should load_cart() do?",
+      "options": [
+        "Crash, so the developer notices",
+        "Catch FileNotFoundError and return an empty cart",
+        "Create a random cart",
+        "Catch every error with a bare except"
+      ],
+      "answer": 1,
+      "explain": "A missing file is expected on a first visit. Catch exactly FileNotFoundError (and JSONDecodeError for broken files)."
+    },
+    {
+      "q": "(Going deeper) Why write to a temp file and then os.replace() it over the real file?",
+      "options": [
+        "It's faster",
+        "If the program dies halfway, the real file is still the complete old version, never half-written",
+        "JSON requires it",
+        "To make a backup copy"
+      ],
+      "answer": 1,
+      "explain": "os.replace swaps the new file in in one step. A crash during writing only damages the temp file."
+    },
+    {
+      "q": "(Going deeper) json.dumps({\"Patel Spices\", \"Meera Handloom\"}) fails. Why?",
+      "options": [
+        "The names are too long",
+        "JSON has no sets: TypeError: Object of type set is not JSON serializable. Convert to a list first",
+        "Sets can't contain text",
+        "dumps only works on files"
+      ],
+      "answer": 1,
+      "explain": "JSON has objects, arrays, text, numbers, true/false and null. sorted(sellers) gives a list that JSON can hold."
+    }
+  ]
+}

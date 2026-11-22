@@ -1,0 +1,83 @@
+{
+  "title": "Functions",
+  "questions": [
+    {
+      "q": "Why did Bazaar move the delivery rule into a function delivery_charge()?",
+      "options": [
+        "Functions run faster than if statements",
+        "So the rule is written once: change it in one place and every caller follows",
+        "Python requires every if to be in a function",
+        "To hide the code from other developers"
+      ],
+      "answer": 1,
+      "explain": "Copies of a rule drift apart (the cart says free, the invoice charges ₹49). One function, many callers."
+    },
+    {
+      "q": "def rupees(paise): ... and then rupees(29900). Which is the parameter and which is the argument?",
+      "options": [
+        "paise is the argument, 29900 is the parameter",
+        "paise is the parameter (the name inside), 29900 is the argument (the value passed in)",
+        "Both are parameters",
+        "rupees is the argument"
+      ],
+      "answer": 1,
+      "explain": "The parameter is the blank on the form; the argument is what you fill in for this call."
+    },
+    {
+      "q": "A function calculates the subtotal and ends with print(total), no return. What does subtotal = cart_subtotal(cart) store?",
+      "options": ["The total", "None", "The text that was printed", "An error message"],
+      "answer": 1,
+      "explain": "print only shows it on screen. A function without return gives back None, and later maths with None crashes."
+    },
+    {
+      "q": "def line_total(price_paise, quantity=1): ... What does line_total(64900) use for quantity?",
+      "options": ["0", "1, the default value", "Nothing: it's an error", "64900"],
+      "answer": 1,
+      "explain": "A parameter with a default takes that value when the caller doesn't pass one. line_total(29900, quantity=2) overrides it."
+    },
+    {
+      "q": "tax is made inside gst(). After calling gst(64900), the next line runs print(tax). What happens?",
+      "options": [
+        "It prints 11682",
+        "NameError: name 'tax' is not defined, because tax was local to the function",
+        "It prints None",
+        "It prints 0"
+      ],
+      "answer": 1,
+      "explain": "Local names disappear when the function returns. Keep the result instead: tax = gst(64900)."
+    },
+    {
+      "q": "The error says: TypeError: '>=' not supported between instances of 'NoneType' and 'int'. What's the most likely cause?",
+      "options": [
+        "Python can't compare numbers",
+        "A value that should be a number is None, usually because some function forgot to return",
+        "The file is too long",
+        "A missing colon"
+      ],
+      "answer": 1,
+      "explain": "NoneType means None. Read the traceback upwards to find which call gave back None, then add the missing return."
+    },
+    {
+      "q": "(Going deeper) Why is def add(item, cart=[]) a bug?",
+      "options": [
+        "Lists can't be parameters",
+        "The default list is made once and shared by every call, so items pile up between calls",
+        "It's slower",
+        "It isn't a bug"
+      ],
+      "answer": 1,
+      "explain": "Defaults are created when def runs, not on each call. Use cart=None and make a new list inside."
+    },
+    {
+      "q": "(Going deeper) In def order_summary(customer, *items, **options), what is items for order_summary(\"Ravi\", \"Cotton Kurta\", \"Masala Box\", gift_wrap=True)?",
+      "options": [
+        "\"Cotton Kurta\"",
+        "('Cotton Kurta', 'Masala Box'), a tuple of the extra positional arguments",
+        "{'gift_wrap': True}",
+        "An error"
+      ],
+      "answer": 1,
+      "explain": "*items collects extra positional arguments into a tuple; **options collects extra keyword arguments into a dict."
+    }
+  ]
+}

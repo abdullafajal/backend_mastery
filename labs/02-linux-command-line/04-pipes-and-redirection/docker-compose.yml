@@ -1,0 +1,12 @@
+# Lab 02-04: pipes and redirection, and the 20-task Linux playground.
+services:
+  server:
+    image: python:3.13.18-slim-trixie
+    hostname: bazaar-server
+    init: true
+    working_dir: /srv/bazaar
+    entrypoint: ["/start.sh"]
+    volumes:
+      - ./start.sh:/start.sh:ro
+      - ./tools:/srv/tools:ro
+      - ./playground:/srv/playground:ro

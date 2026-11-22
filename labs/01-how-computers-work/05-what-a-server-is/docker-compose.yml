@@ -1,0 +1,21 @@
+# Lab 01-05: be a server.
+services:
+  server:                                  # tiny_server.py, waiting for requests
+    image: python:3.13.18-slim-trixie
+    init: true
+    working_dir: /app
+    command: ["python3", "-u", "tiny_server.py"]
+    volumes:
+      - ./app:/app:ro
+    ports:
+      - "${BAZAAR_PORT:-8000}:8000"
+
+  python:                                  # run one script at a time
+    image: python:3.13.18-slim-trixie
+    init: true
+    working_dir: /app
+    volumes:
+      - ./app:/app:ro
+    ulimits:
+      nofile: 50                           # at most 50 open files per process
+    profiles: ["tools"]

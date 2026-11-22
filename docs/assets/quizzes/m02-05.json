@@ -1,0 +1,88 @@
+{
+  "title": "Environment variables, packages and background jobs",
+  "questions": [
+    {
+      "q": "Why should Bazaar's database password come from an environment variable instead of the code?",
+      "options": [
+        "It's faster",
+        "The code (and Git) never contains the secret, and the same code can run with different settings on each server",
+        "Python can't read passwords from code",
+        "Environment variables are encrypted"
+      ],
+      "answer": 1,
+      "explain": "Code ends up in Git and is shared. Settings and secrets belong outside it."
+    },
+    {
+      "q": "You type DB_PASSWORD=secret123, then python3 settings.py says DB_PASSWORD is not set. Why?",
+      "options": [
+        "The password is too short",
+        "It's only a shell variable; programs get it only after export",
+        "Python can't read uppercase names",
+        "You need sudo"
+      ],
+      "answer": 1,
+      "explain": "export DB_PASSWORD puts it in the environment, which every program started from that shell receives."
+    },
+    {
+      "q": "What does DB_PASSWORD=secret123 python3 settings.py do?",
+      "options": [
+        "Saves the password permanently",
+        "Gives the setting to that one command only; the shell doesn't keep it",
+        "Exports it for every future command",
+        "Runs settings.py twice"
+      ],
+      "answer": 1,
+      "explain": "A setting written in front of a command, on the same line, applies to that command alone."
+    },
+    {
+      "q": "apt-get install -y jq says \"E: Unable to locate package jq\". What should you do first?",
+      "options": ["Reboot the server", "apt-get update, to download the latest package list", "Use pip install jq", "Delete /var/lib/apt"],
+      "answer": 1,
+      "explain": "apt needs a fresh list of what's available. In Docker images the list is usually removed to save space."
+    },
+    {
+      "q": "What does the & do in python3 import_products.py > import.log 2>&1 &?",
+      "options": [
+        "Runs the command twice",
+        "Runs it in the background, so you get your prompt back immediately",
+        "Runs it as root",
+        "Joins it with the next command"
+      ],
+      "answer": 1,
+      "explain": "jobs lists background jobs, kill %1 stops job 1, and wait waits for them to finish."
+    },
+    {
+      "q": "In Python, os.environ.get(\"DEBUG\") returns \"false\". Why is if os.environ.get(\"DEBUG\"): a bug?",
+      "options": [
+        "It isn't",
+        "Environment values are text, and the text \"false\" is not empty, so it counts as true",
+        "os.environ is read-only",
+        "DEBUG must be lowercase"
+      ],
+      "answer": 1,
+      "explain": "Compare the text: os.environ.get(\"DEBUG\", \"false\").lower() == \"true\"."
+    },
+    {
+      "q": "(Going deeper) A script runs export SALE=diwali. After it ends, your terminal still has no SALE. Why?",
+      "options": [
+        "export only works in Python",
+        "The script ran in a child process with its own copy of the environment; changes don't flow back to the shell",
+        "SALE is a reserved word",
+        "The script needs chmod +x"
+      ],
+      "answer": 1,
+      "explain": "To change the current shell from a file, source it: source script.sh."
+    },
+    {
+      "q": "(Going deeper) A job must keep running after you log out. What's the quick way, and the proper way?",
+      "options": [
+        "& alone, and nothing else",
+        "nohup command > job.log 2>&1 & for a quick fix; a systemd service for anything long-lived",
+        "Ctrl+C, then fg",
+        "sudo command"
+      ],
+      "answer": 1,
+      "explain": "nohup ignores the hang-up signal sent at logout. Services (Lesson 7) also restart the job after crashes and reboots."
+    }
+  ]
+}

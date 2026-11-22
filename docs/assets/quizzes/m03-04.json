@@ -1,0 +1,93 @@
+{
+  "title": "Rebase",
+  "questions": [
+    {
+      "q": "Rohan's branch started from an old main. Main got a new commit since. What does git rebase main (run on Rohan's branch) do?",
+      "options": [
+        "Deletes main",
+        "Copies Rohan's commits, one by one, on top of the newest main commit",
+        "Makes a merge commit with two parents",
+        "Sends the branch to GitHub"
+      ],
+      "answer": 1,
+      "explain": "Rebase = give my commits a new base. Git sets them aside, moves the branch to main's newest commit, and replays them on top."
+    },
+    {
+      "q": "After the rebase, Rohan's commit 79d769b is now 96286bf. Why did the hash change?",
+      "options": [
+        "Git made a mistake",
+        "Rohan changed the code",
+        "A hash includes the commit's parent; the parent changed, so these are new commits (copies)",
+        "Hashes change every day"
+      ],
+      "answer": 2,
+      "explain": "Same message, author and change, but a different parent gives a different hash. Rebase always creates new commits."
+    },
+    {
+      "q": "Rohan rebased free-delivery onto main. Then, on main, he runs git merge free-delivery. What happens?",
+      "options": [
+        "A conflict, always",
+        "A fast-forward: main was simply behind, so its label moves forward and the history is one straight line",
+        "A merge commit with two parents",
+        "Nothing; the branches are unrelated"
+      ],
+      "answer": 1,
+      "explain": "After the rebase, free-delivery = main + 2 commits. main is just behind, so merging is a fast-forward."
+    },
+    {
+      "q": "What is the golden rule of rebase?",
+      "options": [
+        "Always rebase main onto your branch",
+        "Rebase only on Fridays",
+        "Only rebase commits that nobody else has",
+        "Never use merge"
+      ],
+      "answer": 2,
+      "explain": "Rebase replaces commits with new copies. If teammates already have the old ones, they end up with duplicates and a messy history."
+    },
+    {
+      "q": "Merge vs rebase: what is the SAME after either one?",
+      "options": [
+        "The hashes of your commits",
+        "The shape of the history",
+        "The final files (the code)",
+        "The number of commits"
+      ],
+      "answer": 2,
+      "explain": "Both bring in the same changes, so the code ends up the same. Merge keeps a true record with a merge commit; rebase rewrites into a straight line."
+    },
+    {
+      "q": "A rebase stops with a conflict. You fixed the file. What now?",
+      "options": [
+        "git add the file, then git rebase --continue",
+        "git commit -m \"fix\"",
+        "git merge --abort",
+        "Delete the branch"
+      ],
+      "answer": 0,
+      "explain": "git add marks it fixed; --continue replays the rest. (git rebase --abort cancels the whole rebase instead.)"
+    },
+    {
+      "q": "(Going deeper) After a rebase you want the old commits back. Which command finds them?",
+      "options": [
+        "git status",
+        "git reflog",
+        "git branch -v",
+        "git diff"
+      ],
+      "answer": 1,
+      "explain": "The reflog lists everywhere HEAD has been, including the old commits no branch points to any more. Then: git switch -c rescue <old-hash>."
+    },
+    {
+      "q": "(Going deeper) In git rebase -i, what does changing pick to squash do?",
+      "options": [
+        "Deletes the commit",
+        "Joins that commit into the one above it",
+        "Pushes the commit",
+        "Renames the branch"
+      ],
+      "answer": 1,
+      "explain": "squash combines commits (keeping both messages for you to edit). fixup does the same but drops the message; drop removes a commit."
+    }
+  ]
+}

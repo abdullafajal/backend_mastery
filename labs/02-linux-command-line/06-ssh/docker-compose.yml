@@ -1,0 +1,13 @@
+# Lab 02-06: SSH from a "laptop" container to a "bazaar-server" container.
+services:
+  bazaar-server:
+    build: ./server
+    image: bazaar-lab-sshd:m02-06
+    hostname: bazaar-server
+
+  laptop:
+    build: ./laptop
+    image: bazaar-lab-sshclient:m02-06
+    hostname: laptop
+    init: true
+    depends_on: [bazaar-server]

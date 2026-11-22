@@ -1,0 +1,7 @@
+services:
+  dev:
+    build: .
+    image: bazaar-lab-git:m03-03
+    hostname: neha-laptop
+    stdin_open: true
+    tty: true

@@ -1,0 +1,93 @@
+{
+  "title": "Memory: stack and heap",
+  "questions": [
+    {
+      "q": "What is kept on the call stack?",
+      "options": [
+        "Every Python object ever created",
+        "One frame per function call happening right now, with its local names and where to return",
+        "The files on the disk",
+        "Only global variables"
+      ],
+      "answer": 1,
+      "explain": "A frame is pushed when a function is called and popped when it returns. A traceback is the stack, printed."
+    },
+    {
+      "q": "In Python, what does cart = [\"Masala Box\"] do?",
+      "options": [
+        "Stores the list inside the variable",
+        "Creates a list object on the heap and makes the name cart point to it",
+        "Copies the list to the disk",
+        "Creates a new thread"
+      ],
+      "answer": 1,
+      "explain": "Variables are names; objects live on the heap. Several names can point to the same object."
+    },
+    {
+      "q": "same_cart = ashas_cart, then same_cart.append(\"Steel Water Bottle\"). What happens to ashas_cart?",
+      "options": [
+        "Nothing, it was copied",
+        "It also shows the bottle, because both names point to the same list",
+        "Python raises an error",
+        "The bottle replaces the first item"
+      ],
+      "answer": 1,
+      "explain": "Assignment never copies. To copy, use list(ashas_cart), ashas_cart.copy(), or copy.deepcopy for nested data."
+    },
+    {
+      "q": "def add_to_cart(item, cart=[]) — why did Ravi find Asha's Masala Box in his cart?",
+      "options": [
+        "A database bug",
+        "The default list is created once, when the function is defined, and shared by every call",
+        "Python mixed up the two users' threads",
+        "The cart was saved to disk"
+      ],
+      "answer": 1,
+      "explain": "Use cart=None and create a new list inside the function."
+    },
+    {
+      "q": "Python has a garbage collector. How can Bazaar's price service still leak memory?",
+      "options": [
+        "It can't; Python never leaks",
+        "The program keeps references to objects it will never use again, for example a cache with no limit",
+        "The garbage collector is turned off in Docker",
+        "Integers never get freed"
+      ],
+      "answer": 1,
+      "explain": "Garbage collection only frees unreachable objects. Anything still in a global cache stays reachable. Bound your caches."
+    },
+    {
+      "q": "A Bazaar container exits with code 137 and docker inspect says OOMKilled: true. What happened?",
+      "options": [
+        "The code had a syntax error",
+        "It went over its memory limit, and the kernel's OOM killer ended it with SIGKILL",
+        "It finished normally",
+        "The network went down"
+      ],
+      "answer": 1,
+      "explain": "137 = 128 + 9 (SIGKILL). The program had no chance to print anything. Look for a memory leak."
+    },
+    {
+      "q": "A category tree is 5,000 levels deep. The recursive function fails with RecursionError. What is the best fix?",
+      "options": [
+        "sys.setrecursionlimit(1_000_000)",
+        "Rewrite it as a loop, which uses a single frame",
+        "Buy more RAM",
+        "Catch the error and ignore it"
+      ],
+      "answer": 1,
+      "explain": "Every recursive call adds a frame. A loop doesn't. Raising the limit a lot can crash the interpreter itself."
+    },
+    {
+      "q": "(Going deeper) When does CPython free an object?",
+      "options": [
+        "Only when the program ends",
+        "When its reference count reaches zero, or when the cycle collector finds it unreachable",
+        "Every 10 seconds",
+        "Only when you call del on it"
+      ],
+      "answer": 1,
+      "explain": "Reference counting frees most objects instantly. Objects in a reference cycle wait for the cycle collector (gc)."
+    }
+  ]
+}

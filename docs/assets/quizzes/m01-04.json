@@ -1,0 +1,93 @@
+{
+  "title": "File systems",
+  "questions": [
+    {
+      "q": "What does a file's inode store?",
+      "options": [
+        "The file's name only",
+        "The file's size, owner, permissions, times, and where its data blocks are, but not its name",
+        "A backup copy of the file",
+        "The folder's password"
+      ],
+      "answer": 1,
+      "explain": "The name lives in the folder, as a \"name → inode number\" entry. That is why one inode can have several names (hard links)."
+    },
+    {
+      "q": "Bazaar's server says \"No space left on device\", but df -h shows the disk 40% used. What should you check?",
+      "options": [
+        "The CPU",
+        "df -i: the file system may be out of inodes (too many small files)",
+        "The internet connection",
+        "Nothing, df -h is always wrong"
+      ],
+      "answer": 1,
+      "explain": "Every file uses one inode. Millions of tiny files can use them all while most of the space is free. The error message is the same."
+    },
+    {
+      "q": "You rm a 2 GB log file, but the free space doesn't change. Why?",
+      "options": [
+        "rm is slow and needs an hour",
+        "A running program still has the file open; the inode and its blocks are freed only when it closes the file",
+        "Linux never frees space",
+        "The file was too big to delete"
+      ],
+      "answer": 1,
+      "explain": "rm only removes a name. The program's file descriptor still points to the inode. Restart or signal the program, or truncate the file instead."
+    },
+    {
+      "q": "Why is open(\"products.json\", \"w\") dangerous for an important file?",
+      "options": [
+        "It is slow",
+        "It empties the file immediately; a crash while writing leaves it broken, and the old version is gone",
+        "It can only write text",
+        "It makes the file read-only"
+      ],
+      "answer": 1,
+      "explain": "In the lab, a crash during an unsafe save left broken JSON and no good version at all."
+    },
+    {
+      "q": "What is the safe way to replace products.json?",
+      "options": [
+        "Write directly, and hope",
+        "Write a temp file in the same folder, flush and fsync it, then os.replace() it over the real name",
+        "Delete the old file first, then write the new one",
+        "Write the temp file in /tmp and copy it"
+      ],
+      "answer": 1,
+      "explain": "The rename is atomic: readers see the whole old file or the whole new one. A crash before it leaves the old file untouched."
+    },
+    {
+      "q": "product.json and same_product.json show the same inode number in ls -li. You delete product.json. What happens?",
+      "options": [
+        "Both are gone",
+        "same_product.json still has the data; it is a hard link to the same inode",
+        "same_product.json becomes empty",
+        "Linux refuses to delete it"
+      ],
+      "answer": 1,
+      "explain": "The link count drops from 2 to 1. The data is freed only when the last name (and every open descriptor) is gone. A symlink, by contrast, would break."
+    },
+    {
+      "q": "The same relative path, orders/order_1042.json, opens different files in two runs of Bazaar. Why?",
+      "options": [
+        "The disk changed",
+        "A relative path starts from the process's current working directory, which was different",
+        "Python picks files at random",
+        "The file was renamed"
+      ],
+      "answer": 1,
+      "explain": "Build paths from a known absolute place, like Path(__file__).parent, not from wherever the program was started."
+    },
+    {
+      "q": "import product works on a developer's Mac but fails in the Linux container. The file is called Product.py. Why?",
+      "options": [
+        "Linux has no Python",
+        "macOS ignores upper/lower case in file names by default; Linux doesn't",
+        "The container is broken",
+        "Python files must be in capitals on Linux"
+      ],
+      "answer": 1,
+      "explain": "On Linux, Product.py and product.py are different files. Match names exactly, and test in Linux containers."
+    }
+  ]
+}

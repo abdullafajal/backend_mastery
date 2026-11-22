@@ -1,0 +1,78 @@
+{
+  "title": "Comprehensions",
+  "questions": [
+    {
+      "q": "What does [p[\"name\"] for p in catalog] give?",
+      "options": [
+        "The first product's name",
+        "A new list with the name of every product",
+        "A dict of names",
+        "It changes the catalog"
+      ],
+      "answer": 1,
+      "explain": "Read it as 'a list of p[\"name\"], for each p in the catalog'. The catalog itself doesn't change."
+    },
+    {
+      "q": "In a list comprehension, where does the value you keep go?",
+      "options": ["At the end", "First, before the for", "After the if", "In a separate append line"],
+      "answer": 1,
+      "explain": "[what_to_keep for item in collection if condition]: what you keep comes first."
+    },
+    {
+      "q": "Which comprehension gives the names of products under ₹500?",
+      "options": [
+        "[p[\"name\"] for p in catalog if p[\"price_paise\"] < 500]",
+        "[p[\"name\"] for p in catalog if p[\"price_paise\"] < 50000]",
+        "[p[\"name\"] if p[\"price_paise\"] < 50000 for p in catalog]",
+        "{p[\"name\"] for p in catalog}"
+      ],
+      "answer": 1,
+      "explain": "Bazaar stores paise, so ₹500 is 50000. With 500, the shelf is empty (that's the lab's exercise)."
+    },
+    {
+      "q": "What does {p[\"name\"]: p[\"price_paise\"] for p in catalog} build?",
+      "options": ["A list", "A set", "A dict from name to price", "A tuple"],
+      "answer": 2,
+      "explain": "Curly brackets with key: value make a dict. Then price_of[\"Masala Box\"] gives 29900 in one step."
+    },
+    {
+      "q": "{p[\"seller\"] for p in catalog} with two Sharma Electronics products gives how many sellers (out of 5 products)?",
+      "options": ["5", "4", "1", "An error"],
+      "answer": 1,
+      "explain": "Curly brackets with a single value make a set, and a set keeps each value once."
+    },
+    {
+      "q": "When should you write a normal loop instead of a comprehension?",
+      "options": [
+        "Never",
+        "When you want to DO something (print, save) or need several conditions; comprehensions are for building a collection",
+        "Whenever the list has more than 5 items",
+        "Only for dicts"
+      ],
+      "answer": 1,
+      "explain": "[print(p) for p in catalog] builds a useless list of None. If it stops reading like a sentence, use a loop."
+    },
+    {
+      "q": "(Going deeper) What's the difference between [... if cond else ... for p in catalog] and [... for p in catalog if cond]?",
+      "options": [
+        "None",
+        "if/else before the for chooses a value for EVERY item; if at the end SKIPS items",
+        "The first one is a set",
+        "The second one can't use if"
+      ],
+      "answer": 1,
+      "explain": "Filter = if at the end (no else). Choose a value = a if cond else b, before the for."
+    },
+    {
+      "q": "(Going deeper) Why write sum(p[\"stock\"] for p in catalog) without square brackets?",
+      "options": [
+        "It's a syntax rule",
+        "It's a generator expression: values are made one at a time, so no whole list is stored in memory",
+        "Brackets would make it a dict",
+        "sum() can't take lists"
+      ],
+      "answer": 1,
+      "explain": "With millions of orders, not building the full list saves a lot of memory. The answer is the same."
+    }
+  ]
+}

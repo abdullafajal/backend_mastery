@@ -1,0 +1,27 @@
+# Python and tooling
+.venv/
+.venv-dev/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+
+# MkDocs build output (GitHub Actions builds the site on every push)
+site/
+
+# Screenshots from the browser check (scripts/check_site.py)
+site-screens/
+
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Local secrets at the repo root only.
+# Labs ship their own teaching .env files on purpose, so .env is NOT ignored inside labs/.
+/.env
+/.env.*

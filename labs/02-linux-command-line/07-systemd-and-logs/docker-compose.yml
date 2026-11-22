@@ -1,0 +1,15 @@
+# Lab 02-07: systemd and logs. systemd needs extra rights inside a container; this is for learning on your laptop only.
+services:
+  server:
+    build: .
+    image: bazaar-lab-systemd:m02-07
+    hostname: bazaar-server
+    privileged: true                 # systemd manages cgroups and mounts; never do this for real apps
+    cgroup: host
+    tmpfs: [/run, /run/lock, /tmp]
+    volumes:
+      - ./app:/srv/bazaar:ro
+      - ./etc/bazaar-web.service:/etc/systemd/system/bazaar-web.service:ro
+      - ./etc/bazaar.env:/etc/bazaar/bazaar.env:ro
+    ports:
+      - "${BAZAAR_PORT:-8000}:8000"

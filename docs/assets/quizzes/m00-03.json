@@ -1,0 +1,93 @@
+{
+  "title": "Installing Python and VS Code",
+  "questions": [
+    {
+      "q": "You type python3 and the terminal says \"command not found\". Python IS installed. What is the most likely reason?",
+      "options": [
+        "Python is broken and must be reinstalled",
+        "The folder where python3 lives is not in your PATH",
+        "Your internet is down",
+        "VS Code is not open"
+      ],
+      "answer": 1,
+      "explain": "The shell only searches the folders listed in PATH. In the lab, Python was installed but PATH=/usr/bin made the shell miss it."
+    },
+    {
+      "q": "PATH has python3 in its 2nd folder AND in its 3rd folder. Which one runs?",
+      "options": [
+        "The one in the 3rd folder",
+        "The newest one",
+        "The one in the 2nd folder, because the shell stops at the first match",
+        "Both of them"
+      ],
+      "answer": 2,
+      "explain": "The shell searches PATH in order and runs the first match. That is why an old Python early in PATH can hide a new one."
+    },
+    {
+      "q": "You installed Python 3.13, but the terminal you already had open still says 3.9.6. Why?",
+      "options": [
+        "The install failed",
+        "The open terminal read PATH when it started; it needs to be closed and opened again",
+        "Python 3.13 only works in VS Code",
+        "You must restart the whole computer every time"
+      ],
+      "answer": 1,
+      "explain": "Every process gets a copy of its environment when it starts. The installer changed the startup files, not the copy your open terminal already has."
+    },
+    {
+      "q": "On a Mac where you installed nothing, python3 --version says Python 3.9.6. What does that mean?",
+      "options": [
+        "Python 3.13 is ready",
+        "It is the old Python that comes with macOS; it is past its end of life, and you still need 3.13",
+        "Your Mac is broken",
+        "Python 3.9 is newer than 3.13"
+      ],
+      "answer": 1,
+      "explain": "macOS ships an old Python in /usr/bin. It runs without errors, but it is too old for this course and no longer gets security fixes."
+    },
+    {
+      "q": "What is VS Code?",
+      "options": [
+        "A programming language",
+        "A code editor where you write, run and debug your code",
+        "A database for Bazaar",
+        "Another name for Python"
+      ],
+      "answer": 1,
+      "explain": "VS Code is an editor. The Python extension teaches it Python, and its built-in terminal lets you run your code."
+    },
+    {
+      "q": "check_python.py exits with code 1 on Python 3.12. What does a non-zero exit code mean?",
+      "options": [
+        "The program finished successfully",
+        "The program is still running",
+        "Something went wrong",
+        "The program printed one line"
+      ],
+      "answer": 2,
+      "explain": "By convention, exit code 0 means success and anything else means failure. 127 specifically means \"command not found\"."
+    },
+    {
+      "q": "(Going deeper) pip says \"error: externally-managed-environment\". What should you do?",
+      "options": [
+        "Force it with --break-system-packages",
+        "Delete Python",
+        "Use a virtual environment for your project (Module 5)",
+        "Use sudo"
+      ],
+      "answer": 2,
+      "explain": "That Python belongs to the system or Homebrew. Installing packages into it can break their tools. A virtual environment gives your project its own packages."
+    },
+    {
+      "q": "(Going deeper) What is the __pycache__ folder?",
+      "options": [
+        "A virus",
+        "Saved bytecode of imported files, so Python can skip compiling them next time; safe to delete",
+        "Your project's database",
+        "A backup of your code that you must never delete"
+      ],
+      "answer": 1,
+      "explain": "Python compiles .py files to bytecode. It saves that bytecode as .pyc files in __pycache__ and makes them again if needed."
+    }
+  ]
+}

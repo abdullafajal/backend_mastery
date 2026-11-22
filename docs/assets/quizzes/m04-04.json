@@ -1,0 +1,78 @@
+{
+  "title": "Lists, dicts and sets",
+  "questions": [
+    {
+      "q": "cart = [\"Masala Box\", \"Cotton Kurta\", \"Steel Water Bottle\"]. What is cart[1]?",
+      "options": ["\"Masala Box\"", "\"Cotton Kurta\"", "\"Steel Water Bottle\"", "An IndexError"],
+      "answer": 1,
+      "explain": "Positions start at 0, so cart[0] is Masala Box and cart[1] is the second item. cart[-1] would be the last one."
+    },
+    {
+      "q": "Which container fits ONE Bazaar product with a name, a price and a seller?",
+      "options": [
+        "A list: [\"Masala Box\", 29900, \"Patel Spices\"]",
+        "A dict: {\"name\": \"Masala Box\", \"price_paise\": 29900, \"seller\": \"Patel Spices\"}",
+        "A set",
+        "Three separate variables"
+      ],
+      "answer": 1,
+      "explain": "Each value has a meaning, so look it up by name: product[\"seller\"] is clearer than product[2]."
+    },
+    {
+      "q": "product has no \"rating\" key. What does product.get(\"rating\") give?",
+      "options": ["0", "None", "KeyError", "\"rating\""],
+      "answer": 1,
+      "explain": ".get gives None (or the default you pass) for a missing key. product[\"rating\"] would crash with a KeyError."
+    },
+    {
+      "q": "You add \"Sharma Electronics\" twice to a set of sellers. How many times is it in the set?",
+      "options": ["Twice", "Once", "Zero", "It's an error"],
+      "answer": 1,
+      "explain": "A set keeps each value once. That's why 5 seller names with one repeat give 4 sellers."
+    },
+    {
+      "q": "same_cart = ashas_cart, then same_cart.append(\"Cotton Kurta\"). What does ashas_cart contain?",
+      "options": [
+        "Its old items only",
+        "Its old items plus Cotton Kurta: both names point to the same list",
+        "Only Cotton Kurta",
+        "None"
+      ],
+      "answer": 1,
+      "explain": "= never copies. Lists can change, so a change through one name is seen through the other. Use ashas_cart.copy() for a separate list."
+    },
+    {
+      "q": "line = (\"Masala Box\", 29900, 2). What does line[2] = 3 do?",
+      "options": [
+        "Changes the quantity to 3",
+        "TypeError: 'tuple' object does not support item assignment",
+        "Adds 3 at the end",
+        "Nothing"
+      ],
+      "answer": 1,
+      "explain": "Tuples can't be changed. Make a new tuple, or use a list if the values must change."
+    },
+    {
+      "q": "(Going deeper) Why is \"Patel Spices\" in sellers fast even with millions of sellers, when sellers is a set?",
+      "options": [
+        "Sets are sorted",
+        "Sets use a hash table: the value's hash tells Python almost exactly where to look",
+        "Python caches every answer",
+        "It isn't faster than a list"
+      ],
+      "answer": 1,
+      "explain": "A list checks items one by one; a set or dict jumps straight to the right place. That's also why their items must be hashable (not lists)."
+    },
+    {
+      "q": "(Going deeper) catalog is a list of dicts. shallow = catalog.copy(); shallow[0][\"stock\"] = 2. Does catalog change?",
+      "options": [
+        "No, it's a copy",
+        "Yes: .copy() is shallow, so the inner dicts are shared; copy.deepcopy() copies them too",
+        "It raises an error",
+        "Only if stock was 0"
+      ],
+      "answer": 1,
+      "explain": "A shallow copy makes a new outer list holding the SAME product dicts. Changing a product through either list changes it for both."
+    }
+  ]
+}

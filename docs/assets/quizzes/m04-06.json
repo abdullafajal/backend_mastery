@@ -1,0 +1,93 @@
+{
+  "title": "Errors and exceptions",
+  "questions": [
+    {
+      "q": "A customer types \"three\" and your code runs int(\"three\") with no try. What happens?",
+      "options": [
+        "It returns 3",
+        "It returns 0",
+        "ValueError is raised and, since nothing handles it, the program stops",
+        "Python asks the customer again"
+      ],
+      "answer": 2,
+      "explain": "An unhandled exception prints a traceback and ends the program. On a website, the customer gets an error page."
+    },
+    {
+      "q": "In try: quantity = int(text)  except ValueError: print(\"please type a number\"), when does the except block run?",
+      "options": [
+        "Always",
+        "Only if int(text) raised a ValueError",
+        "Only if there was no error",
+        "Never"
+      ],
+      "answer": 1,
+      "explain": "If the try block works, except is skipped. If a ValueError happens, the rest of try is skipped and except runs."
+    },
+    {
+      "q": "Why is a bare except: (with no error name) a bad idea?",
+      "options": [
+        "It's slower",
+        "It catches every error, even typos in your own code, and hides them behind a wrong message",
+        "Python doesn't allow it",
+        "It only catches ValueError"
+      ],
+      "answer": 1,
+      "explain": "In the lab, a typo (pirce_paise) made a NameError, and the bare except printed 'please type a number' for valid input."
+    },
+    {
+      "q": "reserve() finds the customer wants 10 earbuds but only 8 are left. What should it do?",
+      "options": [
+        "print(\"only 8 left\") and return nothing",
+        "raise ValueError(\"only 8 Wireless Earbuds left\"), and let the caller decide what to show",
+        "Sell 10 anyway",
+        "Exit the program"
+      ],
+      "answer": 1,
+      "explain": "The function says WHAT is wrong by raising; the caller catches it and decides HOW to show it."
+    },
+    {
+      "q": "try / except ValueError / else / finally: which blocks run when there is NO error?",
+      "options": [
+        "try and except",
+        "try, else and finally",
+        "only finally",
+        "try and finally only"
+      ],
+      "answer": 1,
+      "explain": "else runs only when try had no error; finally runs every time, error or not."
+    },
+    {
+      "q": "The code does try: int(\"three\") except KeyError: .... What happens?",
+      "options": [
+        "The except KeyError block runs",
+        "Nothing; errors are ignored inside try",
+        "The ValueError isn't caught (KeyError doesn't match), so the program stops",
+        "Python converts the ValueError to a KeyError"
+      ],
+      "answer": 2,
+      "explain": "An except only catches the error type it names. Read the traceback's last line and catch that exact type."
+    },
+    {
+      "q": "(Going deeper) Why write class OutOfStock(Exception) instead of always raising ValueError?",
+      "options": [
+        "ValueError is deprecated",
+        "Callers can catch exactly this problem (except OutOfStock:) without catching unrelated ValueErrors",
+        "It makes the program faster",
+        "Exceptions must be classes you write"
+      ],
+      "answer": 1,
+      "explain": "Your own exception names make the rule clear and let callers handle it precisely. Django does this, e.g. Product.DoesNotExist."
+    },
+    {
+      "q": "(Going deeper) In Bazaar's future Django API, a view raises an error nobody catches. What does the customer get?",
+      "options": [
+        "Nothing; Django ignores it",
+        "An HTTP 500 Internal Server Error, with the traceback in the server's log",
+        "A 404 Not Found",
+        "The traceback on their screen, always"
+      ],
+      "answer": 1,
+      "explain": "Expected problems should be handled and turned into clear answers (404, 400). Unexpected ones become 500s, and the log keeps the traceback."
+    }
+  ]
+}

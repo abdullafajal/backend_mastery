@@ -1,0 +1,14 @@
+# Everything pip (or uv) needs to know to build and install Bazaar.
+[build-system]
+requires = ["setuptools==84.2.1"]            # the tool that builds the package, pinned
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bazaar"
+version = "0.1.0"
+description = "Bazaar v0: a command-line product catalog"
+requires-python = ">=3.13"
+dependencies = []                             # Bazaar v0 needs only the standard library
+
+[project.scripts]
+bazaar = "bazaar.main:run"                    # installing creates a `bazaar` command that calls bazaar.main.run()

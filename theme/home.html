@@ -1,0 +1,131 @@
+{#- The home page. index.md sets `template: home.html`.
+    Levels come from `extra.levels` in mkdocs.yml; modules that exist are found in the nav. -#}
+{% extends "main.html" %}
+{% from "macros.html" import lesson_id with context %}
+{% block body_class %}page page--home{% endblock %}
+
+{% block main %}
+{#- Collect every lesson and every built module from the nav. -#}
+{%- set ns = namespace(lessons=[], first_url=none) -%}
+{%- set modules = {} -%}
+{%- for lvl in nav.items if lvl.is_section -%}
+  {%- for mod in lvl.children if mod.is_section -%}
+    {%- set mnum = mod.title.split('.')[0] -%}
+    {%- set cnt = namespace(n=0, ids=[]) -%}
+    {%- for p in mod.children if p.is_page -%}
+      {%- set lid = lesson_id(p)|trim -%}
+      {%- if lid -%}
+        {%- set cnt.n = cnt.n + 1 -%}
+        {%- set cnt.ids = cnt.ids + [lid] -%}
+        {%- set ns.lessons = ns.lessons + [lid] -%}
+        {%- if ns.first_url is none %}{% set ns.first_url = p.url %}{% endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- set _ = modules.update({mnum: {'url': (mod.children|first).url, 'count': cnt.n, 'ids': cnt.ids|join(',')}}) -%}
+  {%- endfor -%}
+{%- endfor -%}
+
+<main class="home" id="content" data-all-lessons="{{ ns.lessons|join(',') }}">
+
+  <section class="hero">
+    <div class="hero__text">
+      <span class="eyebrow">Free course · zero to senior backend engineer</span>
+      <h1>Learn backend engineering by building <em>Bazaar</em>, one real marketplace.</h1>
+      <p class="hero__lead">Start with what happens inside a computer. Finish with a sharded, multi-server
+        e-commerce backend that you built yourself. Every lesson has an interactive diagram,
+        a hands-on lab, and a quiz.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="{{ ns.first_url|url }}" data-start>Start learning</a>
+        <a class="btn btn--ghost" href="#curriculum">See the curriculum</a>
+      </div>
+      <ul class="hero__facts">
+        <li><b>6</b> levels</li>
+        <li><b>38</b> modules</li>
+        <li><b>{{ ns.lessons|length }}</b> lessons ready</li>
+      </ul>
+    </div>
+
+    <div class="hero__art" aria-hidden="true">
+      <div class="term">
+        <div class="term__bar"><i></i><i></i><i></i><span>lab 00-01</span></div>
+<pre class="term__body"><span class="t-prompt">$</span> curl "localhost:8000/products?q=shoes"
+<span class="t-json">{"count": 1, "products": [{
+  "name": "Red Running Shoes",
+  "price": 999, "in_stock": true }]}</span>
+<span class="t-prompt">$</span> bash test_lab.sh
+<span class="t-ok">PASS</span> search finds Red Running Shoes
+<span class="t-ok">PASS</span> stock count is hidden
+<span class="t-ok">ALL CHECKS PASSED</span></pre>
+      </div>
+      <div class="chip chip--float chip--a">⚡ Interactive diagrams</div>
+      <div class="chip chip--float chip--b">🧪 Labs that test themselves</div>
+    </div>
+  </section>
+
+  <section class="resume" data-resume hidden>
+    <div class="resume__text">
+      <span class="eyebrow">Continue where you left off</span>
+      <a class="resume__title" href="#" data-resume-link></a>
+    </div>
+    <div class="resume__progress">
+      <div class="meter"><span data-meter></span></div>
+      <span class="resume__count" data-count></span>
+    </div>
+  </section>
+
+  <section class="curriculum" id="curriculum">
+    <header class="section-head">
+      <span class="eyebrow">The journey</span>
+      <h2>One app. Six levels. From 1 user to 1 crore.</h2>
+      <p>Bazaar starts as a tiny script on your laptop. At every level it grows, something breaks,
+        and that problem brings the next thing you learn.</p>
+    </header>
+
+    <ol class="levels">
+      {%- for lvl in config.extra.levels %}
+      <li class="level">
+        <div class="level__rail"><span class="level__num">{{ lvl.n }}</span></div>
+        <div class="level__card">
+          <div class="level__head">
+            <h3>{{ lvl.title }}</h3>
+            <span class="pill">{{ lvl.users }}</span>
+          </div>
+          <p class="level__problem">{{ lvl.problem }}</p>
+          <ul class="modules">
+            {%- for name in lvl.modules %}
+            {%- set num = (lvl.first + loop.index0)|string %}
+            {%- if num in modules %}
+            <li>
+              <a class="module module--ready" href="{{ modules[num].url|url }}" data-module-lessons="{{ modules[num].ids }}">
+                <span class="module__num">{{ num }}</span>
+                <span class="module__name">{{ name }}
+                  <span class="module__meta" data-module-meta>{{ modules[num].count }} lesson{% if modules[num].count != 1 %}s{% endif %}</span></span>
+              </a>
+            </li>
+            {%- else %}
+            <li>
+              <span class="module module--soon">
+                <span class="module__num">{{ num }}</span>
+                <span class="module__name">{{ name }}
+                  <span class="module__meta">Coming soon</span></span>
+              </span>
+            </li>
+            {%- endif %}
+            {%- endfor %}
+          </ul>
+        </div>
+      </li>
+      {%- endfor %}
+    </ol>
+  </section>
+
+  <section class="how prose">
+    {{ page.content }}
+  </section>
+
+  <footer class="footer">
+    <p>Backend Mastery · a free course · built around one app, Bazaar.
+    Your progress is saved only in this browser.</p>
+  </footer>
+</main>
+{% endblock %}

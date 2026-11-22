@@ -1,0 +1,93 @@
+{
+  "title": "Virtual environments and packaging",
+  "questions": [
+    {
+      "q": "Why give each project its own virtual environment?",
+      "options": [
+        "It makes Python faster",
+        "Each project gets its own installed packages and versions, so two projects can need different versions without fighting",
+        "It's required to run any Python",
+        "It backs up your code"
+      ],
+      "answer": 1,
+      "explain": "In the lab, project-a's venv has requests 2.34.2 and project-b's has 2.33.1, side by side."
+    },
+    {
+      "q": "What does python3 -m venv .venv create?",
+      "options": [
+        "A copy of your project",
+        "A folder with its own python, its own pip, and its own empty place for packages",
+        "A Docker container",
+        "A requirements.txt"
+      ],
+      "answer": 1,
+      "explain": ".venv/bin/pip installs into that folder only; nothing else is touched."
+    },
+    {
+      "q": "Why write requests==2.34.2 (and pin its dependencies) instead of just requests?",
+      "options": [
+        "pip can't install without a version",
+        "So every computer installs exactly the same versions, today and next month",
+        "Newer versions are always broken",
+        "It downloads faster"
+      ],
+      "answer": 1,
+      "explain": "In the lab, removing certifi's pin made pip install a 2-day-old version. Exact pins make installs repeatable."
+    },
+    {
+      "q": "What does source .venv/bin/activate do?",
+      "options": [
+        "Installs all packages",
+        "Makes plain python and pip in this shell mean the venv's own (by putting .venv/bin first in PATH)",
+        "Starts the program",
+        "Deletes the system Python"
+      ],
+      "answer": 1,
+      "explain": "which python then shows /lab/project-a/.venv/bin/python. deactivate undoes it."
+    },
+    {
+      "q": "Should you commit the .venv folder to Git?",
+      "options": [
+        "Yes, always",
+        "No: it's big and machine-specific; commit requirements.txt (or pyproject.toml + a lock file) and rebuild the venv from it",
+        "Only on Fridays",
+        "Only the bin/ folder"
+      ],
+      "answer": 1,
+      "explain": "The lab's .gitignore lists .venv/. Anyone can recreate it with one command."
+    },
+    {
+      "q": "pyproject.toml says bazaar = \"bazaar.main:start\", but main.py only has run(). What happens when you type bazaar list?",
+      "options": [
+        "It works",
+        "ImportError: cannot import name 'start' from 'bazaar.main'",
+        "pip refuses to install it",
+        "It runs run() instead"
+      ],
+      "answer": 1,
+      "explain": "pip writes a script that imports exactly the function named in [project.scripts]. Fix the name and reinstall."
+    },
+    {
+      "q": "(Going deeper) What is a lock file like uv.lock?",
+      "options": [
+        "A file that stops others from editing code",
+        "A generated list of the exact version (and hash) of every package, including dependencies",
+        "A password file",
+        "The venv itself"
+      ],
+      "answer": 1,
+      "explain": "You list the few packages you want; the tool works out and records everything else, so installs are repeatable."
+    },
+    {
+      "q": "(Going deeper) Why does this course only pin versions released at least two weeks ago?",
+      "options": [
+        "Older versions are faster",
+        "Brand-new releases occasionally have bugs or are even malicious; waiting a little lets problems get found first",
+        "PyPI requires it",
+        "No reason"
+      ],
+      "answer": 1,
+      "explain": "Installing a package runs other people's code. Pinning, waiting a little, and checking for typo-named lookalikes are basic supply-chain safety."
+    }
+  ]
+}

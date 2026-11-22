@@ -1,0 +1,7 @@
+[
+  {"id": 1, "name": "Red Running Shoes", "price": 999, "seller": "Kumar Footwear", "stock": 12},
+  {"id": 2, "name": "Cotton Kurta", "price": 649, "seller": "Meera Handloom", "stock": 30},
+  {"id": 3, "name": "Masala Box", "price": 299, "seller": "Patel Spices", "stock": 50},
+  {"id": 4, "name": "Wireless Earbuds", "price": 1499, "seller": "Sharma Electronics", "stock": 8},
+  {"id": 5, "name": "Steel Water Bottle", "price": 349, "seller": "Sharma Electronics", "stock": 0}
+]

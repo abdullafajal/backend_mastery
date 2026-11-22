@@ -1,0 +1,93 @@
+{
+  "title": "Dataclasses and type hints",
+  "questions": [
+    {
+      "q": "What does @dataclass write for you?",
+      "options": [
+        "Your business rules",
+        "__init__, __repr__ and __eq__, from the list of fields",
+        "A database table",
+        "Type checks that run while the program runs"
+      ],
+      "answer": 1,
+      "explain": "You list fields like name: str; @dataclass writes the boring methods. You still write your own rules (e.g. in __post_init__)."
+    },
+    {
+      "q": "In a dataclass, how do you give every Cart its own empty list?",
+      "options": [
+        "lines: list = []",
+        "lines: list = field(default_factory=list)",
+        "lines = list",
+        "You can't"
+      ],
+      "answer": 1,
+      "explain": "default_factory calls list() for each new object. A plain = [] is refused: 'mutable default ... use default_factory'."
+    },
+    {
+      "q": "def line_total(price_paise: int, quantity: int) -> int. You call line_total(\"299\", 2) and run it with python3. What happens?",
+      "options": [
+        "TypeError: Python checks the hint",
+        "It returns '299299': Python ignores hints while running",
+        "It returns 598",
+        "Python converts \"299\" to 299"
+      ],
+      "answer": 1,
+      "explain": "Hints are only notes. Python runs \"299\" * 2, which repeats the text. mypy would have caught it before running."
+    },
+    {
+      "q": "What does mypy do?",
+      "options": [
+        "Runs your program faster",
+        "Reads the code and its type hints and reports type mistakes, without running anything",
+        "Installs Python",
+        "Formats your code"
+      ],
+      "answer": 1,
+      "explain": "mypy examples/type_hints.py reported: Argument 1 to \"line_total\" has incompatible type \"str\"; expected \"int\"."
+    },
+    {
+      "q": "Where do you put a check like 'price must be above 0' in a dataclass?",
+      "options": [
+        "In the field's type hint",
+        "In __post_init__, which runs right after the generated __init__",
+        "In __repr__",
+        "Nowhere; dataclasses can't check data"
+      ],
+      "answer": 1,
+      "explain": "__post_init__ is the place for your own checks; it can raise ValueError for bad data."
+    },
+    {
+      "q": "Why make the DIWALI150 Coupon a frozen dataclass?",
+      "options": [
+        "It's faster to print",
+        "So nobody can change its discount after it's made: assigning raises FrozenInstanceError",
+        "Frozen objects are saved to disk",
+        "So it can have no fields"
+      ],
+      "answer": 1,
+      "explain": "Frozen objects are safe to share: nothing can change them behind your back. Make a new object instead."
+    },
+    {
+      "q": "(Going deeper) What does the hint -> Product | None mean?",
+      "options": [
+        "The function returns both",
+        "The function returns a Product, or None (for example when nothing was found)",
+        "It's a syntax error",
+        "The function never returns"
+      ],
+      "answer": 1,
+      "explain": "| means 'or'. mypy then reminds callers to handle the None case."
+    },
+    {
+      "q": "(Going deeper) Hints + mypy check your code. What checks data that arrives from a form or an API while running?",
+      "options": [
+        "mypy",
+        "Nothing can",
+        "Run-time checks: your own __post_init__, or libraries like pydantic / DRF serializers that read the hints",
+        "The type hints themselves"
+      ],
+      "answer": 2,
+      "explain": "Outside data only exists while running, so it needs a run-time check. Bazaar's API will use DRF serializers for this."
+    }
+  ]
+}

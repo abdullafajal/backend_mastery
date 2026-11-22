@@ -1,0 +1,88 @@
+{
+  "title": "The shell",
+  "questions": [
+    {
+      "q": "The prompt is root@bazaar-server:/srv/bazaar#. What does the # tell you?",
+      "options": [
+        "There are new messages",
+        "You are the administrator (root); be careful",
+        "The command failed",
+        "You are in a comment"
+      ],
+      "answer": 1,
+      "explain": "A normal user's prompt ends with $; root's ends with #. Root can change or delete anything."
+    },
+    {
+      "q": "You type rm summer sale.txt. What does rm receive?",
+      "options": [
+        "One argument: summer sale.txt",
+        "Two arguments: summer and sale.txt",
+        "Nothing",
+        "An error from the shell"
+      ],
+      "answer": 1,
+      "explain": "The shell splits words at spaces before rm runs. Quote the name: rm \"summer sale.txt\"."
+    },
+    {
+      "q": "Who turns logs/*.log into a list of file names?",
+      "options": [
+        "The ls program",
+        "The shell, before the program even starts",
+        "The kernel",
+        "Nobody: ls sees the *"
+      ],
+      "answer": 1,
+      "explain": "Globbing is done by the shell. The program only sees the final file names, so it can't warn you about a wrong *."
+    },
+    {
+      "q": "SALE=diwali. What does echo 'sale is $SALE' print?",
+      "options": ["sale is diwali", "sale is $SALE", "sale is", "an error"],
+      "answer": 1,
+      "explain": "Single quotes expand nothing. Double quotes (\"sale is $SALE\") would print sale is diwali."
+    },
+    {
+      "q": "SALE = diwali prints \"SALE: command not found\". Why?",
+      "options": [
+        "SALE is a reserved word",
+        "With spaces around =, the shell runs a command called SALE with arguments = and diwali",
+        "Variables must be lowercase",
+        "You need sudo"
+      ],
+      "answer": 1,
+      "explain": "Variable assignment must have no spaces: SALE=diwali."
+    },
+    {
+      "q": "A deploy script does cd /srv/bazaar; git pull. The folder doesn't exist. What happens?",
+      "options": [
+        "Nothing; the script stops",
+        "cd fails, and git pull still runs, in whatever folder the script was in",
+        "The folder is created automatically",
+        "git pull fails too"
+      ],
+      "answer": 1,
+      "explain": "; runs the next command no matter what. Use && (or set -e) so a failure stops the steps that depend on it."
+    },
+    {
+      "q": "In a script, BUILD_DIR is empty. What does rm -rf \"$BUILD_DIR/\" become?",
+      "options": [
+        "Nothing happens",
+        "rm -rf / : it tries to delete everything",
+        "An error, always",
+        "rm -rf ./"
+      ],
+      "answer": 1,
+      "explain": "An empty variable disappears and leaves just /. Use set -u, check [ -n \"$BUILD_DIR\" ], and echo destructive commands first."
+    },
+    {
+      "q": "./deploy.sh says \"Permission denied\" and $? is 126. What's the fix?",
+      "options": [
+        "Run it as a different user",
+        "chmod +x deploy.sh (or run it with bash deploy.sh)",
+        "Rename it to deploy.py",
+        "Delete the shebang line"
+      ],
+      "answer": 1,
+      "explain": "126 means found but not executable. chmod +x marks the file as executable; bash deploy.sh asks bash to read it instead."
+    }
+  ]
+}

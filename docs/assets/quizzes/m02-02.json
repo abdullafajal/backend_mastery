@@ -1,0 +1,93 @@
+{
+  "title": "Working with files",
+  "questions": [
+    {
+      "q": "You ran mv draft.conf bazaar.conf. bazaar.conf already existed. What happened to it?",
+      "options": [
+        "mv asked first",
+        "It was replaced silently by draft.conf",
+        "mv refused",
+        "Both files now exist"
+      ],
+      "answer": 1,
+      "explain": "cp and mv overwrite without asking. Use -i (ask) or -n (never overwrite), and cp file file.bak before editing."
+    },
+    {
+      "q": "mkdir backups/2026/11 fails with No such file or directory. Why, and what's the fix?",
+      "options": [
+        "Folders can't have numbers; rename them",
+        "backups/2026 doesn't exist yet; use mkdir -p backups/2026/11",
+        "You need sudo",
+        "The disk is full"
+      ],
+      "answer": 1,
+      "explain": "-p creates all missing parent folders, and doesn't complain if they already exist."
+    },
+    {
+      "q": "ls shows logs, config and media. Where is the .env file?",
+      "options": [
+        "It was deleted",
+        "It's a hidden file (its name starts with a dot); ls -a shows it",
+        "It's inside logs",
+        "Only root can see it with ls"
+      ],
+      "answer": 1,
+      "explain": "Files whose names start with . are hidden by default. ls -a shows all files."
+    },
+    {
+      "q": "Which command shows new lines of live.log as the backend writes them?",
+      "options": [
+        "cat live.log",
+        "head -f live.log",
+        "tail -f live.log",
+        "wc -l live.log"
+      ],
+      "answer": 2,
+      "explain": "tail -f follows the file until you press Ctrl+C. Inside less, F does the same."
+    },
+    {
+      "q": "The disk is almost full. Which one-liner shows what fills the current folder, biggest last?",
+      "options": [
+        "ls -l",
+        "df -h",
+        "du -sh * | sort -h",
+        "find . -name \"*\""
+      ],
+      "answer": 2,
+      "explain": "du measures each item's size; sort -h orders human sizes like 20K, 48K, 12M. Then cd into the biggest and repeat."
+    },
+    {
+      "q": "You opened a file in vi and typed some text by mistake. How do you leave without saving?",
+      "options": [
+        "Ctrl+X",
+        "Press Esc, then type :q! and Enter",
+        "Ctrl+C three times",
+        "Type exit"
+      ],
+      "answer": 1,
+      "explain": "Esc returns to normal mode; :q! quits without saving. :wq saves and quits; i starts typing."
+    },
+    {
+      "q": "(Going deeper) What does mv do on disk when you rename a file in the same folder?",
+      "options": [
+        "Copies all the data to a new place",
+        "Changes only the name; the inode and data stay where they are",
+        "Deletes the file and creates a new one",
+        "Compresses the file"
+      ],
+      "answer": 1,
+      "explain": "That's why mv is instant even for huge files. cp creates a new inode with a full copy."
+    },
+    {
+      "q": "(Going deeper) A backup script copies with cp -a, then deletes all but the 3 newest using ls -t. It deletes the newest backup. Why?",
+      "options": [
+        "ls -t is broken",
+        "cp -a keeps the original's modification time, so all backups have the same time and ls -t can't order them",
+        "The disk was full",
+        "The script ran too fast"
+      ],
+      "answer": 1,
+      "explain": "Put a sortable timestamp (YYYYMMDD-HHMMSS) in the name and sort by name instead."
+    }
+  ]
+}

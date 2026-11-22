@@ -1,0 +1,93 @@
+{
+  "title": "What a server really is",
+  "questions": [
+    {
+      "q": "\"The server is down.\" Which two things can that mean?",
+      "options": [
+        "The CPU or the screen",
+        "The server program stopped, or the server machine is off/unreachable",
+        "The client or the database",
+        "It always means the internet is down"
+      ],
+      "answer": 1,
+      "explain": "\"Server\" means both a program that answers requests and a machine that runs such programs. Say which one."
+    },
+    {
+      "q": "In what order does a server program prepare to receive customers?",
+      "options": [
+        "accept, listen, bind, socket",
+        "socket, bind (claim a port), listen, then accept (wait for a client)",
+        "send, recv, close",
+        "bind, close, accept"
+      ],
+      "answer": 1,
+      "explain": "accept() then sleeps until a client connects, and returns a new socket (a new file descriptor) for that client."
+    },
+    {
+      "q": "You start Bazaar's server and get OSError: [Errno 98] Address already in use. What does it mean?",
+      "options": [
+        "The disk is full",
+        "Another program (often an old copy of yours) already listens on that port",
+        "Your code has a syntax error",
+        "The internet is down"
+      ],
+      "answer": 1,
+      "explain": "Only one listener can own an address:port. Stop the other program, or use another port."
+    },
+    {
+      "q": "Inside a container, a server is bound to 127.0.0.1:8000. Your laptop can't reach it. Why?",
+      "options": [
+        "Port 8000 is not allowed",
+        "127.0.0.1 accepts connections only from the same machine (here, the same container); use 0.0.0.0",
+        "Containers can't run servers",
+        "curl is broken"
+      ],
+      "answer": 1,
+      "explain": "0.0.0.0 means all of the machine's addresses, so connections from outside the container can arrive."
+    },
+    {
+      "q": "A server process can't accept new customers: [Errno 24] Too many open files. What ran out?",
+      "options": [
+        "Disk space",
+        "File descriptors: every open file AND every connection uses one",
+        "CPU cores",
+        "Inodes"
+      ],
+      "answer": 1,
+      "explain": "Close files and connections you open, and raise the limit (ulimit -n) for servers that truly need many."
+    },
+    {
+      "q": "The load average is 16 on an 8-core server. What do customers notice?",
+      "options": [
+        "Nothing",
+        "Everything is slow: twice as many threads want a core as there are cores, so requests wait",
+        "Disk errors",
+        "The server switches off"
+      ],
+      "answer": 1,
+      "explain": "Compare the load average with the core count (nproc). Above it, work queues up and latency grows."
+    },
+    {
+      "q": "Most of Bazaar's web requests spend their time waiting for the database. What kind of work is that?",
+      "options": [
+        "CPU-bound",
+        "I/O-bound: it mostly waits for input/output",
+        "Memory-bound",
+        "Disk-full"
+      ],
+      "answer": 1,
+      "explain": "I/O-bound work benefits from threads or async (more waiting at once). CPU-bound work needs more cores or processes."
+    },
+    {
+      "q": "(Going deeper) Bazaar promises 99.9% uptime. About how much downtime is that per month?",
+      "options": [
+        "About 4 minutes",
+        "About 43 minutes",
+        "About 7 hours",
+        "About 3 days"
+      ],
+      "answer": 1,
+      "explain": "0.1% of 30 days ≈ 43 minutes. 99.99% would be about 4.3 minutes; 99% about 7.2 hours."
+    }
+  ]
+}

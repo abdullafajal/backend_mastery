@@ -1,0 +1,5 @@
+# Made by the lab; never commit these.
+.venv/
+*.egg-info/
+build/
+__pycache__/

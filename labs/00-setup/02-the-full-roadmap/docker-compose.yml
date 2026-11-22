@@ -1,0 +1,28 @@
+# Lab 00-02: what happens to Bazaar's one-worker backend when users arrive?
+services:
+  bazaar:
+    image: python:3.13.18-slim-trixie
+    working_dir: /app
+    command: ["python", "server.py"]
+    volumes:
+      - ./app:/app:ro
+    ports:
+      - "${BAZAAR_PORT:-8000}:8000"     # your laptop's port 8000 -> container's port 8000
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 2s
+      timeout: 2s
+      retries: 15
+
+  users:                               # a pretend crowd of customers
+    image: python:3.13.18-slim-trixie
+    working_dir: /examples
+    command: ["python", "users_arrive.py"]
+    volumes:
+      - ./examples:/examples:ro
+    environment:
+      BAZAAR_URL: http://bazaar:8000   # "bazaar" is the service name above; Docker finds it
+    depends_on:
+      bazaar:
+        condition: service_healthy
+    profiles: ["crowd"]                # only starts when you ask for it

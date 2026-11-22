@@ -1,0 +1,138 @@
+/* Backend Mastery — course styles: diagrams, quizzes, "lesson complete".
+   Rule: no hard-coded colours. The --bz-* tokens below point at the site's
+   design tokens (theme/css/site.css), so light and dark mode both work. */
+
+:root {
+  --bz-fg: var(--text);
+  --bz-fg-soft: var(--text-2);
+  --bz-fg-faint: var(--text-3);
+  --bz-line: var(--line);
+  --bz-bg: var(--surface);
+  --bz-surface: var(--bg-2);
+  --bz-brand: var(--brand);
+  --bz-accent: var(--brand);
+  --bz-ok: var(--ok);
+  --bz-bad: var(--bad);
+  --bz-warn: var(--warn);
+  --bz-info: var(--info);
+}
+
+/* ---------- Diagrams ---------- */
+.bz-diagram {
+  margin: 2rem 0;
+  border: 1px solid var(--bz-line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  background: var(--bz-bg);
+  overflow: hidden;
+}
+.bz-diagram__title {
+  padding: 0.625rem 1rem;
+  font-weight: 700;
+  font-size: 1rem;
+  border-bottom: 1px solid var(--bz-line);
+  background: var(--bz-surface);
+}
+.bz-diagram__stage { padding: 0.625rem; }
+.bz-diagram__stage svg { display: block; width: 100%; height: auto; max-height: 70vh; }
+.bz-diagram__inputs {
+  display: flex; flex-wrap: wrap; gap: 0.625rem; align-items: center;
+  padding: 0 1rem 0.625rem; font-size: 0.938rem;
+}
+.bz-diagram__inputs:empty { display: none; }
+.bz-diagram__note { color: var(--bz-bad); font-family: var(--mono); font-size: 0.875rem; overflow-wrap: anywhere; }
+.bz-diagram__caption {
+  min-height: 3.2em;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--bz-line);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.bz-diagram__step { color: var(--bz-fg-soft); font-weight: 700; margin-right: 0.5rem; }
+.bz-diagram__controls {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+  padding: 0.625rem 1rem;
+  border-top: 1px solid var(--bz-line);
+  background: var(--bz-surface);
+}
+.bz-btn {
+  font: inherit; font-size: 0.938rem; font-weight: 600;
+  padding: 0.438rem 0.875rem; min-height: 2.5rem;
+  border: 1px solid var(--bz-line); border-radius: 0.375rem;
+  background: var(--bz-bg); color: var(--bz-fg);
+  cursor: pointer;
+}
+.bz-btn:hover:not(:disabled) { border-color: var(--bz-brand); }
+.bz-btn:disabled { opacity: 0.45; cursor: default; }
+.bz-btn--primary { background: var(--bz-brand); color: var(--on-brand); border-color: var(--bz-brand); }
+.bz-speed { display: flex; align-items: center; gap: 0.375rem; margin-left: auto; font-size: 0.875rem; color: var(--bz-fg-soft); }
+.bz-speed input { width: 7.5rem; accent-color: var(--bz-brand); }
+/* inputs never wider than the diagram (long option texts on phones) */
+.bz-diagram__inputs label { max-width: 100%; display: inline-flex; align-items: center; gap: 0.375rem; flex-wrap: wrap; }
+.bz-input { max-width: 100%;
+  font: inherit; font-size: 0.938rem; padding: 0.375rem 0.625rem;
+  border: 1px solid var(--bz-line); border-radius: 0.375rem;
+  background: var(--bz-bg); color: var(--bz-fg);
+}
+
+/* SVG primitives drawn by diagram-kit.js */
+.bz-svg text { fill: var(--bz-fg); font-family: var(--font); }
+.bz-svg .bz-box rect { fill: var(--bz-surface); stroke: var(--bz-fg-faint); stroke-width: 1.5; transition: fill .3s, stroke .3s, opacity .3s; }
+.bz-svg .bz-box .bz-box__label { font-size: 14px; font-weight: 700; }
+.bz-svg .bz-box .bz-box__sub { font-size: 11px; fill: var(--bz-fg-soft); }
+.bz-svg .bz-box.is-active rect { stroke: var(--bz-brand); stroke-width: 3; }
+.bz-svg .bz-box.is-ok rect { stroke: var(--bz-ok); stroke-width: 3; }
+.bz-svg .bz-box.is-bad rect { stroke: var(--bz-bad); stroke-width: 3; }
+.bz-svg .bz-box.is-dim { opacity: 0.35; }
+.bz-svg .bz-box.is-clickable { cursor: pointer; }
+.bz-svg .bz-arrow { stroke: var(--bz-fg-faint); stroke-width: 2; fill: none; transition: stroke .3s; }
+.bz-svg .bz-arrow.is-active { stroke: var(--bz-brand); stroke-width: 3; }
+.bz-svg .bz-arrow.is-dashed { stroke-dasharray: 6 5; }
+.bz-svg .bz-arrowhead { fill: var(--bz-fg-faint); }
+.bz-svg .bz-arrowhead.is-active { fill: var(--bz-brand); }
+.bz-svg .bz-arrow__label { font-size: 11px; fill: var(--bz-fg-soft); }
+.bz-svg .bz-packet circle { fill: var(--bz-accent); stroke: var(--bz-bg); stroke-width: 2; }
+.bz-svg .bz-packet text { font-size: 10px; font-weight: 700; }
+.bz-svg .bz-note { font-size: 12px; fill: var(--bz-fg-soft); }
+/* halo: a background-colored outline so text stays readable on top of lines */
+.bz-svg .bz-note,
+.bz-svg .bz-arrow__label { paint-order: stroke; stroke: var(--bz-bg); stroke-width: 5px; stroke-linejoin: round; }
+.bz-svg .bz-zone { fill: none; stroke: var(--bz-line); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.bz-svg .bz-zone__label { font-size: 11px; font-weight: 700; fill: var(--bz-fg-soft); letter-spacing: .05em; }
+
+/* ---------- Quiz ---------- */
+.bz-quiz { margin: 1.25rem 0; }
+.bz-quiz__q {
+  margin: 0 0 1.25rem; padding: 1rem 1.25rem;
+  border: 1px solid var(--bz-line); border-radius: 0.625rem;
+}
+.bz-quiz__qtext { font-weight: 700; margin-bottom: 0.625rem; }
+.bz-quiz__opt {
+  display: block; width: 100%; text-align: left;
+  margin: 0.375rem 0; padding: 0.625rem 0.875rem;
+  font: inherit; font-size: 1rem; color: var(--bz-fg);
+  background: var(--bz-surface); border: 1px solid var(--bz-line); border-radius: 0.375rem;
+  cursor: pointer;
+}
+/* long paths/commands without spaces must wrap, or they widen the page on phones */
+.bz-quiz__opt, .bz-quiz__qtext, .bz-quiz__explain, .bz-diagram__caption { overflow-wrap: anywhere; }
+.bz-quiz__opt:hover:not(:disabled) { border-color: var(--bz-brand); }
+.bz-quiz__opt:disabled { cursor: default; }
+.bz-quiz__opt.is-correct { border-color: var(--bz-ok); box-shadow: inset 4px 0 0 var(--bz-ok); }
+.bz-quiz__opt.is-wrong { border-color: var(--bz-bad); box-shadow: inset 4px 0 0 var(--bz-bad); }
+.bz-quiz__explain { display: none; margin-top: 0.625rem; font-size: 1rem; color: var(--bz-fg-soft); }
+.bz-quiz__explain.is-shown { display: block; }
+.bz-quiz__score { font-weight: 700; padding: 0.625rem 0; }
+
+/* ---------- Lesson complete ---------- */
+.bz-complete { margin: 1.875rem 0; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.bz-complete__state { font-size: 1rem; color: var(--bz-fg-soft); }
+.bz-complete.is-done .bz-complete__state { color: var(--bz-ok); font-weight: 700; }
+
+/* ---------- Progress list on home page ---------- */
+.bz-done-mark { color: var(--bz-ok); font-weight: 700; }
+
+@media (max-width: 600px) {
+  .bz-speed { margin-left: 0; width: 100%; }
+  .bz-speed input { flex: 1; }
+}

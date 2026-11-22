@@ -1,0 +1,31 @@
+# Lab 01-01: a speed race between RAM, disk and the network.
+services:
+  inventory:                          # a second Bazaar server, reached over the network
+    image: python:3.13.18-slim-trixie
+    working_dir: /inventory
+    command: ["python3", "inventory_service.py"]
+    volumes:
+      - ./inventory:/inventory:ro
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:9000/stock/1')"]
+      interval: 2s
+      timeout: 2s
+      retries: 15
+
+  race:                               # runs the speed race once, then exits
+    image: python:3.13.18-slim-trixie
+    working_dir: /app
+    command: ["python3", "speed_race.py"]
+    environment:
+      INVENTORY_HOST: inventory       # Docker finds the other container by its service name
+      ORDERS_FILE: /data/orders.log   # saved on a real Docker volume, like a database would
+    volumes:
+      - ./app:/app:ro
+      - orders-data:/data
+    depends_on:
+      inventory:
+        condition: service_healthy
+    profiles: ["race"]                # only starts when you ask for it
+
+volumes:
+  orders-data:

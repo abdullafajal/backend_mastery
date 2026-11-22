@@ -1,0 +1,7 @@
+services:
+  dev:
+    build: .
+    image: bazaar-lab-git:m03-04
+    hostname: rohan-laptop
+    stdin_open: true
+    tty: true

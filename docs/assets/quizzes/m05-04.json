@@ -1,0 +1,88 @@
+{
+  "title": "Decorators",
+  "questions": [
+    {
+      "q": "show = rupees (no brackets). What is show?",
+      "options": [
+        "The result of calling rupees",
+        "The function rupees itself; show(29900) calls it",
+        "An error",
+        "None"
+      ],
+      "answer": 1,
+      "explain": "Functions are values. Without brackets you store the function; with brackets you call it."
+    },
+    {
+      "q": "What does @timed above def fetch_prices(...) mean?",
+      "options": [
+        "fetch_prices runs faster",
+        "fetch_prices = timed(fetch_prices): the name now points to the wrapper that timed returned",
+        "timed is called on every line of fetch_prices",
+        "fetch_prices is deleted"
+      ],
+      "answer": 1,
+      "explain": "The @ line is shorthand for that assignment. Callers keep writing fetch_prices(...) and get the wrapped version."
+    },
+    {
+      "q": "A wrapper prints the new price but has no return. What does the decorated function give back?",
+      "options": ["The new price", "The original price", "None", "An error"],
+      "answer": 2,
+      "explain": "The wrapper IS what callers now call. A function without return gives back None. Add return result."
+    },
+    {
+      "q": "When does the decorator function itself (timed) run, and when does the wrapper run?",
+      "options": [
+        "Both on every call",
+        "timed runs once, when def runs; the wrapper runs on every call",
+        "Both only once",
+        "timed runs on every call; the wrapper never runs"
+      ],
+      "answer": 1,
+      "explain": "Decorating happens at definition time. Each call then goes through the wrapper."
+    },
+    {
+      "q": "Why does @retry(times=3) need one more level of def than @timed?",
+      "options": [
+        "It doesn't",
+        "retry(times=3) runs first and must RETURN the actual decorator, which then takes the function",
+        "Because it uses try/except",
+        "Because 3 is a number"
+      ],
+      "answer": 1,
+      "explain": "Settings in brackets → retry(times) returns decorator(func) → which returns wrapper(...)."
+    },
+    {
+      "q": "Why put @functools.wraps(func) on a wrapper?",
+      "options": [
+        "It makes the function faster",
+        "It keeps the original's name and docstring, so logs and tracebacks don't just say 'wrapper'",
+        "It's required for decorators to run",
+        "It retries the function"
+      ],
+      "answer": 1,
+      "explain": "Without it, supplier_price.__name__ became 'wrapper' and its docstring None."
+    },
+    {
+      "q": "(Going deeper) @tag(\"outer\") on top of @tag(\"inner\") on def checkout. Whose 'before' prints first?",
+      "options": [
+        "inner",
+        "outer: the top decorator wraps everything, so its before runs first and its after runs last",
+        "checkout",
+        "Random"
+      ],
+      "answer": 1,
+      "explain": "checkout = outer(inner(checkout)). Like onion layers: outer before, inner before, checkout, inner after, outer after."
+    },
+    {
+      "q": "(Going deeper) Is @functools.lru_cache a good idea on a function that returns live stock?",
+      "options": [
+        "Yes, always cache",
+        "No: it remembers the first answer per argument, so customers would see old stock",
+        "Only for Masala Box",
+        "Yes, if maxsize is small"
+      ],
+      "answer": 1,
+      "explain": "Cache answers that never change (like delivery days per pincode in the example), not live data."
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "title": "Processes and threads",
+  "questions": [
+    {
+      "q": "What is the difference between a program and a process?",
+      "options": [
+        "There is no difference",
+        "A program is a file of instructions on the disk; a process is that program running right now",
+        "A process is a file; a program is running",
+        "A program runs on the CPU; a process runs on the disk"
+      ],
+      "answer": 1,
+      "explain": "One program file (like email_worker.py) can become many processes, each with its own PID and memory."
+    },
+    {
+      "q": "The price updater thread changes a price in memory. Who sees the new price at once?",
+      "options": [
+        "Only the email-worker processes",
+        "The other threads of the same process",
+        "Every process on the computer",
+        "Nobody until a restart"
+      ],
+      "answer": 1,
+      "explain": "Threads of one process share the same memory. Other processes have their own memory and don't see it. That is why the order emails still said ₹999."
+    },
+    {
+      "q": "10 threads each do: read the stock, check it, write stock − 1. Bazaar sells 10 earbuds but had only 8. What is this bug called, and what fixes it?",
+      "options": [
+        "A memory leak; fix it with more RAM",
+        "A race condition; fix it with a lock (or a database lock)",
+        "A zombie; fix it with kill -9",
+        "A slow disk; fix it with an SSD"
+      ],
+      "answer": 1,
+      "explain": "The threads mixed their read and write steps. A lock lets only one thread at a time do all three steps."
+    },
+    {
+      "q": "You run kill 9 (the PID) on an email-worker. What happens to bazaar-backend?",
+      "options": [
+        "It crashes too",
+        "It keeps running; its supervisor even starts a new email-worker",
+        "The whole computer restarts",
+        "Its memory is deleted"
+      ],
+      "answer": 1,
+      "explain": "Processes are isolated. A crash stays inside that one process. In the lab, the supervisor saw the exit and started a new worker with a new PID."
+    },
+    {
+      "q": "top shows bazaar-backend at 100% CPU on an 8-core computer. What does that mean?",
+      "options": [
+        "The whole computer is completely full",
+        "One core is fully busy; the other 7 are free",
+        "The program has crashed",
+        "It uses 100% of the RAM"
+      ],
+      "answer": 1,
+      "explain": "In top, 100% means one full core, measured just now. With 8 cores, the maximum is 800%."
+    },
+    {
+      "q": "(Going deeper) What is the difference between kill <pid> and kill -9 <pid>?",
+      "options": [
+        "They are the same",
+        "kill sends SIGTERM (\"please stop\", can be handled); kill -9 sends SIGKILL (\"stop now\", can't be caught)",
+        "kill -9 kills 9 processes",
+        "kill only works on threads"
+      ],
+      "answer": 1,
+      "explain": "Always try plain kill (SIGTERM) first, so the program can finish its work. SIGKILL gives it no chance."
+    },
+    {
+      "q": "(Going deeper) A Bazaar container stopped with \"exit code 137\". What does that tell you?",
+      "options": [
+        "It finished successfully",
+        "It received SIGKILL (128 + 9), often because it ran out of memory or ignored SIGTERM",
+        "It had 137 errors",
+        "Port 137 was busy"
+      ],
+      "answer": 1,
+      "explain": "Shells and Docker show \"killed by signal N\" as 128 + N. 137 = SIGKILL, 143 = SIGTERM."
+    },
+    {
+      "q": "(Going deeper) ps shows STAT = Z and <defunct> for a process. What is it?",
+      "options": [
+        "A process using 100% CPU",
+        "A zombie: it has finished, but its parent has not collected its exit code yet",
+        "A process waiting for the disk",
+        "A process that is sleeping"
+      ],
+      "answer": 1,
+      "explain": "A zombie uses no CPU. It disappears when the parent calls wait(). Many zombies mean the parent has a bug."
+    }
+  ]
+}
