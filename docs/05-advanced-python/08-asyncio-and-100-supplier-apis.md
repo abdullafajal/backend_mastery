@@ -233,7 +233,7 @@ When you finish, run `bash test_lab.sh` (from your computer). You should see `AL
 ## 9. What's next
 
 Module 5 is complete! Bazaar's Python is now grown-up: classes, dataclasses and type hints, decorators, generators, packaging, and three ways to do things at once.
-Next, in Module 6: **Data structures and algorithms for backend** *(coming soon)*.
+Next, in Module 6: [Data structures and algorithms for backend](../06-data-structures-and-algorithms/index.md).
 
 **In one line:** asyncio runs many waiting tasks on one thread; `async def` makes a coroutine, `await` is where it pauses, `gather` runs many at once,
 `asyncio.run` starts the loop; never block inside it. 100 supplier calls: 10.6 s one by one, about 0.2 s with asyncio.

@@ -9,6 +9,8 @@ Words are in alphabetical order. The module in brackets is where you first meet 
 
 **Absolute path** — A path that starts from the root folder `/`, so it means the same thing from anywhere. *(Module 1)*
 
+**Algorithm** — A step-by-step method for solving a problem, like binary search. *(Module 6)*
+
 **Alias** — A shortcut name for a longer command, defined in the shell, like `ll` for `ls -l`. *(Module 2)*
 
 **Aliasing** — Two names pointing to the same object, so a change through one is seen through the other. *(Module 1)*
@@ -40,6 +42,10 @@ Words are in alphabetical order. The module in brackets is where you first meet 
 **Bare except** — `except:` with no error name. It catches every error, even typos in your own code, so it hides bugs. Avoid it. *(Module 4)*
 
 **bash** — Bourne Again SHell: the usual shell on Linux servers. *(Module 2)*
+
+**Big-O** — A way to describe how an algorithm's work grows as the data grows: O(1), O(log n), O(n), O(n log n), O(n²). *(Module 6)*
+
+**Binary search** — Finding an item in SORTED data by checking the middle and throwing away half each step: O(log n). *(Module 6)*
 
 **Bit** — The smallest piece of data: a single 0 or 1. 8 bits make 1 byte. *(Module 1)*
 
@@ -134,6 +140,8 @@ Words are in alphabetical order. The module in brackets is where you first meet 
 **Daemon** — A program that runs in the background, waiting for work. The Docker Engine is one. *(Module 0)*
 
 **Data centre** — A building full of servers, with fast networks, power and cooling. *(Module 1)*
+
+**Data structure** — A way of organising data so certain operations are fast: list, dict, set, heap, tree. *(Module 6)*
 
 **Database** — A program that stores data safely and finds it again quickly. *(Module 0)*
 
@@ -610,6 +618,8 @@ Words are in alphabetical order. The module in brackets is where you first meet 
 **Thread pool** — A ready set of threads that runs tasks for you: `ThreadPoolExecutor(max_workers=10)`. *(Module 5)*
 
 **Throughput** — How many requests a system finishes per second. *(Module 0)*
+
+**Time complexity** — How the running time of an algorithm grows with the input size, written in Big-O. *(Module 6)*
 
 **Traceback** — Python's report of where an error happened. Read it from the bottom: the last line says what went wrong. *(Module 0)*
 

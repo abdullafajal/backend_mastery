@@ -10,7 +10,7 @@ Legend: ✅ done + verified · 🟡 in progress / partial · ⬜ not started · 
 ## Next up
 
 **✅ Two-layer conversion done (owner approved, 2026-11-21):** all 12 lessons now have an "In 1 minute" box, advanced sections in "Going deeper" boxes (via `scripts/two_layer.py` + hand-simplified dense sections: OS/process table, socket steps, resources, exit codes, scripts, names→objects, file descriptors, file system intro, HTTP, roadmap levels, refcount). Visible core ≈ 1,500–2,700 words per lesson (was 3,500–5,000). Quizzes: core questions first, ≤3 marked "(Going deeper)". Lab READMEs: deeper tasks marked "optional, Going deeper".
-**✅ Module 2 complete (2026-11-21).** **✅ Module 3 complete (2026-11-22).** **✅ Module 4 complete (2026-11-22)** — Bazaar v0 (plan ka lab) bana: `labs/04-python-fundamentals/08-modules-and-bazaar-v0/bazaar_v0/`. **✅ Module 5 complete (2026-11-23)** — plan's lab done (100 supplier APIs: 10.6 s / 0.3 s / 0.2 s). **Next:** Module 6 — Data structures and algorithms for backend (plan: Big-O, arrays, hash maps, linked lists, stacks and queues, trees and B-trees, heaps, graphs; diagrams: hash map buckets and collisions, B-tree insert and search; lab: in-memory shopping cart store with expiry). Pehle Module 6 ka lesson split decide karke yahan likhna.
+**✅ Module 2 complete (2026-11-21).** **✅ Module 3 complete (2026-11-22).** **✅ Module 4 complete (2026-11-22)** — Bazaar v0 (plan ka lab) bana: `labs/04-python-fundamentals/08-modules-and-bazaar-v0/bazaar_v0/`. **✅ Module 5 complete (2026-11-23)** — plan's lab done (100 supplier APIs: 10.6 s / 0.3 s / 0.2 s). Module 6 Lesson 1 ✅. **Next:** Module 6, Lesson 2 — Arrays and linked lists (recently-viewed list: insert(0) is O(n), deque/linked list O(1)). (Module 6 plan: Big-O, arrays, hash maps, linked lists, stacks and queues, trees and B-trees, heaps, graphs; diagrams: hash map buckets and collisions, B-tree insert and search; lab: in-memory shopping cart store with expiry). Module 6 split (8 lessons): 1. Big-O ✅ · 2. Arrays and linked lists · 3. Hash maps (plan diagram: buckets and collisions) · 4. Stacks and queues · 5. Trees and B-trees (plan diagram: B-tree insert and search) · 6. Heaps · 7. Graphs · 8. Project: Bazaar's cart store with expiry (plan's lab, later replaced by Redis).
 
 **Deploy (2026-11-23):** repo `abdullafajal/backend_mastery` (public), pushed. Owner must enable GitHub Pages once: Settings → Pages → Source: **GitHub Actions**. Until then the "Deploy site" job fails at `deploy-pages` (build passes). ✅ Owner enabled Pages and set the custom domain **backend.espere.in** (github.io URL redirects there); deploy of 81e0eb9 is live. `site_url` → https://backend.espere.in/. HTTPS certificate not issued yet at the time of checking (https gave no answer); when it is, tick "Enforce HTTPS" in Settings → Pages.
 
@@ -186,6 +186,12 @@ Module 3 split (5 lessons): 1. Commits and history ✅ · 2. Branches · 3. Merg
 | 02 | Inheritance and special methods | `docs/05-advanced-python/02-inheritance-and-special-methods.md` | `method-lookup` ✅ (pick object + method; override vs inherited) | `labs/05-advanced-python/02-inheritance-and-special-methods/` ✅ (8/8 checks, 5 tasks; exercise = GiftCard without super().__init__) | `m05-02` ✅ (6 core + 2 deeper) | ✅ Two-layer v1 |
 | 01 | Classes and objects | `docs/05-advanced-python/01-classes-and-objects.md` | `class-objects` ✅ (blueprint / shared class list) | `labs/05-advanced-python/01-classes-and-objects/` ✅ (7/7 checks, 6 tasks; exercise = `lines = []` on the class) | `m05-01` ✅ (6 core + 2 deeper) | ✅ Two-layer v1 |
 
+### Module 6 — lesson detail
+
+| # | Lesson | File | Diagram | Lab | Quiz | DoD |
+| --- | --- | --- | --- | --- | --- | --- |
+| 01 | Big-O: how work grows | `docs/06-data-structures-and-algorithms/01-big-o.md` | `big-o` ✅ (typed n, five classes, log-scale bars, time at 1 µs/step) | `labs/06-data-structures-and-algorithms/01-big-o/` ✅ (5/5 checks, 5 tasks; exercise = O(n²) repeat-customer check) | `m06-01` ✅ (6 core + 2 deeper) | ✅ Two-layer v1 |
+
 ---
 
 ## Registries
@@ -207,6 +213,7 @@ Module 3 split (5 lessons): 1. Commits and history ✅ · 2. Branches · 3. Merg
 | file-tree | `docs/assets/diagrams/file-tree.js` | m02-02 | Select: cd around / tour; click any folder | ✅ |
 | ssh-keys | `docs/assets/diagrams/ssh-keys.js` | m02-06 | Select: key login / first connection (known_hosts) | ✅ |
 | systemd-lifecycle | `docs/assets/diagrams/systemd-lifecycle.js` | m02-07 | Select: start + crash/restart / enable + reboot / stop | ✅ |
+| big-o | `docs/assets/diagrams/big-o.js` | m06-01 | Number input n (1–100,000,000) | ✅ |
 | event-loop | `docs/assets/diagrams/event-loop.js` | m05-08 | Select await / block; loop + 3 tasks with clock | ✅ |
 | concurrency-timeline | `docs/assets/diagrams/concurrency-timeline.js` | m05-07 | Select wait / cpu; time-bar boxes | ✅ |
 | venv-packaging | `docs/assets/diagrams/venv-packaging.js` | m05-06 | Select venv / package | ✅ |
@@ -270,6 +277,7 @@ Module 3 split (5 lessons): 1. Commits and history ✅ · 2. Branches · 3. Merg
 | m05-06 | `docs/assets/quizzes/m05-06.json` | 8 | ✅ |
 | m05-07 | `docs/assets/quizzes/m05-07.json` | 8 | ✅ |
 | m05-08 | `docs/assets/quizzes/m05-08.json` | 8 | ✅ |
+| m06-01 | `docs/assets/quizzes/m06-01.json` | 8 | ✅ |
 
 ### Labs + host port map
 
@@ -286,6 +294,7 @@ Module 3 split (5 lessons): 1. Commits and history ✅ · 2. Branches · 3. Merg
 | `labs/01-how-computers-work/05-what-a-server-is` | `bz-m01-05` | `${BAZAAR_PORT:-8000}` | `test_lab.sh` 5/5 (tools service `ulimits: nofile: 50`) | ✅ |
 | `labs/02-linux-command-line/01-the-shell` | `bz-m02-01` | none (`run --rm shell`, fresh `/srv/bazaar` each session) | `test_lab.sh` 8/8 | ✅ |
 | `labs/02-linux-command-line/02-working-with-files` | `bz-m02-02` | none (builds `bazaar-lab-files:m02-02`: less, nano, vim-tiny, tree, procps) | `test_lab.sh` 10/10 | ✅ |
+| `labs/06-data-structures-and-algorithms/01-big-o` | `bz-m06-01` | none (official Python image, `./:/lab`) | `test_lab.sh` 5/5 | ✅ |
 | `labs/05-advanced-python/08-asyncio-and-100-supplier-apis` | `bz-m05-08` | none (services `suppliers` (official Python image) + `python` (builds `bazaar-lab-python-httpx:m05-08`); internal port 8080 only) | `test_lab.sh` 6/6 | ✅ |
 | `labs/05-advanced-python/07-threads-and-processes` | `bz-m05-07` | none (official Python image, `./:/lab`) | `test_lab.sh` 6/6 | ✅ |
 | `labs/05-advanced-python/06-venv-and-packaging` | `bz-m05-06` | none (builds `bazaar-lab-python-uv:m05-06`; **needs internet** for PyPI; test venvs in /tmp) | `test_lab.sh` 12/12 | ✅ |
@@ -419,6 +428,14 @@ Port rule: har lab ka host port env var se aata hai (`"${BAZAAR_PORT:-8000}:8000
 ---
 
 ## Session log
+
+### 2026-11-23 — Session 40: Module 6 split + Lesson 1 "Big-O: how work grows"
+
+**Kiya:** Module 6 index + nav + 8-lesson split. Lesson (core: count steps not seconds (step table), five classes table with Bazaar examples, list vs set on 1,000,000 ids (~20,000× faster), binary search (≤20 steps for a million), O(n²) loop-in-loop, order-slip analogy; code example = repeat customers 3.5 s → 0.01 s with a set built once; under the hood: set built inside the loop, cost table of Python operations; deeper: worst/average/amortised + bisect, N+1 queries/indexes/profiling). Diagram `big-o.js`. Lab: 3 examples, 1 mistake, exercise + solution, 5 checks (counts exact; timings as ratios). Quiz m06-01. Glossary +5 (Algorithm, Big-O, Binary search, Data structure, Time complexity).
+**Verify kiya:** all outputs real; 10¹² µs ≈ 11.6 days, 100 × 3.5 s ≈ 6 min. Mutation: solution back to a list → FAIL.
+**Bug pakda:** first list_vs_set took 9 s (→ 200 lookups, per-lookup ms/µs); bash `$ratio×` parsed the multibyte × into the name (→ `${ratio}`); screenshot script: lazy-loaded diagram + two inputs (number + speed slider) → `wait_for_selector` + `input[type=number]`; phone bars too narrow, "1 steps", backticks in captions.
+**Checks:** build strict, check_site PASS, lab 5/5, screenshots dekhe (desktop-light n=1,000,000, mobile-dark n=100).
+
 
 ### 2026-11-23 — Session 39: Module 5, Lesson 8 "asyncio, and 100 supplier APIs" (Module 5 complete) + GitHub deploy
 

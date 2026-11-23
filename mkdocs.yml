@@ -143,5 +143,8 @@ nav:
           - "Virtual environments and packaging": 05-advanced-python/06-venv-and-packaging.md
           - "Threads and processes": 05-advanced-python/07-threads-and-processes.md
           - "asyncio, and 100 supplier APIs": 05-advanced-python/08-asyncio-and-100-supplier-apis.md
+      - "6. Data structures and algorithms":
+          - 06-data-structures-and-algorithms/index.md
+          - "Big-O: how work grows": 06-data-structures-and-algorithms/01-big-o.md
   - Glossary: glossary.md
   - About: about.md
